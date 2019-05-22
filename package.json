@@ -4,8 +4,14 @@
   "description": "Factory Machine Systems Real Time Monitoring System",
   "main": "index.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
+    "graphql": "^14.3.0",
+    "graphql-yoga": "^1.17.4",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.1.13",
+    "prisma": "^1.33.0",
+    "prisma-client-lib": "^1.33.0",
     "socket.io": "^2.2.0"
   },
   "scripts": {

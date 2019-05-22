@@ -1,0 +1,39 @@
+type Query {
+	info: String!
+	messages: [Message!]!
+}
+
+type Mutation {
+	sendMessage(subject: String!, body: String!, recipients: [String!]): Message!
+	signup(username: String!, name:String!, password: String!, role: Role!): AuthPayload
+	login(username: String!, password: String!): AuthPayload
+	
+}
+
+type Message {
+	id: ID!
+	subject: String!
+	body: String!
+	sender: User!
+	recipients: [User!]!
+}
+
+type AuthPayload {
+	token: String
+	user: User
+}
+
+type User {
+	id: ID!
+	username: String!
+	name: String!
+	inbox: [Message!]!
+	outbox: [Message!]!
+	role: Role!
+}
+
+enum Role{
+USER
+ADMIN
+ADMINVIEW
+}

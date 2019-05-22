@@ -1,0 +1,25 @@
+type Message {
+	id: ID! @id
+	createdAt: DateTime! @createdAt
+	subject: String!
+	body: String!
+	sender: User! @relation(link: INLINE name: "MessageSender")
+	recipients: [User!]! @relation(link: INLINE name: "MessageRecipients")
+}
+
+type User {
+	id: ID! @id
+	username: String! @unique
+	name: String! 
+	password: String!
+	inbox: [Message!]! @relation(name: "MessageRecipients")
+	outbox: [Message!]! @relation(name: "MessageSender")
+	role: Role! @default(value: USER)
+}
+
+enum Role {
+USER
+ADMIN
+ADMINVIEW
+}
+
