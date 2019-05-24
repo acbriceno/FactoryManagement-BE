@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { APP_SECRET, getUserId } = require('../util')
-
+const { APP_SECRET, getUserId, } = require('../util')
+const {Role, isAdmin} = require('../Auth/Auth')
+const GraphQLDate = require('./Date')
 async function signup(parent, args, context, info){
 	const password = await bcrypt.hash(args.password, 10)
 	const user = await context.prisma.createUser({...args, password})
@@ -38,9 +39,9 @@ async function sendMessage(parent, args, context) {
 	let recipients = []
 
 	for(let x=0; x<args.recipients.length;x++){
-		console.log(args.recipients[x])
+		//console.log(args.recipients[x])
 		let user = await context.prisma.user({ username: args.recipients[x]})
-		console.log(user)
+		//console.log(user)
 
 		if(user){
 			let recipient ={
@@ -52,7 +53,7 @@ async function sendMessage(parent, args, context) {
 		}
 		
 	}
-	console.log(recipientsConnection)
+	console.log(userId)
 	
 	return context.prisma.createMessage({
 		subject: args.subject,
@@ -62,8 +63,21 @@ async function sendMessage(parent, args, context) {
 	})
 }
 
+async function addMachine(parent, args, context){
+	const userId = getUserId(context)
+	const user = await context.prisma.user({ id: userId}) 
+	if(isAdmin(user.role)){
+		return context.prisma.createMachine({
+			...args,
+			lastServiceDate: GraphQLDate.DateTime.parseValue(args.lastServiceDate),
+			nextServiceDate: GraphQLDate.DateTime.parseValue(args.nextServiceDate)
+		})
+	}
+}
+
 module.exports = {
 	signup,
 	login, 
 	sendMessage,
+	addMachine,
 }

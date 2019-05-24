@@ -14,7 +14,16 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  check: (where?: CheckWhereInput) => Promise<boolean>;
+  data: (where?: DataWhereInput) => Promise<boolean>;
+  dataset: (where?: DatasetWhereInput) => Promise<boolean>;
+  machine: (where?: MachineWhereInput) => Promise<boolean>;
   message: (where?: MessageWhereInput) => Promise<boolean>;
+  objectConnection: (where?: ObjectConnectionWhereInput) => Promise<boolean>;
+  parameter: (where?: ParameterWhereInput) => Promise<boolean>;
+  production: (where?: ProductionWhereInput) => Promise<boolean>;
+  productionLine: (where?: ProductionLineWhereInput) => Promise<boolean>;
+  trend: (where?: TrendWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -37,6 +46,98 @@ export interface Prisma {
    * Queries
    */
 
+  check: (where: CheckWhereUniqueInput) => CheckPromise;
+  checks: (
+    args?: {
+      where?: CheckWhereInput;
+      orderBy?: CheckOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Check>;
+  checksConnection: (
+    args?: {
+      where?: CheckWhereInput;
+      orderBy?: CheckOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => CheckConnectionPromise;
+  data: (where: DataWhereUniqueInput) => DataPromise;
+  datas: (
+    args?: {
+      where?: DataWhereInput;
+      orderBy?: DataOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Data>;
+  datasConnection: (
+    args?: {
+      where?: DataWhereInput;
+      orderBy?: DataOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => DataConnectionPromise;
+  dataset: (where: DatasetWhereUniqueInput) => DatasetPromise;
+  datasets: (
+    args?: {
+      where?: DatasetWhereInput;
+      orderBy?: DatasetOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Dataset>;
+  datasetsConnection: (
+    args?: {
+      where?: DatasetWhereInput;
+      orderBy?: DatasetOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => DatasetConnectionPromise;
+  machine: (where: MachineWhereUniqueInput) => MachinePromise;
+  machines: (
+    args?: {
+      where?: MachineWhereInput;
+      orderBy?: MachineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Machine>;
+  machinesConnection: (
+    args?: {
+      where?: MachineWhereInput;
+      orderBy?: MachineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => MachineConnectionPromise;
   message: (where: MessageWhereUniqueInput) => MessagePromise;
   messages: (
     args?: {
@@ -60,6 +161,125 @@ export interface Prisma {
       last?: Int;
     }
   ) => MessageConnectionPromise;
+  objectConnection: (
+    where: ObjectConnectionWhereUniqueInput
+  ) => ObjectConnectionPromise;
+  objectConnections: (
+    args?: {
+      where?: ObjectConnectionWhereInput;
+      orderBy?: ObjectConnectionOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<ObjectConnection>;
+  objectConnectionsConnection: (
+    args?: {
+      where?: ObjectConnectionWhereInput;
+      orderBy?: ObjectConnectionOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ObjectConnectionConnectionPromise;
+  parameter: (where: ParameterWhereUniqueInput) => ParameterPromise;
+  parameters: (
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Parameter>;
+  parametersConnection: (
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ParameterConnectionPromise;
+  production: (where: ProductionWhereUniqueInput) => ProductionPromise;
+  productions: (
+    args?: {
+      where?: ProductionWhereInput;
+      orderBy?: ProductionOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Production>;
+  productionsConnection: (
+    args?: {
+      where?: ProductionWhereInput;
+      orderBy?: ProductionOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ProductionConnectionPromise;
+  productionLine: (
+    where: ProductionLineWhereUniqueInput
+  ) => ProductionLinePromise;
+  productionLines: (
+    args?: {
+      where?: ProductionLineWhereInput;
+      orderBy?: ProductionLineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<ProductionLine>;
+  productionLinesConnection: (
+    args?: {
+      where?: ProductionLineWhereInput;
+      orderBy?: ProductionLineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ProductionLineConnectionPromise;
+  trend: (where: TrendWhereUniqueInput) => TrendPromise;
+  trends: (
+    args?: {
+      where?: TrendWhereInput;
+      orderBy?: TrendOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Trend>;
+  trendsConnection: (
+    args?: {
+      where?: TrendWhereInput;
+      orderBy?: TrendOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => TrendConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -89,6 +309,67 @@ export interface Prisma {
    * Mutations
    */
 
+  createCheck: (data: CheckCreateInput) => CheckPromise;
+  updateCheck: (
+    args: { data: CheckUpdateInput; where: CheckWhereUniqueInput }
+  ) => CheckPromise;
+  updateManyChecks: (
+    args: { data: CheckUpdateManyMutationInput; where?: CheckWhereInput }
+  ) => BatchPayloadPromise;
+  upsertCheck: (
+    args: {
+      where: CheckWhereUniqueInput;
+      create: CheckCreateInput;
+      update: CheckUpdateInput;
+    }
+  ) => CheckPromise;
+  deleteCheck: (where: CheckWhereUniqueInput) => CheckPromise;
+  deleteManyChecks: (where?: CheckWhereInput) => BatchPayloadPromise;
+  createData: (data: DataCreateInput) => DataPromise;
+  updateData: (
+    args: { data: DataUpdateInput; where: DataWhereUniqueInput }
+  ) => DataPromise;
+  upsertData: (
+    args: {
+      where: DataWhereUniqueInput;
+      create: DataCreateInput;
+      update: DataUpdateInput;
+    }
+  ) => DataPromise;
+  deleteData: (where: DataWhereUniqueInput) => DataPromise;
+  deleteManyDatas: (where?: DataWhereInput) => BatchPayloadPromise;
+  createDataset: (data: DatasetCreateInput) => DatasetPromise;
+  updateDataset: (
+    args: { data: DatasetUpdateInput; where: DatasetWhereUniqueInput }
+  ) => DatasetPromise;
+  updateManyDatasets: (
+    args: { data: DatasetUpdateManyMutationInput; where?: DatasetWhereInput }
+  ) => BatchPayloadPromise;
+  upsertDataset: (
+    args: {
+      where: DatasetWhereUniqueInput;
+      create: DatasetCreateInput;
+      update: DatasetUpdateInput;
+    }
+  ) => DatasetPromise;
+  deleteDataset: (where: DatasetWhereUniqueInput) => DatasetPromise;
+  deleteManyDatasets: (where?: DatasetWhereInput) => BatchPayloadPromise;
+  createMachine: (data: MachineCreateInput) => MachinePromise;
+  updateMachine: (
+    args: { data: MachineUpdateInput; where: MachineWhereUniqueInput }
+  ) => MachinePromise;
+  updateManyMachines: (
+    args: { data: MachineUpdateManyMutationInput; where?: MachineWhereInput }
+  ) => BatchPayloadPromise;
+  upsertMachine: (
+    args: {
+      where: MachineWhereUniqueInput;
+      create: MachineCreateInput;
+      update: MachineUpdateInput;
+    }
+  ) => MachinePromise;
+  deleteMachine: (where: MachineWhereUniqueInput) => MachinePromise;
+  deleteManyMachines: (where?: MachineWhereInput) => BatchPayloadPromise;
   createMessage: (data: MessageCreateInput) => MessagePromise;
   updateMessage: (
     args: { data: MessageUpdateInput; where: MessageWhereUniqueInput }
@@ -105,6 +386,116 @@ export interface Prisma {
   ) => MessagePromise;
   deleteMessage: (where: MessageWhereUniqueInput) => MessagePromise;
   deleteManyMessages: (where?: MessageWhereInput) => BatchPayloadPromise;
+  createObjectConnection: (
+    data: ObjectConnectionCreateInput
+  ) => ObjectConnectionPromise;
+  updateObjectConnection: (
+    args: {
+      data: ObjectConnectionUpdateInput;
+      where: ObjectConnectionWhereUniqueInput;
+    }
+  ) => ObjectConnectionPromise;
+  updateManyObjectConnections: (
+    args: {
+      data: ObjectConnectionUpdateManyMutationInput;
+      where?: ObjectConnectionWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertObjectConnection: (
+    args: {
+      where: ObjectConnectionWhereUniqueInput;
+      create: ObjectConnectionCreateInput;
+      update: ObjectConnectionUpdateInput;
+    }
+  ) => ObjectConnectionPromise;
+  deleteObjectConnection: (
+    where: ObjectConnectionWhereUniqueInput
+  ) => ObjectConnectionPromise;
+  deleteManyObjectConnections: (
+    where?: ObjectConnectionWhereInput
+  ) => BatchPayloadPromise;
+  createParameter: (data: ParameterCreateInput) => ParameterPromise;
+  updateParameter: (
+    args: { data: ParameterUpdateInput; where: ParameterWhereUniqueInput }
+  ) => ParameterPromise;
+  updateManyParameters: (
+    args: {
+      data: ParameterUpdateManyMutationInput;
+      where?: ParameterWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertParameter: (
+    args: {
+      where: ParameterWhereUniqueInput;
+      create: ParameterCreateInput;
+      update: ParameterUpdateInput;
+    }
+  ) => ParameterPromise;
+  deleteParameter: (where: ParameterWhereUniqueInput) => ParameterPromise;
+  deleteManyParameters: (where?: ParameterWhereInput) => BatchPayloadPromise;
+  createProduction: (data: ProductionCreateInput) => ProductionPromise;
+  updateProduction: (
+    args: { data: ProductionUpdateInput; where: ProductionWhereUniqueInput }
+  ) => ProductionPromise;
+  updateManyProductions: (
+    args: {
+      data: ProductionUpdateManyMutationInput;
+      where?: ProductionWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertProduction: (
+    args: {
+      where: ProductionWhereUniqueInput;
+      create: ProductionCreateInput;
+      update: ProductionUpdateInput;
+    }
+  ) => ProductionPromise;
+  deleteProduction: (where: ProductionWhereUniqueInput) => ProductionPromise;
+  deleteManyProductions: (where?: ProductionWhereInput) => BatchPayloadPromise;
+  createProductionLine: (
+    data: ProductionLineCreateInput
+  ) => ProductionLinePromise;
+  updateProductionLine: (
+    args: {
+      data: ProductionLineUpdateInput;
+      where: ProductionLineWhereUniqueInput;
+    }
+  ) => ProductionLinePromise;
+  updateManyProductionLines: (
+    args: {
+      data: ProductionLineUpdateManyMutationInput;
+      where?: ProductionLineWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertProductionLine: (
+    args: {
+      where: ProductionLineWhereUniqueInput;
+      create: ProductionLineCreateInput;
+      update: ProductionLineUpdateInput;
+    }
+  ) => ProductionLinePromise;
+  deleteProductionLine: (
+    where: ProductionLineWhereUniqueInput
+  ) => ProductionLinePromise;
+  deleteManyProductionLines: (
+    where?: ProductionLineWhereInput
+  ) => BatchPayloadPromise;
+  createTrend: (data: TrendCreateInput) => TrendPromise;
+  updateTrend: (
+    args: { data: TrendUpdateInput; where: TrendWhereUniqueInput }
+  ) => TrendPromise;
+  updateManyTrends: (
+    args: { data: TrendUpdateManyMutationInput; where?: TrendWhereInput }
+  ) => BatchPayloadPromise;
+  upsertTrend: (
+    args: {
+      where: TrendWhereUniqueInput;
+      create: TrendCreateInput;
+      update: TrendUpdateInput;
+    }
+  ) => TrendPromise;
+  deleteTrend: (where: TrendWhereUniqueInput) => TrendPromise;
+  deleteManyTrends: (where?: TrendWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -130,9 +521,36 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  check: (
+    where?: CheckSubscriptionWhereInput
+  ) => CheckSubscriptionPayloadSubscription;
+  data: (
+    where?: DataSubscriptionWhereInput
+  ) => DataSubscriptionPayloadSubscription;
+  dataset: (
+    where?: DatasetSubscriptionWhereInput
+  ) => DatasetSubscriptionPayloadSubscription;
+  machine: (
+    where?: MachineSubscriptionWhereInput
+  ) => MachineSubscriptionPayloadSubscription;
   message: (
     where?: MessageSubscriptionWhereInput
   ) => MessageSubscriptionPayloadSubscription;
+  objectConnection: (
+    where?: ObjectConnectionSubscriptionWhereInput
+  ) => ObjectConnectionSubscriptionPayloadSubscription;
+  parameter: (
+    where?: ParameterSubscriptionWhereInput
+  ) => ParameterSubscriptionPayloadSubscription;
+  production: (
+    where?: ProductionSubscriptionWhereInput
+  ) => ProductionSubscriptionPayloadSubscription;
+  productionLine: (
+    where?: ProductionLineSubscriptionWhereInput
+  ) => ProductionLineSubscriptionPayloadSubscription;
+  trend: (
+    where?: TrendSubscriptionWhereInput
+  ) => TrendSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -146,7 +564,75 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type Operation = "LESS" | "MORE" | "EQUAL" | "ON" | "OFF";
+
 export type Role = "USER" | "ADMIN" | "ADMINVIEW";
+
+export type MachineOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "manufacturer_ASC"
+  | "manufacturer_DESC"
+  | "year_ASC"
+  | "year_DESC"
+  | "model_ASC"
+  | "model_DESC"
+  | "serialNumber_ASC"
+  | "serialNumber_DESC"
+  | "lastServiceDate_ASC"
+  | "lastServiceDate_DESC"
+  | "nextServiceDate_ASC"
+  | "nextServiceDate_DESC"
+  | "onlineStatus_ASC"
+  | "onlineStatus_DESC";
+
+export type ProductionLineOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC";
+
+export type ParameterOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "unit_ASC"
+  | "unit_DESC"
+  | "set_ASC"
+  | "set_DESC"
+  | "toleranceHigh_ASC"
+  | "toleranceHigh_DESC"
+  | "toleranceLow_ASC"
+  | "toleranceLow_DESC"
+  | "connection_ASC"
+  | "connection_DESC";
+
+export type Connection = "CMACHINE" | "CPRODUCTION" | "CCOMPONENT";
+
+export type DataOrderByInput = "id_ASC" | "id_DESC";
+
+export type TrendOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "description_ASC"
+  | "description_DESC";
+
+export type DatasetOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "value_ASC"
+  | "value_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC";
 
 export type MessageOrderByInput =
   | "id_ASC"
@@ -170,24 +656,142 @@ export type UserOrderByInput =
   | "role_ASC"
   | "role_DESC";
 
+export type CheckOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "valueType_ASC"
+  | "valueType_DESC"
+  | "lhsValue_ASC"
+  | "lhsValue_DESC"
+  | "operator_ASC"
+  | "operator_DESC"
+  | "rhsValue_ASC"
+  | "rhsValue_DESC"
+  | "unit_ASC"
+  | "unit_DESC";
+
+export type Unit = "Kilogram" | "Meter";
+
+export type ValueType = "NUMBER" | "LOGIC" | "DATE";
+
+export type ProductionOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "start_ASC"
+  | "start_DESC"
+  | "end_ASC"
+  | "end_DESC"
+  | "targetQty_ASC"
+  | "targetQty_DESC"
+  | "acceptQty_ASC"
+  | "acceptQty_DESC"
+  | "rejectQty_ASC"
+  | "rejectQty_DESC";
+
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserUpdateWithoutOutboxDataInput {
-  username?: String;
-  name?: String;
-  password?: String;
-  inbox?: MessageUpdateManyWithoutRecipientsInput;
-  role?: Role;
+export type ObjectConnectionOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "connectionId_ASC"
+  | "connectionId_DESC"
+  | "connectionType_ASC"
+  | "connectionType_DESC";
+
+export interface MessageUpdateManyWithoutRecipientsInput {
+  create?:
+    | MessageCreateWithoutRecipientsInput[]
+    | MessageCreateWithoutRecipientsInput;
+  delete?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  set?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  disconnect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  update?:
+    | MessageUpdateWithWhereUniqueWithoutRecipientsInput[]
+    | MessageUpdateWithWhereUniqueWithoutRecipientsInput;
+  upsert?:
+    | MessageUpsertWithWhereUniqueWithoutRecipientsInput[]
+    | MessageUpsertWithWhereUniqueWithoutRecipientsInput;
+  deleteMany?: MessageScalarWhereInput[] | MessageScalarWhereInput;
+  updateMany?:
+    | MessageUpdateManyWithWhereNestedInput[]
+    | MessageUpdateManyWithWhereNestedInput;
 }
 
-export type MessageWhereUniqueInput = AtLeastOne<{
+export type CheckWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface MessageUpdateWithoutRecipientsDataInput {
+export interface ObjectConnectionUpdateDataInput {
+  description?: String;
+  connectionId?: ID_Input;
+  connectionType?: Connection;
+}
+
+export interface ParameterUpdateInput {
+  name?: String;
+  unit?: Unit;
+  set?: Float;
+  toleranceHigh?: Float;
+  toleranceLow?: Float;
+  connection?: Connection;
+}
+
+export interface ObjectConnectionUpsertNestedInput {
+  update: ObjectConnectionUpdateDataInput;
+  create: ObjectConnectionCreateInput;
+}
+
+export interface MessageUpdateManyDataInput {
   subject?: String;
   body?: String;
-  sender?: UserUpdateOneRequiredWithoutOutboxInput;
+}
+
+export interface ParameterUpdateOneInput {
+  create?: ParameterCreateInput;
+  update?: ParameterUpdateDataInput;
+  upsert?: ParameterUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ParameterWhereUniqueInput;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+}
+
+export interface ParameterUpdateDataInput {
+  name?: String;
+  unit?: Unit;
+  set?: Float;
+  toleranceHigh?: Float;
+  toleranceLow?: Float;
+  connection?: Connection;
+}
+
+export interface TrendSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: TrendWhereInput;
+  AND?: TrendSubscriptionWhereInput[] | TrendSubscriptionWhereInput;
+}
+
+export interface ParameterUpsertNestedInput {
+  update: ParameterUpdateDataInput;
+  create: ParameterCreateInput;
 }
 
 export interface MessageWhereInput {
@@ -246,50 +850,114 @@ export interface MessageWhereInput {
   AND?: MessageWhereInput[] | MessageWhereInput;
 }
 
-export interface UserCreateWithoutInboxInput {
-  username: String;
-  name: String;
-  password: String;
-  outbox?: MessageCreateManyWithoutSenderInput;
-  role?: Role;
+export interface CheckUpdateManyMutationInput {
+  name?: String;
+  description?: String;
+  valueType?: ValueType;
+  lhsValue?: Float;
+  operator?: Operation;
+  rhsValue?: Float;
+  unit?: Unit;
 }
 
-export interface MessageUpdateWithWhereUniqueWithoutSenderInput {
-  where: MessageWhereUniqueInput;
-  data: MessageUpdateWithoutSenderDataInput;
-}
-
-export interface MessageCreateManyWithoutSenderInput {
-  create?: MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput;
-  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-}
-
-export interface MessageUpsertWithWhereUniqueWithoutRecipientsInput {
-  where: MessageWhereUniqueInput;
-  update: MessageUpdateWithoutRecipientsDataInput;
-  create: MessageCreateWithoutRecipientsInput;
-}
-
-export interface MessageCreateWithoutSenderInput {
-  subject: String;
-  body: String;
-  recipients?: UserCreateManyWithoutInboxInput;
-}
-
-export interface MessageSubscriptionWhereInput {
+export interface ProductionSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: MessageWhereInput;
-  AND?: MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput;
+  node?: ProductionWhereInput;
+  AND?: ProductionSubscriptionWhereInput[] | ProductionSubscriptionWhereInput;
 }
 
-export interface MessageUpdateInput {
-  subject?: String;
-  body?: String;
-  sender?: UserUpdateOneRequiredWithoutOutboxInput;
-  recipients?: UserUpdateManyWithoutInboxInput;
+export interface ProductionLineCreateInput {
+  name: String;
+  description: String;
+  startUpChecks?: CheckCreateManyInput;
+  parameters?: ParameterCreateManyInput;
+  machines?: MachineCreateManyInput;
+  trends?: TrendCreateManyInput;
+  createdBy: UserCreateOneInput;
+}
+
+export interface ObjectConnectionSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ObjectConnectionWhereInput;
+  AND?:
+    | ObjectConnectionSubscriptionWhereInput[]
+    | ObjectConnectionSubscriptionWhereInput;
+}
+
+export interface ProductionLineCreateOneInput {
+  create?: ProductionLineCreateInput;
+  connect?: ProductionLineWhereUniqueInput;
+}
+
+export interface MachineSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: MachineWhereInput;
+  AND?: MachineSubscriptionWhereInput[] | MachineSubscriptionWhereInput;
+}
+
+export interface DataCreateInput {
+  parameter?: ParameterCreateOneInput;
+  value?: DatasetCreateManyInput;
+}
+
+export interface DataWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  parameter?: ParameterWhereInput;
+  value_some?: DatasetWhereInput;
+  AND?: DataWhereInput[] | DataWhereInput;
+}
+
+export interface DatasetCreateManyInput {
+  create?: DatasetCreateInput[] | DatasetCreateInput;
+  connect?: DatasetWhereUniqueInput[] | DatasetWhereUniqueInput;
+}
+
+export interface DataSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: DataWhereInput;
+  AND?: DataSubscriptionWhereInput[] | DataSubscriptionWhereInput;
+}
+
+export interface DatasetCreateInput {
+  value: Float;
+  createdBy: UserCreateOneInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  username?: String;
+  name?: String;
+  password?: String;
+  role?: Role;
+}
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface UserUpdateInput {
@@ -301,6 +969,508 @@ export interface UserUpdateInput {
   role?: Role;
 }
 
+export interface UserCreateInput {
+  username: String;
+  name: String;
+  password: String;
+  inbox?: MessageCreateManyWithoutRecipientsInput;
+  outbox?: MessageCreateManyWithoutSenderInput;
+  role?: Role;
+}
+
+export interface TrendUpdateInput {
+  name?: String;
+  description?: String;
+  parameters?: ParameterUpdateManyInput;
+}
+
+export interface MessageCreateManyWithoutRecipientsInput {
+  create?:
+    | MessageCreateWithoutRecipientsInput[]
+    | MessageCreateWithoutRecipientsInput;
+  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+}
+
+export interface ProductionLineUpdateManyMutationInput {
+  name?: String;
+  description?: String;
+}
+
+export interface MessageCreateWithoutRecipientsInput {
+  subject: String;
+  body: String;
+  sender: UserCreateOneWithoutOutboxInput;
+}
+
+export interface MachineWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  manufacturer?: String;
+  manufacturer_not?: String;
+  manufacturer_in?: String[] | String;
+  manufacturer_not_in?: String[] | String;
+  manufacturer_lt?: String;
+  manufacturer_lte?: String;
+  manufacturer_gt?: String;
+  manufacturer_gte?: String;
+  manufacturer_contains?: String;
+  manufacturer_not_contains?: String;
+  manufacturer_starts_with?: String;
+  manufacturer_not_starts_with?: String;
+  manufacturer_ends_with?: String;
+  manufacturer_not_ends_with?: String;
+  year?: Int;
+  year_not?: Int;
+  year_in?: Int[] | Int;
+  year_not_in?: Int[] | Int;
+  year_lt?: Int;
+  year_lte?: Int;
+  year_gt?: Int;
+  year_gte?: Int;
+  model?: String;
+  model_not?: String;
+  model_in?: String[] | String;
+  model_not_in?: String[] | String;
+  model_lt?: String;
+  model_lte?: String;
+  model_gt?: String;
+  model_gte?: String;
+  model_contains?: String;
+  model_not_contains?: String;
+  model_starts_with?: String;
+  model_not_starts_with?: String;
+  model_ends_with?: String;
+  model_not_ends_with?: String;
+  serialNumber?: String;
+  serialNumber_not?: String;
+  serialNumber_in?: String[] | String;
+  serialNumber_not_in?: String[] | String;
+  serialNumber_lt?: String;
+  serialNumber_lte?: String;
+  serialNumber_gt?: String;
+  serialNumber_gte?: String;
+  serialNumber_contains?: String;
+  serialNumber_not_contains?: String;
+  serialNumber_starts_with?: String;
+  serialNumber_not_starts_with?: String;
+  serialNumber_ends_with?: String;
+  serialNumber_not_ends_with?: String;
+  lastServiceDate?: DateTimeInput;
+  lastServiceDate_not?: DateTimeInput;
+  lastServiceDate_in?: DateTimeInput[] | DateTimeInput;
+  lastServiceDate_not_in?: DateTimeInput[] | DateTimeInput;
+  lastServiceDate_lt?: DateTimeInput;
+  lastServiceDate_lte?: DateTimeInput;
+  lastServiceDate_gt?: DateTimeInput;
+  lastServiceDate_gte?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  nextServiceDate_not?: DateTimeInput;
+  nextServiceDate_in?: DateTimeInput[] | DateTimeInput;
+  nextServiceDate_not_in?: DateTimeInput[] | DateTimeInput;
+  nextServiceDate_lt?: DateTimeInput;
+  nextServiceDate_lte?: DateTimeInput;
+  nextServiceDate_gt?: DateTimeInput;
+  nextServiceDate_gte?: DateTimeInput;
+  onlineStatus?: Boolean;
+  onlineStatus_not?: Boolean;
+  parameters_some?: ParameterWhereInput;
+  data_some?: DataWhereInput;
+  AND?: MachineWhereInput[] | MachineWhereInput;
+}
+
+export interface UserCreateOneWithoutOutboxInput {
+  create?: UserCreateWithoutOutboxInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface ProductionLineUpdateInput {
+  name?: String;
+  description?: String;
+  startUpChecks?: CheckUpdateManyInput;
+  parameters?: ParameterUpdateManyInput;
+  machines?: MachineUpdateManyInput;
+  trends?: TrendUpdateManyInput;
+  createdBy?: UserUpdateOneRequiredInput;
+}
+
+export interface UserCreateWithoutOutboxInput {
+  username: String;
+  name: String;
+  password: String;
+  inbox?: MessageCreateManyWithoutRecipientsInput;
+  role?: Role;
+}
+
+export interface ProductionLineUpsertNestedInput {
+  update: ProductionLineUpdateDataInput;
+  create: ProductionLineCreateInput;
+}
+
+export interface MessageCreateManyWithoutSenderInput {
+  create?: MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput;
+  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+}
+
+export interface TrendUpdateManyDataInput {
+  name?: String;
+  description?: String;
+}
+
+export interface MessageCreateWithoutSenderInput {
+  subject: String;
+  body: String;
+  recipients?: UserCreateManyWithoutInboxInput;
+}
+
+export interface TrendScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  AND?: TrendScalarWhereInput[] | TrendScalarWhereInput;
+  OR?: TrendScalarWhereInput[] | TrendScalarWhereInput;
+  NOT?: TrendScalarWhereInput[] | TrendScalarWhereInput;
+}
+
+export interface UserCreateManyWithoutInboxInput {
+  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+}
+
+export interface TrendUpsertWithWhereUniqueNestedInput {
+  where: TrendWhereUniqueInput;
+  update: TrendUpdateDataInput;
+  create: TrendCreateInput;
+}
+
+export interface UserCreateWithoutInboxInput {
+  username: String;
+  name: String;
+  password: String;
+  outbox?: MessageCreateManyWithoutSenderInput;
+  role?: Role;
+}
+
+export interface TrendUpdateWithWhereUniqueNestedInput {
+  where: TrendWhereUniqueInput;
+  data: TrendUpdateDataInput;
+}
+
+export interface DataUpdateInput {
+  parameter?: ParameterUpdateOneInput;
+  value?: DatasetUpdateManyInput;
+}
+
+export type ParameterWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface DatasetUpdateManyInput {
+  create?: DatasetCreateInput[] | DatasetCreateInput;
+  update?:
+    | DatasetUpdateWithWhereUniqueNestedInput[]
+    | DatasetUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | DatasetUpsertWithWhereUniqueNestedInput[]
+    | DatasetUpsertWithWhereUniqueNestedInput;
+  delete?: DatasetWhereUniqueInput[] | DatasetWhereUniqueInput;
+  connect?: DatasetWhereUniqueInput[] | DatasetWhereUniqueInput;
+  set?: DatasetWhereUniqueInput[] | DatasetWhereUniqueInput;
+  disconnect?: DatasetWhereUniqueInput[] | DatasetWhereUniqueInput;
+  deleteMany?: DatasetScalarWhereInput[] | DatasetScalarWhereInput;
+  updateMany?:
+    | DatasetUpdateManyWithWhereNestedInput[]
+    | DatasetUpdateManyWithWhereNestedInput;
+}
+
+export interface MachineUpdateManyWithWhereNestedInput {
+  where: MachineScalarWhereInput;
+  data: MachineUpdateManyDataInput;
+}
+
+export interface DatasetUpdateWithWhereUniqueNestedInput {
+  where: DatasetWhereUniqueInput;
+  data: DatasetUpdateDataInput;
+}
+
+export type ProductionWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface DatasetUpdateDataInput {
+  value?: Float;
+  createdBy?: UserUpdateOneRequiredInput;
+}
+
+export interface MachineUpdateDataInput {
+  name?: String;
+  manufacturer?: String;
+  year?: Int;
+  model?: String;
+  serialNumber?: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus?: Boolean;
+  parameters?: ParameterUpdateManyInput;
+  data?: DataUpdateManyInput;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface MachineUpdateWithWhereUniqueNestedInput {
+  where: MachineWhereUniqueInput;
+  data: MachineUpdateDataInput;
+}
+
+export interface UserUpdateDataInput {
+  username?: String;
+  name?: String;
+  password?: String;
+  inbox?: MessageUpdateManyWithoutRecipientsInput;
+  outbox?: MessageUpdateManyWithoutSenderInput;
+  role?: Role;
+}
+
+export interface ProductionWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  productionLine?: ProductionLineWhereInput;
+  start?: DateTimeInput;
+  start_not?: DateTimeInput;
+  start_in?: DateTimeInput[] | DateTimeInput;
+  start_not_in?: DateTimeInput[] | DateTimeInput;
+  start_lt?: DateTimeInput;
+  start_lte?: DateTimeInput;
+  start_gt?: DateTimeInput;
+  start_gte?: DateTimeInput;
+  end?: DateTimeInput;
+  end_not?: DateTimeInput;
+  end_in?: DateTimeInput[] | DateTimeInput;
+  end_not_in?: DateTimeInput[] | DateTimeInput;
+  end_lt?: DateTimeInput;
+  end_lte?: DateTimeInput;
+  end_gt?: DateTimeInput;
+  end_gte?: DateTimeInput;
+  targetQty?: Int;
+  targetQty_not?: Int;
+  targetQty_in?: Int[] | Int;
+  targetQty_not_in?: Int[] | Int;
+  targetQty_lt?: Int;
+  targetQty_lte?: Int;
+  targetQty_gt?: Int;
+  targetQty_gte?: Int;
+  acceptQty?: Int;
+  acceptQty_not?: Int;
+  acceptQty_in?: Int[] | Int;
+  acceptQty_not_in?: Int[] | Int;
+  acceptQty_lt?: Int;
+  acceptQty_lte?: Int;
+  acceptQty_gt?: Int;
+  acceptQty_gte?: Int;
+  rejectQty?: Int;
+  rejectQty_not?: Int;
+  rejectQty_in?: Int[] | Int;
+  rejectQty_not_in?: Int[] | Int;
+  rejectQty_lt?: Int;
+  rejectQty_lte?: Int;
+  rejectQty_gt?: Int;
+  rejectQty_gte?: Int;
+  data_some?: DataWhereInput;
+  AND?: ProductionWhereInput[] | ProductionWhereInput;
+}
+
+export interface ProductionCreateInput {
+  productionLine?: ProductionLineCreateOneInput;
+  start: DateTimeInput;
+  end: DateTimeInput;
+  targetQty: Int;
+  acceptQty: Int;
+  rejectQty: Int;
+  data?: DataCreateManyInput;
+}
+
+export interface CheckUpdateManyDataInput {
+  name?: String;
+  description?: String;
+  valueType?: ValueType;
+  lhsValue?: Float;
+  operator?: Operation;
+  rhsValue?: Float;
+  unit?: Unit;
+}
+
+export interface MessageUpdateWithWhereUniqueWithoutRecipientsInput {
+  where: MessageWhereUniqueInput;
+  data: MessageUpdateWithoutRecipientsDataInput;
+}
+
+export interface CheckScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  valueType?: ValueType;
+  valueType_not?: ValueType;
+  valueType_in?: ValueType[] | ValueType;
+  valueType_not_in?: ValueType[] | ValueType;
+  lhsValue?: Float;
+  lhsValue_not?: Float;
+  lhsValue_in?: Float[] | Float;
+  lhsValue_not_in?: Float[] | Float;
+  lhsValue_lt?: Float;
+  lhsValue_lte?: Float;
+  lhsValue_gt?: Float;
+  lhsValue_gte?: Float;
+  operator?: Operation;
+  operator_not?: Operation;
+  operator_in?: Operation[] | Operation;
+  operator_not_in?: Operation[] | Operation;
+  rhsValue?: Float;
+  rhsValue_not?: Float;
+  rhsValue_in?: Float[] | Float;
+  rhsValue_not_in?: Float[] | Float;
+  rhsValue_lt?: Float;
+  rhsValue_lte?: Float;
+  rhsValue_gt?: Float;
+  rhsValue_gte?: Float;
+  unit?: Unit;
+  unit_not?: Unit;
+  unit_in?: Unit[] | Unit;
+  unit_not_in?: Unit[] | Unit;
+  AND?: CheckScalarWhereInput[] | CheckScalarWhereInput;
+  OR?: CheckScalarWhereInput[] | CheckScalarWhereInput;
+  NOT?: CheckScalarWhereInput[] | CheckScalarWhereInput;
+}
+
+export interface MessageUpdateWithoutRecipientsDataInput {
+  subject?: String;
+  body?: String;
+  sender?: UserUpdateOneRequiredWithoutOutboxInput;
+}
+
+export type ProductionLineWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
 export interface UserUpdateOneRequiredWithoutOutboxInput {
   create?: UserCreateWithoutOutboxInput;
   update?: UserUpdateWithoutOutboxDataInput;
@@ -308,40 +1478,353 @@ export interface UserUpdateOneRequiredWithoutOutboxInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface MessageUpdateManyMutationInput {
-  subject?: String;
-  body?: String;
+export interface CheckUpdateWithWhereUniqueNestedInput {
+  where: CheckWhereUniqueInput;
+  data: CheckUpdateDataInput;
 }
 
-export interface MessageUpsertWithWhereUniqueWithoutSenderInput {
-  where: MessageWhereUniqueInput;
-  update: MessageUpdateWithoutSenderDataInput;
-  create: MessageCreateWithoutSenderInput;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
+export interface UserUpdateWithoutOutboxDataInput {
   username?: String;
-}>;
+  name?: String;
+  password?: String;
+  inbox?: MessageUpdateManyWithoutRecipientsInput;
+  role?: Role;
+}
 
-export interface MessageUpdateManyWithoutRecipientsInput {
-  create?:
-    | MessageCreateWithoutRecipientsInput[]
-    | MessageCreateWithoutRecipientsInput;
+export interface ProductionLineUpdateDataInput {
+  name?: String;
+  description?: String;
+  startUpChecks?: CheckUpdateManyInput;
+  parameters?: ParameterUpdateManyInput;
+  machines?: MachineUpdateManyInput;
+  trends?: TrendUpdateManyInput;
+  createdBy?: UserUpdateOneRequiredInput;
+}
+
+export interface UserUpsertWithoutOutboxInput {
+  update: UserUpdateWithoutOutboxDataInput;
+  create: UserCreateWithoutOutboxInput;
+}
+
+export interface ProductionLineUpdateOneInput {
+  create?: ProductionLineCreateInput;
+  update?: ProductionLineUpdateDataInput;
+  upsert?: ProductionLineUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ProductionLineWhereUniqueInput;
+}
+
+export interface MessageUpsertWithWhereUniqueWithoutRecipientsInput {
+  where: MessageWhereUniqueInput;
+  update: MessageUpdateWithoutRecipientsDataInput;
+  create: MessageCreateWithoutRecipientsInput;
+}
+
+export interface TrendCreateInput {
+  name: String;
+  description: String;
+  parameters?: ParameterCreateManyInput;
+}
+
+export interface MessageScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  subject?: String;
+  subject_not?: String;
+  subject_in?: String[] | String;
+  subject_not_in?: String[] | String;
+  subject_lt?: String;
+  subject_lte?: String;
+  subject_gt?: String;
+  subject_gte?: String;
+  subject_contains?: String;
+  subject_not_contains?: String;
+  subject_starts_with?: String;
+  subject_not_starts_with?: String;
+  subject_ends_with?: String;
+  subject_not_ends_with?: String;
+  body?: String;
+  body_not?: String;
+  body_in?: String[] | String;
+  body_not_in?: String[] | String;
+  body_lt?: String;
+  body_lte?: String;
+  body_gt?: String;
+  body_gte?: String;
+  body_contains?: String;
+  body_not_contains?: String;
+  body_starts_with?: String;
+  body_not_starts_with?: String;
+  body_ends_with?: String;
+  body_not_ends_with?: String;
+  AND?: MessageScalarWhereInput[] | MessageScalarWhereInput;
+  OR?: MessageScalarWhereInput[] | MessageScalarWhereInput;
+  NOT?: MessageScalarWhereInput[] | MessageScalarWhereInput;
+}
+
+export interface TrendCreateManyInput {
+  create?: TrendCreateInput[] | TrendCreateInput;
+  connect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+}
+
+export interface MessageUpdateManyWithWhereNestedInput {
+  where: MessageScalarWhereInput;
+  data: MessageUpdateManyDataInput;
+}
+
+export interface CheckCreateManyInput {
+  create?: CheckCreateInput[] | CheckCreateInput;
+  connect?: CheckWhereUniqueInput[] | CheckWhereUniqueInput;
+}
+
+export interface ParameterUpdateManyMutationInput {
+  name?: String;
+  unit?: Unit;
+  set?: Float;
+  toleranceHigh?: Float;
+  toleranceLow?: Float;
+  connection?: Connection;
+}
+
+export interface CheckCreateInput {
+  name: String;
+  description: String;
+  target: ObjectConnectionCreateOneInput;
+  valueType: ValueType;
+  lhsParameter?: ParameterCreateOneInput;
+  rhsParameter?: ParameterCreateOneInput;
+  lhsValue: Float;
+  operator: Operation;
+  rhsValue: Float;
+  unit?: Unit;
+}
+
+export interface MessageUpdateManyWithoutSenderInput {
+  create?: MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput;
   delete?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
   connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
   set?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
   disconnect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
   update?:
-    | MessageUpdateWithWhereUniqueWithoutRecipientsInput[]
-    | MessageUpdateWithWhereUniqueWithoutRecipientsInput;
+    | MessageUpdateWithWhereUniqueWithoutSenderInput[]
+    | MessageUpdateWithWhereUniqueWithoutSenderInput;
   upsert?:
-    | MessageUpsertWithWhereUniqueWithoutRecipientsInput[]
-    | MessageUpsertWithWhereUniqueWithoutRecipientsInput;
+    | MessageUpsertWithWhereUniqueWithoutSenderInput[]
+    | MessageUpsertWithWhereUniqueWithoutSenderInput;
   deleteMany?: MessageScalarWhereInput[] | MessageScalarWhereInput;
   updateMany?:
     | MessageUpdateManyWithWhereNestedInput[]
     | MessageUpdateManyWithWhereNestedInput;
+}
+
+export interface ObjectConnectionCreateInput {
+  description: String;
+  connectionId: ID_Input;
+  connectionType: Connection;
+}
+
+export interface MessageUpdateWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput;
+  data: MessageUpdateWithoutSenderDataInput;
+}
+
+export interface ParameterCreateInput {
+  name: String;
+  unit: Unit;
+  set: Float;
+  toleranceHigh: Float;
+  toleranceLow: Float;
+  connection?: Connection;
+}
+
+export interface MessageUpdateWithoutSenderDataInput {
+  subject?: String;
+  body?: String;
+  recipients?: UserUpdateManyWithoutInboxInput;
+}
+
+export interface ObjectConnectionUpdateOneRequiredInput {
+  create?: ObjectConnectionCreateInput;
+  update?: ObjectConnectionUpdateDataInput;
+  upsert?: ObjectConnectionUpsertNestedInput;
+  connect?: ObjectConnectionWhereUniqueInput;
+}
+
+export interface UserUpdateManyWithoutInboxInput {
+  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutInboxInput[]
+    | UserUpdateWithWhereUniqueWithoutInboxInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutInboxInput[]
+    | UserUpsertWithWhereUniqueWithoutInboxInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
+}
+
+export interface DatasetWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  value?: Float;
+  value_not?: Float;
+  value_in?: Float[] | Float;
+  value_not_in?: Float[] | Float;
+  value_lt?: Float;
+  value_lte?: Float;
+  value_gt?: Float;
+  value_gte?: Float;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  createdBy?: UserWhereInput;
+  AND?: DatasetWhereInput[] | DatasetWhereInput;
+}
+
+export interface UserUpdateWithWhereUniqueWithoutInboxInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutInboxDataInput;
+}
+
+export interface ProductionLineSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProductionLineWhereInput;
+  AND?:
+    | ProductionLineSubscriptionWhereInput[]
+    | ProductionLineSubscriptionWhereInput;
+}
+
+export interface UserUpdateWithoutInboxDataInput {
+  username?: String;
+  name?: String;
+  password?: String;
+  outbox?: MessageUpdateManyWithoutSenderInput;
+  role?: Role;
+}
+
+export interface MessageSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: MessageWhereInput;
+  AND?: MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput;
+}
+
+export interface UserUpsertWithWhereUniqueWithoutInboxInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateWithoutInboxDataInput;
+  create: UserCreateWithoutInboxInput;
+}
+
+export interface ParameterWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  unit?: Unit;
+  unit_not?: Unit;
+  unit_in?: Unit[] | Unit;
+  unit_not_in?: Unit[] | Unit;
+  set?: Float;
+  set_not?: Float;
+  set_in?: Float[] | Float;
+  set_not_in?: Float[] | Float;
+  set_lt?: Float;
+  set_lte?: Float;
+  set_gt?: Float;
+  set_gte?: Float;
+  toleranceHigh?: Float;
+  toleranceHigh_not?: Float;
+  toleranceHigh_in?: Float[] | Float;
+  toleranceHigh_not_in?: Float[] | Float;
+  toleranceHigh_lt?: Float;
+  toleranceHigh_lte?: Float;
+  toleranceHigh_gt?: Float;
+  toleranceHigh_gte?: Float;
+  toleranceLow?: Float;
+  toleranceLow_not?: Float;
+  toleranceLow_in?: Float[] | Float;
+  toleranceLow_not_in?: Float[] | Float;
+  toleranceLow_lt?: Float;
+  toleranceLow_lte?: Float;
+  toleranceLow_gt?: Float;
+  toleranceLow_gte?: Float;
+  connection?: Connection;
+  connection_not?: Connection;
+  connection_in?: Connection[] | Connection;
+  connection_not_in?: Connection[] | Connection;
+  AND?: ParameterWhereInput[] | ParameterWhereInput;
 }
 
 export interface UserScalarWhereInput {
@@ -410,14 +1893,518 @@ export interface UserScalarWhereInput {
   NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
 }
 
-export interface MessageUpdateWithWhereUniqueWithoutRecipientsInput {
-  where: MessageWhereUniqueInput;
-  data: MessageUpdateWithoutRecipientsDataInput;
+export type DatasetWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput;
+  data: UserUpdateManyDataInput;
 }
 
-export interface UserCreateOneWithoutOutboxInput {
-  create?: UserCreateWithoutOutboxInput;
-  connect?: UserWhereUniqueInput;
+export type MachineWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  serialNumber?: String;
+}>;
+
+export interface UserUpdateManyDataInput {
+  username?: String;
+  name?: String;
+  password?: String;
+  role?: Role;
+}
+
+export interface CheckWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  target?: ObjectConnectionWhereInput;
+  valueType?: ValueType;
+  valueType_not?: ValueType;
+  valueType_in?: ValueType[] | ValueType;
+  valueType_not_in?: ValueType[] | ValueType;
+  lhsParameter?: ParameterWhereInput;
+  rhsParameter?: ParameterWhereInput;
+  lhsValue?: Float;
+  lhsValue_not?: Float;
+  lhsValue_in?: Float[] | Float;
+  lhsValue_not_in?: Float[] | Float;
+  lhsValue_lt?: Float;
+  lhsValue_lte?: Float;
+  lhsValue_gt?: Float;
+  lhsValue_gte?: Float;
+  operator?: Operation;
+  operator_not?: Operation;
+  operator_in?: Operation[] | Operation;
+  operator_not_in?: Operation[] | Operation;
+  rhsValue?: Float;
+  rhsValue_not?: Float;
+  rhsValue_in?: Float[] | Float;
+  rhsValue_not_in?: Float[] | Float;
+  rhsValue_lt?: Float;
+  rhsValue_lte?: Float;
+  rhsValue_gt?: Float;
+  rhsValue_gte?: Float;
+  unit?: Unit;
+  unit_not?: Unit;
+  unit_in?: Unit[] | Unit;
+  unit_not_in?: Unit[] | Unit;
+  AND?: CheckWhereInput[] | CheckWhereInput;
+}
+
+export interface MessageUpsertWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput;
+  update: MessageUpdateWithoutSenderDataInput;
+  create: MessageCreateWithoutSenderInput;
+}
+
+export type MessageWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export type ObjectConnectionWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface DatasetUpsertWithWhereUniqueNestedInput {
+  where: DatasetWhereUniqueInput;
+  update: DatasetUpdateDataInput;
+  create: DatasetCreateInput;
+}
+
+export interface TrendUpdateManyInput {
+  create?: TrendCreateInput[] | TrendCreateInput;
+  update?:
+    | TrendUpdateWithWhereUniqueNestedInput[]
+    | TrendUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | TrendUpsertWithWhereUniqueNestedInput[]
+    | TrendUpsertWithWhereUniqueNestedInput;
+  delete?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  connect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  set?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  disconnect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  deleteMany?: TrendScalarWhereInput[] | TrendScalarWhereInput;
+  updateMany?:
+    | TrendUpdateManyWithWhereNestedInput[]
+    | TrendUpdateManyWithWhereNestedInput;
+}
+
+export interface DatasetScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  value?: Float;
+  value_not?: Float;
+  value_in?: Float[] | Float;
+  value_not_in?: Float[] | Float;
+  value_lt?: Float;
+  value_lte?: Float;
+  value_gt?: Float;
+  value_gte?: Float;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  AND?: DatasetScalarWhereInput[] | DatasetScalarWhereInput;
+  OR?: DatasetScalarWhereInput[] | DatasetScalarWhereInput;
+  NOT?: DatasetScalarWhereInput[] | DatasetScalarWhereInput;
+}
+
+export interface MachineScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  manufacturer?: String;
+  manufacturer_not?: String;
+  manufacturer_in?: String[] | String;
+  manufacturer_not_in?: String[] | String;
+  manufacturer_lt?: String;
+  manufacturer_lte?: String;
+  manufacturer_gt?: String;
+  manufacturer_gte?: String;
+  manufacturer_contains?: String;
+  manufacturer_not_contains?: String;
+  manufacturer_starts_with?: String;
+  manufacturer_not_starts_with?: String;
+  manufacturer_ends_with?: String;
+  manufacturer_not_ends_with?: String;
+  year?: Int;
+  year_not?: Int;
+  year_in?: Int[] | Int;
+  year_not_in?: Int[] | Int;
+  year_lt?: Int;
+  year_lte?: Int;
+  year_gt?: Int;
+  year_gte?: Int;
+  model?: String;
+  model_not?: String;
+  model_in?: String[] | String;
+  model_not_in?: String[] | String;
+  model_lt?: String;
+  model_lte?: String;
+  model_gt?: String;
+  model_gte?: String;
+  model_contains?: String;
+  model_not_contains?: String;
+  model_starts_with?: String;
+  model_not_starts_with?: String;
+  model_ends_with?: String;
+  model_not_ends_with?: String;
+  serialNumber?: String;
+  serialNumber_not?: String;
+  serialNumber_in?: String[] | String;
+  serialNumber_not_in?: String[] | String;
+  serialNumber_lt?: String;
+  serialNumber_lte?: String;
+  serialNumber_gt?: String;
+  serialNumber_gte?: String;
+  serialNumber_contains?: String;
+  serialNumber_not_contains?: String;
+  serialNumber_starts_with?: String;
+  serialNumber_not_starts_with?: String;
+  serialNumber_ends_with?: String;
+  serialNumber_not_ends_with?: String;
+  lastServiceDate?: DateTimeInput;
+  lastServiceDate_not?: DateTimeInput;
+  lastServiceDate_in?: DateTimeInput[] | DateTimeInput;
+  lastServiceDate_not_in?: DateTimeInput[] | DateTimeInput;
+  lastServiceDate_lt?: DateTimeInput;
+  lastServiceDate_lte?: DateTimeInput;
+  lastServiceDate_gt?: DateTimeInput;
+  lastServiceDate_gte?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  nextServiceDate_not?: DateTimeInput;
+  nextServiceDate_in?: DateTimeInput[] | DateTimeInput;
+  nextServiceDate_not_in?: DateTimeInput[] | DateTimeInput;
+  nextServiceDate_lt?: DateTimeInput;
+  nextServiceDate_lte?: DateTimeInput;
+  nextServiceDate_gt?: DateTimeInput;
+  nextServiceDate_gte?: DateTimeInput;
+  onlineStatus?: Boolean;
+  onlineStatus_not?: Boolean;
+  AND?: MachineScalarWhereInput[] | MachineScalarWhereInput;
+  OR?: MachineScalarWhereInput[] | MachineScalarWhereInput;
+  NOT?: MachineScalarWhereInput[] | MachineScalarWhereInput;
+}
+
+export interface DatasetUpdateManyWithWhereNestedInput {
+  where: DatasetScalarWhereInput;
+  data: DatasetUpdateManyDataInput;
+}
+
+export interface TrendWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  parameters_some?: ParameterWhereInput;
+  AND?: TrendWhereInput[] | TrendWhereInput;
+}
+
+export interface DatasetUpdateManyDataInput {
+  value?: Float;
+}
+
+export interface ProductionLineWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  startUpChecks_some?: CheckWhereInput;
+  parameters_some?: ParameterWhereInput;
+  machines_some?: MachineWhereInput;
+  trends_some?: TrendWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  createdBy?: UserWhereInput;
+  AND?: ProductionLineWhereInput[] | ProductionLineWhereInput;
+}
+
+export interface DatasetUpdateInput {
+  value?: Float;
+  createdBy?: UserUpdateOneRequiredInput;
+}
+
+export interface CheckUpsertWithWhereUniqueNestedInput {
+  where: CheckWhereUniqueInput;
+  update: CheckUpdateDataInput;
+  create: CheckCreateInput;
+}
+
+export interface DatasetUpdateManyMutationInput {
+  value?: Float;
+}
+
+export interface CheckUpdateManyInput {
+  create?: CheckCreateInput[] | CheckCreateInput;
+  update?:
+    | CheckUpdateWithWhereUniqueNestedInput[]
+    | CheckUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | CheckUpsertWithWhereUniqueNestedInput[]
+    | CheckUpsertWithWhereUniqueNestedInput;
+  delete?: CheckWhereUniqueInput[] | CheckWhereUniqueInput;
+  connect?: CheckWhereUniqueInput[] | CheckWhereUniqueInput;
+  set?: CheckWhereUniqueInput[] | CheckWhereUniqueInput;
+  disconnect?: CheckWhereUniqueInput[] | CheckWhereUniqueInput;
+  deleteMany?: CheckScalarWhereInput[] | CheckScalarWhereInput;
+  updateMany?:
+    | CheckUpdateManyWithWhereNestedInput[]
+    | CheckUpdateManyWithWhereNestedInput;
+}
+
+export interface MachineCreateInput {
+  name: String;
+  manufacturer: String;
+  year?: Int;
+  model: String;
+  serialNumber: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus: Boolean;
+  parameters?: ParameterCreateManyInput;
+  data?: DataCreateManyInput;
+}
+
+export interface ProductionUpdateInput {
+  productionLine?: ProductionLineUpdateOneInput;
+  start?: DateTimeInput;
+  end?: DateTimeInput;
+  targetQty?: Int;
+  acceptQty?: Int;
+  rejectQty?: Int;
+  data?: DataUpdateManyInput;
+}
+
+export interface ParameterCreateManyInput {
+  create?: ParameterCreateInput[] | ParameterCreateInput;
+  connect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+}
+
+export interface MachineCreateManyInput {
+  create?: MachineCreateInput[] | MachineCreateInput;
+  connect?: MachineWhereUniqueInput[] | MachineWhereUniqueInput;
+}
+
+export interface DataCreateManyInput {
+  create?: DataCreateInput[] | DataCreateInput;
+  connect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+}
+
+export interface ObjectConnectionCreateOneInput {
+  create?: ObjectConnectionCreateInput;
+  connect?: ObjectConnectionWhereUniqueInput;
+}
+
+export interface MachineUpdateInput {
+  name?: String;
+  manufacturer?: String;
+  year?: Int;
+  model?: String;
+  serialNumber?: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus?: Boolean;
+  parameters?: ParameterUpdateManyInput;
+  data?: DataUpdateManyInput;
+}
+
+export interface CheckUpdateInput {
+  name?: String;
+  description?: String;
+  target?: ObjectConnectionUpdateOneRequiredInput;
+  valueType?: ValueType;
+  lhsParameter?: ParameterUpdateOneInput;
+  rhsParameter?: ParameterUpdateOneInput;
+  lhsValue?: Float;
+  operator?: Operation;
+  rhsValue?: Float;
+  unit?: Unit;
+}
+
+export interface ParameterUpdateManyInput {
+  create?: ParameterCreateInput[] | ParameterCreateInput;
+  update?:
+    | ParameterUpdateWithWhereUniqueNestedInput[]
+    | ParameterUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | ParameterUpsertWithWhereUniqueNestedInput[]
+    | ParameterUpsertWithWhereUniqueNestedInput;
+  delete?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  connect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  set?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  disconnect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  deleteMany?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
+  updateMany?:
+    | ParameterUpdateManyWithWhereNestedInput[]
+    | ParameterUpdateManyWithWhereNestedInput;
 }
 
 export interface UserWhereInput {
@@ -486,25 +2473,32 @@ export interface UserWhereInput {
   AND?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface MessageCreateManyWithoutRecipientsInput {
-  create?:
-    | MessageCreateWithoutRecipientsInput[]
-    | MessageCreateWithoutRecipientsInput;
-  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+export interface ParameterUpdateWithWhereUniqueNestedInput {
+  where: ParameterWhereUniqueInput;
+  data: ParameterUpdateDataInput;
 }
 
-export interface MessageUpdateWithoutSenderDataInput {
-  subject?: String;
-  body?: String;
-  recipients?: UserUpdateManyWithoutInboxInput;
+export interface DatasetSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: DatasetWhereInput;
+  AND?: DatasetSubscriptionWhereInput[] | DatasetSubscriptionWhereInput;
 }
 
-export interface UserCreateManyWithoutInboxInput {
-  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+export interface ParameterUpsertWithWhereUniqueNestedInput {
+  where: ParameterWhereUniqueInput;
+  update: ParameterUpdateDataInput;
+  create: ParameterCreateInput;
 }
 
-export interface MessageScalarWhereInput {
+export interface TrendUpdateManyMutationInput {
+  name?: String;
+  description?: String;
+}
+
+export interface ParameterScalarWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -519,143 +2513,196 @@ export interface MessageScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  subject?: String;
-  subject_not?: String;
-  subject_in?: String[] | String;
-  subject_not_in?: String[] | String;
-  subject_lt?: String;
-  subject_lte?: String;
-  subject_gt?: String;
-  subject_gte?: String;
-  subject_contains?: String;
-  subject_not_contains?: String;
-  subject_starts_with?: String;
-  subject_not_starts_with?: String;
-  subject_ends_with?: String;
-  subject_not_ends_with?: String;
-  body?: String;
-  body_not?: String;
-  body_in?: String[] | String;
-  body_not_in?: String[] | String;
-  body_lt?: String;
-  body_lte?: String;
-  body_gt?: String;
-  body_gte?: String;
-  body_contains?: String;
-  body_not_contains?: String;
-  body_starts_with?: String;
-  body_not_starts_with?: String;
-  body_ends_with?: String;
-  body_not_ends_with?: String;
-  AND?: MessageScalarWhereInput[] | MessageScalarWhereInput;
-  OR?: MessageScalarWhereInput[] | MessageScalarWhereInput;
-  NOT?: MessageScalarWhereInput[] | MessageScalarWhereInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  username?: String;
   name?: String;
-  password?: String;
-  role?: Role;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  unit?: Unit;
+  unit_not?: Unit;
+  unit_in?: Unit[] | Unit;
+  unit_not_in?: Unit[] | Unit;
+  set?: Float;
+  set_not?: Float;
+  set_in?: Float[] | Float;
+  set_not_in?: Float[] | Float;
+  set_lt?: Float;
+  set_lte?: Float;
+  set_gt?: Float;
+  set_gte?: Float;
+  toleranceHigh?: Float;
+  toleranceHigh_not?: Float;
+  toleranceHigh_in?: Float[] | Float;
+  toleranceHigh_not_in?: Float[] | Float;
+  toleranceHigh_lt?: Float;
+  toleranceHigh_lte?: Float;
+  toleranceHigh_gt?: Float;
+  toleranceHigh_gte?: Float;
+  toleranceLow?: Float;
+  toleranceLow_not?: Float;
+  toleranceLow_in?: Float[] | Float;
+  toleranceLow_not_in?: Float[] | Float;
+  toleranceLow_lt?: Float;
+  toleranceLow_lte?: Float;
+  toleranceLow_gt?: Float;
+  toleranceLow_gte?: Float;
+  connection?: Connection;
+  connection_not?: Connection;
+  connection_in?: Connection[] | Connection;
+  connection_not_in?: Connection[] | Connection;
+  AND?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
+  OR?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
+  NOT?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
 }
 
-export interface MessageUpdateManyWithWhereNestedInput {
-  where: MessageScalarWhereInput;
-  data: MessageUpdateManyDataInput;
+export interface ProductionUpdateManyMutationInput {
+  start?: DateTimeInput;
+  end?: DateTimeInput;
+  targetQty?: Int;
+  acceptQty?: Int;
+  rejectQty?: Int;
 }
 
-export interface UserUpdateManyDataInput {
-  username?: String;
+export interface ParameterUpdateManyWithWhereNestedInput {
+  where: ParameterScalarWhereInput;
+  data: ParameterUpdateManyDataInput;
+}
+
+export interface TrendUpdateDataInput {
   name?: String;
-  password?: String;
-  role?: Role;
+  description?: String;
+  parameters?: ParameterUpdateManyInput;
 }
 
-export interface MessageUpdateManyDataInput {
-  subject?: String;
-  body?: String;
+export interface ParameterUpdateManyDataInput {
+  name?: String;
+  unit?: Unit;
+  set?: Float;
+  toleranceHigh?: Float;
+  toleranceLow?: Float;
+  connection?: Connection;
 }
 
-export interface UserUpsertWithWhereUniqueWithoutInboxInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateWithoutInboxDataInput;
-  create: UserCreateWithoutInboxInput;
+export interface MachineUpsertWithWhereUniqueNestedInput {
+  where: MachineWhereUniqueInput;
+  update: MachineUpdateDataInput;
+  create: MachineCreateInput;
 }
 
-export interface UserUpsertWithoutOutboxInput {
-  update: UserUpdateWithoutOutboxDataInput;
-  create: UserCreateWithoutOutboxInput;
-}
-
-export interface UserCreateWithoutOutboxInput {
-  username: String;
-  name: String;
-  password: String;
-  inbox?: MessageCreateManyWithoutRecipientsInput;
-  role?: Role;
-}
-
-export interface MessageUpdateManyWithoutSenderInput {
-  create?: MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput;
-  delete?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-  set?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-  disconnect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+export interface DataUpdateManyInput {
+  create?: DataCreateInput[] | DataCreateInput;
   update?:
-    | MessageUpdateWithWhereUniqueWithoutSenderInput[]
-    | MessageUpdateWithWhereUniqueWithoutSenderInput;
+    | DataUpdateWithWhereUniqueNestedInput[]
+    | DataUpdateWithWhereUniqueNestedInput;
   upsert?:
-    | MessageUpsertWithWhereUniqueWithoutSenderInput[]
-    | MessageUpsertWithWhereUniqueWithoutSenderInput;
-  deleteMany?: MessageScalarWhereInput[] | MessageScalarWhereInput;
-  updateMany?:
-    | MessageUpdateManyWithWhereNestedInput[]
-    | MessageUpdateManyWithWhereNestedInput;
+    | DataUpsertWithWhereUniqueNestedInput[]
+    | DataUpsertWithWhereUniqueNestedInput;
+  delete?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  connect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  set?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  disconnect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  deleteMany?: DataScalarWhereInput[] | DataScalarWhereInput;
 }
 
-export interface UserUpdateWithoutInboxDataInput {
-  username?: String;
+export interface CheckUpdateManyWithWhereNestedInput {
+  where: CheckScalarWhereInput;
+  data: CheckUpdateManyDataInput;
+}
+
+export interface DataUpdateWithWhereUniqueNestedInput {
+  where: DataWhereUniqueInput;
+  data: DataUpdateDataInput;
+}
+
+export type TrendWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface DataUpdateDataInput {
+  parameter?: ParameterUpdateOneInput;
+  value?: DatasetUpdateManyInput;
+}
+
+export type DataWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface DataUpsertWithWhereUniqueNestedInput {
+  where: DataWhereUniqueInput;
+  update: DataUpdateDataInput;
+  create: DataCreateInput;
+}
+
+export interface CheckSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CheckWhereInput;
+  AND?: CheckSubscriptionWhereInput[] | CheckSubscriptionWhereInput;
+}
+
+export interface DataScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  AND?: DataScalarWhereInput[] | DataScalarWhereInput;
+  OR?: DataScalarWhereInput[] | DataScalarWhereInput;
+  NOT?: DataScalarWhereInput[] | DataScalarWhereInput;
+}
+
+export interface TrendUpdateManyWithWhereNestedInput {
+  where: TrendScalarWhereInput;
+  data: TrendUpdateManyDataInput;
+}
+
+export interface MachineUpdateManyMutationInput {
   name?: String;
-  password?: String;
-  outbox?: MessageUpdateManyWithoutSenderInput;
-  role?: Role;
+  manufacturer?: String;
+  year?: Int;
+  model?: String;
+  serialNumber?: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus?: Boolean;
 }
 
-export interface UserUpdateWithWhereUniqueWithoutInboxInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutInboxDataInput;
-}
-
-export interface UserUpdateManyWithoutInboxInput {
-  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+export interface MachineUpdateManyInput {
+  create?: MachineCreateInput[] | MachineCreateInput;
   update?:
-    | UserUpdateWithWhereUniqueWithoutInboxInput[]
-    | UserUpdateWithWhereUniqueWithoutInboxInput;
+    | MachineUpdateWithWhereUniqueNestedInput[]
+    | MachineUpdateWithWhereUniqueNestedInput;
   upsert?:
-    | UserUpsertWithWhereUniqueWithoutInboxInput[]
-    | UserUpsertWithWhereUniqueWithoutInboxInput;
-  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+    | MachineUpsertWithWhereUniqueNestedInput[]
+    | MachineUpsertWithWhereUniqueNestedInput;
+  delete?: MachineWhereUniqueInput[] | MachineWhereUniqueInput;
+  connect?: MachineWhereUniqueInput[] | MachineWhereUniqueInput;
+  set?: MachineWhereUniqueInput[] | MachineWhereUniqueInput;
+  disconnect?: MachineWhereUniqueInput[] | MachineWhereUniqueInput;
+  deleteMany?: MachineScalarWhereInput[] | MachineScalarWhereInput;
   updateMany?:
-    | UserUpdateManyWithWhereNestedInput[]
-    | UserUpdateManyWithWhereNestedInput;
-}
-
-export interface MessageCreateWithoutRecipientsInput {
-  subject: String;
-  body: String;
-  sender: UserCreateOneWithoutOutboxInput;
+    | MachineUpdateManyWithWhereNestedInput[]
+    | MachineUpdateManyWithWhereNestedInput;
 }
 
 export interface MessageCreateInput {
@@ -665,27 +2712,121 @@ export interface MessageCreateInput {
   recipients?: UserCreateManyWithoutInboxInput;
 }
 
-export interface UserUpdateManyWithWhereNestedInput {
-  where: UserScalarWhereInput;
-  data: UserUpdateManyDataInput;
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  username?: String;
+}>;
+
+export interface ObjectConnectionUpdateManyMutationInput {
+  description?: String;
+  connectionId?: ID_Input;
+  connectionType?: Connection;
 }
 
-export interface UserCreateInput {
-  username: String;
-  name: String;
-  password: String;
-  inbox?: MessageCreateManyWithoutRecipientsInput;
-  outbox?: MessageCreateManyWithoutSenderInput;
-  role?: Role;
+export interface ObjectConnectionUpdateInput {
+  description?: String;
+  connectionId?: ID_Input;
+  connectionType?: Connection;
 }
 
-export interface UserSubscriptionWhereInput {
+export interface MessageUpdateManyMutationInput {
+  subject?: String;
+  body?: String;
+}
+
+export interface MessageUpdateInput {
+  subject?: String;
+  body?: String;
+  sender?: UserUpdateOneRequiredWithoutOutboxInput;
+  recipients?: UserUpdateManyWithoutInboxInput;
+}
+
+export interface ParameterCreateOneInput {
+  create?: ParameterCreateInput;
+  connect?: ParameterWhereUniqueInput;
+}
+
+export interface CheckUpdateDataInput {
+  name?: String;
+  description?: String;
+  target?: ObjectConnectionUpdateOneRequiredInput;
+  valueType?: ValueType;
+  lhsParameter?: ParameterUpdateOneInput;
+  rhsParameter?: ParameterUpdateOneInput;
+  lhsValue?: Float;
+  operator?: Operation;
+  rhsValue?: Float;
+  unit?: Unit;
+}
+
+export interface MachineUpdateManyDataInput {
+  name?: String;
+  manufacturer?: String;
+  year?: Int;
+  model?: String;
+  serialNumber?: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus?: Boolean;
+}
+
+export interface ObjectConnectionWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  connectionId?: ID_Input;
+  connectionId_not?: ID_Input;
+  connectionId_in?: ID_Input[] | ID_Input;
+  connectionId_not_in?: ID_Input[] | ID_Input;
+  connectionId_lt?: ID_Input;
+  connectionId_lte?: ID_Input;
+  connectionId_gt?: ID_Input;
+  connectionId_gte?: ID_Input;
+  connectionId_contains?: ID_Input;
+  connectionId_not_contains?: ID_Input;
+  connectionId_starts_with?: ID_Input;
+  connectionId_not_starts_with?: ID_Input;
+  connectionId_ends_with?: ID_Input;
+  connectionId_not_ends_with?: ID_Input;
+  connectionType?: Connection;
+  connectionType_not?: Connection;
+  connectionType_in?: Connection[] | Connection;
+  connectionType_not_in?: Connection[] | Connection;
+  AND?: ObjectConnectionWhereInput[] | ObjectConnectionWhereInput;
+}
+
+export interface ParameterSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  node?: ParameterWhereInput;
+  AND?: ParameterSubscriptionWhereInput[] | ParameterSubscriptionWhereInput;
 }
 
 export interface NodeNode {
@@ -720,20 +2861,831 @@ export interface UserPreviousValuesSubscription
   role: () => Promise<AsyncIterator<Role>>;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface DatasetEdge {
+  node: Dataset;
+  cursor: String;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
+export interface DatasetEdgePromise extends Promise<DatasetEdge>, Fragmentable {
+  node: <T = DatasetPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface DatasetEdgeSubscription
+  extends Promise<AsyncIterator<DatasetEdge>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  node: <T = DatasetSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CheckEdge {
+  node: Check;
+  cursor: String;
+}
+
+export interface CheckEdgePromise extends Promise<CheckEdge>, Fragmentable {
+  node: <T = CheckPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CheckEdgeSubscription
+  extends Promise<AsyncIterator<CheckEdge>>,
+    Fragmentable {
+  node: <T = CheckSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface DatasetConnection {
+  pageInfo: PageInfo;
+  edges: DatasetEdge[];
+}
+
+export interface DatasetConnectionPromise
+  extends Promise<DatasetConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<DatasetEdge>>() => T;
+  aggregate: <T = AggregateDatasetPromise>() => T;
+}
+
+export interface DatasetConnectionSubscription
+  extends Promise<AsyncIterator<DatasetConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DatasetEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDatasetSubscription>() => T;
+}
+
+export interface AggregateCheck {
+  count: Int;
+}
+
+export interface AggregateCheckPromise
+  extends Promise<AggregateCheck>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCheckSubscription
+  extends Promise<AsyncIterator<AggregateCheck>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateData {
+  count: Int;
+}
+
+export interface AggregateDataPromise
+  extends Promise<AggregateData>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateDataSubscription
+  extends Promise<AsyncIterator<AggregateData>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DataEdge {
+  node: Data;
+  cursor: String;
+}
+
+export interface DataEdgePromise extends Promise<DataEdge>, Fragmentable {
+  node: <T = DataPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DataEdgeSubscription
+  extends Promise<AsyncIterator<DataEdge>>,
+    Fragmentable {
+  node: <T = DataSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface Check {
+  id: ID_Output;
+  name: String;
+  description: String;
+  valueType: ValueType;
+  lhsValue: Float;
+  operator: Operation;
+  rhsValue: Float;
+  unit?: Unit;
+}
+
+export interface CheckPromise extends Promise<Check>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  target: <T = ObjectConnectionPromise>() => T;
+  valueType: () => Promise<ValueType>;
+  lhsParameter: <T = ParameterPromise>() => T;
+  rhsParameter: <T = ParameterPromise>() => T;
+  lhsValue: () => Promise<Float>;
+  operator: () => Promise<Operation>;
+  rhsValue: () => Promise<Float>;
+  unit: () => Promise<Unit>;
+}
+
+export interface CheckSubscription
+  extends Promise<AsyncIterator<Check>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  target: <T = ObjectConnectionSubscription>() => T;
+  valueType: () => Promise<AsyncIterator<ValueType>>;
+  lhsParameter: <T = ParameterSubscription>() => T;
+  rhsParameter: <T = ParameterSubscription>() => T;
+  lhsValue: () => Promise<AsyncIterator<Float>>;
+  operator: () => Promise<AsyncIterator<Operation>>;
+  rhsValue: () => Promise<AsyncIterator<Float>>;
+  unit: () => Promise<AsyncIterator<Unit>>;
+}
+
+export interface TrendEdge {
+  node: Trend;
+  cursor: String;
+}
+
+export interface TrendEdgePromise extends Promise<TrendEdge>, Fragmentable {
+  node: <T = TrendPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TrendEdgeSubscription
+  extends Promise<AsyncIterator<TrendEdge>>,
+    Fragmentable {
+  node: <T = TrendSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CheckSubscriptionPayload {
+  mutation: MutationType;
+  node: Check;
+  updatedFields: String[];
+  previousValues: CheckPreviousValues;
+}
+
+export interface CheckSubscriptionPayloadPromise
+  extends Promise<CheckSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CheckPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CheckPreviousValuesPromise>() => T;
+}
+
+export interface CheckSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CheckSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CheckSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CheckPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateProductionLine {
+  count: Int;
+}
+
+export interface AggregateProductionLinePromise
+  extends Promise<AggregateProductionLine>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProductionLineSubscription
+  extends Promise<AsyncIterator<AggregateProductionLine>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface CheckPreviousValues {
+  id: ID_Output;
+  name: String;
+  description: String;
+  valueType: ValueType;
+  lhsValue: Float;
+  operator: Operation;
+  rhsValue: Float;
+  unit?: Unit;
+}
+
+export interface CheckPreviousValuesPromise
+  extends Promise<CheckPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  valueType: () => Promise<ValueType>;
+  lhsValue: () => Promise<Float>;
+  operator: () => Promise<Operation>;
+  rhsValue: () => Promise<Float>;
+  unit: () => Promise<Unit>;
+}
+
+export interface CheckPreviousValuesSubscription
+  extends Promise<AsyncIterator<CheckPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  valueType: () => Promise<AsyncIterator<ValueType>>;
+  lhsValue: () => Promise<AsyncIterator<Float>>;
+  operator: () => Promise<AsyncIterator<Operation>>;
+  rhsValue: () => Promise<AsyncIterator<Float>>;
+  unit: () => Promise<AsyncIterator<Unit>>;
+}
+
+export interface ProductionLineConnection {
+  pageInfo: PageInfo;
+  edges: ProductionLineEdge[];
+}
+
+export interface ProductionLineConnectionPromise
+  extends Promise<ProductionLineConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProductionLineEdge>>() => T;
+  aggregate: <T = AggregateProductionLinePromise>() => T;
+}
+
+export interface ProductionLineConnectionSubscription
+  extends Promise<AsyncIterator<ProductionLineConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProductionLineEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProductionLineSubscription>() => T;
+}
+
+export interface DataConnection {
+  pageInfo: PageInfo;
+  edges: DataEdge[];
+}
+
+export interface DataConnectionPromise
+  extends Promise<DataConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<DataEdge>>() => T;
+  aggregate: <T = AggregateDataPromise>() => T;
+}
+
+export interface DataConnectionSubscription
+  extends Promise<AsyncIterator<DataConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DataEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDataSubscription>() => T;
+}
+
+export interface AggregateProduction {
+  count: Int;
+}
+
+export interface AggregateProductionPromise
+  extends Promise<AggregateProduction>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProductionSubscription
+  extends Promise<AsyncIterator<AggregateProduction>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DataSubscriptionPayload {
+  mutation: MutationType;
+  node: Data;
+  updatedFields: String[];
+  previousValues: DataPreviousValues;
+}
+
+export interface DataSubscriptionPayloadPromise
+  extends Promise<DataSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DataPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DataPreviousValuesPromise>() => T;
+}
+
+export interface DataSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DataSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DataSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DataPreviousValuesSubscription>() => T;
+}
+
+export interface ProductionConnection {
+  pageInfo: PageInfo;
+  edges: ProductionEdge[];
+}
+
+export interface ProductionConnectionPromise
+  extends Promise<ProductionConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProductionEdge>>() => T;
+  aggregate: <T = AggregateProductionPromise>() => T;
+}
+
+export interface ProductionConnectionSubscription
+  extends Promise<AsyncIterator<ProductionConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProductionEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProductionSubscription>() => T;
+}
+
+export interface DataPreviousValues {
+  id: ID_Output;
+}
+
+export interface DataPreviousValuesPromise
+  extends Promise<DataPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface DataPreviousValuesSubscription
+  extends Promise<AsyncIterator<DataPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface Trend {
+  id: ID_Output;
+  name: String;
+  description: String;
+}
+
+export interface TrendPromise extends Promise<Trend>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  parameters: <T = FragmentableArray<Parameter>>(
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface TrendSubscription
+  extends Promise<AsyncIterator<Trend>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  parameters: <T = Promise<AsyncIterator<ParameterSubscription>>>(
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ProductionEdge {
+  node: Production;
+  cursor: String;
+}
+
+export interface ProductionEdgePromise
+  extends Promise<ProductionEdge>,
+    Fragmentable {
+  node: <T = ProductionPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProductionEdgeSubscription
+  extends Promise<AsyncIterator<ProductionEdge>>,
+    Fragmentable {
+  node: <T = ProductionSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ProductionLinePreviousValues {
+  id: ID_Output;
+  name: String;
+  description: String;
+  createdAt: DateTimeOutput;
+}
+
+export interface ProductionLinePreviousValuesPromise
+  extends Promise<ProductionLinePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ProductionLinePreviousValuesSubscription
+  extends Promise<AsyncIterator<ProductionLinePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ObjectConnection {
+  id: ID_Output;
+  description: String;
+  connectionId: ID_Output;
+  connectionType: Connection;
+}
+
+export interface ObjectConnectionPromise
+  extends Promise<ObjectConnection>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  description: () => Promise<String>;
+  connectionId: () => Promise<ID_Output>;
+  connectionType: () => Promise<Connection>;
+}
+
+export interface ObjectConnectionSubscription
+  extends Promise<AsyncIterator<ObjectConnection>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  description: () => Promise<AsyncIterator<String>>;
+  connectionId: () => Promise<AsyncIterator<ID_Output>>;
+  connectionType: () => Promise<AsyncIterator<Connection>>;
+}
+
+export interface ProductionLine {
+  id: ID_Output;
+  name: String;
+  description: String;
+  createdAt: DateTimeOutput;
+}
+
+export interface ProductionLinePromise
+  extends Promise<ProductionLine>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  startUpChecks: <T = FragmentableArray<Check>>(
+    args?: {
+      where?: CheckWhereInput;
+      orderBy?: CheckOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  parameters: <T = FragmentableArray<Parameter>>(
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  machines: <T = FragmentableArray<Machine>>(
+    args?: {
+      where?: MachineWhereInput;
+      orderBy?: MachineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  trends: <T = FragmentableArray<Trend>>(
+    args?: {
+      where?: TrendWhereInput;
+      orderBy?: TrendOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  createdBy: <T = UserPromise>() => T;
+}
+
+export interface ProductionLineSubscription
+  extends Promise<AsyncIterator<ProductionLine>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  startUpChecks: <T = Promise<AsyncIterator<CheckSubscription>>>(
+    args?: {
+      where?: CheckWhereInput;
+      orderBy?: CheckOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  parameters: <T = Promise<AsyncIterator<ParameterSubscription>>>(
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  machines: <T = Promise<AsyncIterator<MachineSubscription>>>(
+    args?: {
+      where?: MachineWhereInput;
+      orderBy?: MachineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  trends: <T = Promise<AsyncIterator<TrendSubscription>>>(
+    args?: {
+      where?: TrendWhereInput;
+      orderBy?: TrendOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  createdBy: <T = UserSubscription>() => T;
+}
+
+export interface Parameter {
+  id: ID_Output;
+  name: String;
+  unit: Unit;
+  set: Float;
+  toleranceHigh: Float;
+  toleranceLow: Float;
+  connection?: Connection;
+}
+
+export interface ParameterPromise extends Promise<Parameter>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  unit: () => Promise<Unit>;
+  set: () => Promise<Float>;
+  toleranceHigh: () => Promise<Float>;
+  toleranceLow: () => Promise<Float>;
+  connection: () => Promise<Connection>;
+}
+
+export interface ParameterSubscription
+  extends Promise<AsyncIterator<Parameter>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  unit: () => Promise<AsyncIterator<Unit>>;
+  set: () => Promise<AsyncIterator<Float>>;
+  toleranceHigh: () => Promise<AsyncIterator<Float>>;
+  toleranceLow: () => Promise<AsyncIterator<Float>>;
+  connection: () => Promise<AsyncIterator<Connection>>;
+}
+
+export interface ParameterEdge {
+  node: Parameter;
+  cursor: String;
+}
+
+export interface ParameterEdgePromise
+  extends Promise<ParameterEdge>,
+    Fragmentable {
+  node: <T = ParameterPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ParameterEdgeSubscription
+  extends Promise<AsyncIterator<ParameterEdge>>,
+    Fragmentable {
+  node: <T = ParameterSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Production {
+  id: ID_Output;
+  start: DateTimeOutput;
+  end: DateTimeOutput;
+  targetQty: Int;
+  acceptQty: Int;
+  rejectQty: Int;
+}
+
+export interface ProductionPromise extends Promise<Production>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  productionLine: <T = ProductionLinePromise>() => T;
+  start: () => Promise<DateTimeOutput>;
+  end: () => Promise<DateTimeOutput>;
+  targetQty: () => Promise<Int>;
+  acceptQty: () => Promise<Int>;
+  rejectQty: () => Promise<Int>;
+  data: <T = FragmentableArray<Data>>(
+    args?: {
+      where?: DataWhereInput;
+      orderBy?: DataOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface ProductionSubscription
+  extends Promise<AsyncIterator<Production>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  productionLine: <T = ProductionLineSubscription>() => T;
+  start: () => Promise<AsyncIterator<DateTimeOutput>>;
+  end: () => Promise<AsyncIterator<DateTimeOutput>>;
+  targetQty: () => Promise<AsyncIterator<Int>>;
+  acceptQty: () => Promise<AsyncIterator<Int>>;
+  rejectQty: () => Promise<AsyncIterator<Int>>;
+  data: <T = Promise<AsyncIterator<DataSubscription>>>(
+    args?: {
+      where?: DataWhereInput;
+      orderBy?: DataOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface AggregateObjectConnection {
+  count: Int;
+}
+
+export interface AggregateObjectConnectionPromise
+  extends Promise<AggregateObjectConnection>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateObjectConnectionSubscription
+  extends Promise<AsyncIterator<AggregateObjectConnection>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DatasetSubscriptionPayload {
+  mutation: MutationType;
+  node: Dataset;
+  updatedFields: String[];
+  previousValues: DatasetPreviousValues;
+}
+
+export interface DatasetSubscriptionPayloadPromise
+  extends Promise<DatasetSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DatasetPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DatasetPreviousValuesPromise>() => T;
+}
+
+export interface DatasetSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DatasetSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DatasetSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DatasetPreviousValuesSubscription>() => T;
+}
+
+export interface ObjectConnectionConnection {
+  pageInfo: PageInfo;
+  edges: ObjectConnectionEdge[];
+}
+
+export interface ObjectConnectionConnectionPromise
+  extends Promise<ObjectConnectionConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ObjectConnectionEdge>>() => T;
+  aggregate: <T = AggregateObjectConnectionPromise>() => T;
+}
+
+export interface ObjectConnectionConnectionSubscription
+  extends Promise<AsyncIterator<ObjectConnectionConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ObjectConnectionEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateObjectConnectionSubscription>() => T;
+}
+
+export interface DatasetPreviousValues {
+  id: ID_Output;
+  value: Float;
+  createdAt?: DateTimeOutput;
+}
+
+export interface DatasetPreviousValuesPromise
+  extends Promise<DatasetPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  value: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+}
+
+export interface DatasetPreviousValuesSubscription
+  extends Promise<AsyncIterator<DatasetPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  value: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateMessage {
+  count: Int;
+}
+
+export interface AggregateMessagePromise
+  extends Promise<AggregateMessage>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateMessageSubscription
+  extends Promise<AsyncIterator<AggregateMessage>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface Message {
@@ -783,29 +3735,336 @@ export interface MessageSubscription
   ) => T;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
+export interface MessageConnection {
+  pageInfo: PageInfo;
+  edges: MessageEdge[];
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface MessageConnectionPromise
+  extends Promise<MessageConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<MessageEdge>>() => T;
+  aggregate: <T = AggregateMessagePromise>() => T;
+}
+
+export interface MessageConnectionSubscription
+  extends Promise<AsyncIterator<MessageConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<MessageEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateMessageSubscription>() => T;
+}
+
+export interface MachineSubscriptionPayload {
+  mutation: MutationType;
+  node: Machine;
+  updatedFields: String[];
+  previousValues: MachinePreviousValues;
+}
+
+export interface MachineSubscriptionPayloadPromise
+  extends Promise<MachineSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
+  node: <T = MachinePromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
+  previousValues: <T = MachinePreviousValuesPromise>() => T;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface MachineSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<MachineSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
+  node: <T = MachineSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  previousValues: <T = MachinePreviousValuesSubscription>() => T;
+}
+
+export interface MachineEdge {
+  node: Machine;
+  cursor: String;
+}
+
+export interface MachineEdgePromise extends Promise<MachineEdge>, Fragmentable {
+  node: <T = MachinePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface MachineEdgeSubscription
+  extends Promise<AsyncIterator<MachineEdge>>,
+    Fragmentable {
+  node: <T = MachineSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface MachinePreviousValues {
+  id: ID_Output;
+  name: String;
+  manufacturer: String;
+  year?: Int;
+  model: String;
+  serialNumber: String;
+  lastServiceDate?: DateTimeOutput;
+  nextServiceDate?: DateTimeOutput;
+  onlineStatus: Boolean;
+}
+
+export interface MachinePreviousValuesPromise
+  extends Promise<MachinePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  manufacturer: () => Promise<String>;
+  year: () => Promise<Int>;
+  model: () => Promise<String>;
+  serialNumber: () => Promise<String>;
+  lastServiceDate: () => Promise<DateTimeOutput>;
+  nextServiceDate: () => Promise<DateTimeOutput>;
+  onlineStatus: () => Promise<Boolean>;
+}
+
+export interface MachinePreviousValuesSubscription
+  extends Promise<AsyncIterator<MachinePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  manufacturer: () => Promise<AsyncIterator<String>>;
+  year: () => Promise<AsyncIterator<Int>>;
+  model: () => Promise<AsyncIterator<String>>;
+  serialNumber: () => Promise<AsyncIterator<String>>;
+  lastServiceDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  nextServiceDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  onlineStatus: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface Machine {
+  id: ID_Output;
+  name: String;
+  manufacturer: String;
+  year?: Int;
+  model: String;
+  serialNumber: String;
+  lastServiceDate?: DateTimeOutput;
+  nextServiceDate?: DateTimeOutput;
+  onlineStatus: Boolean;
+}
+
+export interface MachinePromise extends Promise<Machine>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  manufacturer: () => Promise<String>;
+  year: () => Promise<Int>;
+  model: () => Promise<String>;
+  serialNumber: () => Promise<String>;
+  lastServiceDate: () => Promise<DateTimeOutput>;
+  nextServiceDate: () => Promise<DateTimeOutput>;
+  onlineStatus: () => Promise<Boolean>;
+  parameters: <T = FragmentableArray<Parameter>>(
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  data: <T = FragmentableArray<Data>>(
+    args?: {
+      where?: DataWhereInput;
+      orderBy?: DataOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface MachineSubscription
+  extends Promise<AsyncIterator<Machine>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  manufacturer: () => Promise<AsyncIterator<String>>;
+  year: () => Promise<AsyncIterator<Int>>;
+  model: () => Promise<AsyncIterator<String>>;
+  serialNumber: () => Promise<AsyncIterator<String>>;
+  lastServiceDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  nextServiceDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  onlineStatus: () => Promise<AsyncIterator<Boolean>>;
+  parameters: <T = Promise<AsyncIterator<ParameterSubscription>>>(
+    args?: {
+      where?: ParameterWhereInput;
+      orderBy?: ParameterOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  data: <T = Promise<AsyncIterator<DataSubscription>>>(
+    args?: {
+      where?: DataWhereInput;
+      orderBy?: DataOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface CheckConnection {
+  pageInfo: PageInfo;
+  edges: CheckEdge[];
+}
+
+export interface CheckConnectionPromise
+  extends Promise<CheckConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CheckEdge>>() => T;
+  aggregate: <T = AggregateCheckPromise>() => T;
+}
+
+export interface CheckConnectionSubscription
+  extends Promise<AsyncIterator<CheckConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CheckEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCheckSubscription>() => T;
+}
+
+export interface Data {
+  id: ID_Output;
+}
+
+export interface DataPromise extends Promise<Data>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  parameter: <T = ParameterPromise>() => T;
+  value: <T = FragmentableArray<Dataset>>(
+    args?: {
+      where?: DatasetWhereInput;
+      orderBy?: DatasetOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface DataSubscription
+  extends Promise<AsyncIterator<Data>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  parameter: <T = ParameterSubscription>() => T;
+  value: <T = Promise<AsyncIterator<DatasetSubscription>>>(
+    args?: {
+      where?: DatasetWhereInput;
+      orderBy?: DatasetOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface MessageSubscriptionPayload {
+  mutation: MutationType;
+  node: Message;
+  updatedFields: String[];
+  previousValues: MessagePreviousValues;
+}
+
+export interface MessageSubscriptionPayloadPromise
+  extends Promise<MessageSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = MessagePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = MessagePreviousValuesPromise>() => T;
+}
+
+export interface MessageSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<MessageSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = MessageSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = MessagePreviousValuesSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface MessagePreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  subject: String;
+  body: String;
+}
+
+export interface MessagePreviousValuesPromise
+  extends Promise<MessagePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  subject: () => Promise<String>;
+  body: () => Promise<String>;
+}
+
+export interface MessagePreviousValuesSubscription
+  extends Promise<AsyncIterator<MessagePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  subject: () => Promise<AsyncIterator<String>>;
+  body: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TrendConnection {
+  pageInfo: PageInfo;
+  edges: TrendEdge[];
+}
+
+export interface TrendConnectionPromise
+  extends Promise<TrendConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TrendEdge>>() => T;
+  aggregate: <T = AggregateTrendPromise>() => T;
+}
+
+export interface TrendConnectionSubscription
+  extends Promise<AsyncIterator<TrendConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TrendEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTrendSubscription>() => T;
 }
 
 export interface User {
@@ -878,67 +4137,251 @@ export interface UserSubscription
   role: () => Promise<AsyncIterator<Role>>;
 }
 
-export interface UserEdge {
-  node: User;
-  cursor: String;
+export interface TrendPreviousValues {
+  id: ID_Output;
+  name: String;
+  description: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface TrendPreviousValuesPromise
+  extends Promise<TrendPreviousValues>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
 }
 
-export interface MessageSubscriptionPayload {
+export interface TrendPreviousValuesSubscription
+  extends Promise<AsyncIterator<TrendPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ObjectConnectionSubscriptionPayload {
   mutation: MutationType;
-  node: Message;
+  node: ObjectConnection;
   updatedFields: String[];
-  previousValues: MessagePreviousValues;
+  previousValues: ObjectConnectionPreviousValues;
 }
 
-export interface MessageSubscriptionPayloadPromise
-  extends Promise<MessageSubscriptionPayload>,
+export interface ObjectConnectionSubscriptionPayloadPromise
+  extends Promise<ObjectConnectionSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = MessagePromise>() => T;
+  node: <T = ObjectConnectionPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = MessagePreviousValuesPromise>() => T;
+  previousValues: <T = ObjectConnectionPreviousValuesPromise>() => T;
 }
 
-export interface MessageSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<MessageSubscriptionPayload>>,
+export interface ObjectConnectionSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ObjectConnectionSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = MessageSubscription>() => T;
+  node: <T = ObjectConnectionSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = MessagePreviousValuesSubscription>() => T;
+  previousValues: <T = ObjectConnectionPreviousValuesSubscription>() => T;
 }
 
-export interface MessageConnection {
+export interface ParameterConnection {
   pageInfo: PageInfo;
-  edges: MessageEdge[];
+  edges: ParameterEdge[];
 }
 
-export interface MessageConnectionPromise
-  extends Promise<MessageConnection>,
+export interface ParameterConnectionPromise
+  extends Promise<ParameterConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<MessageEdge>>() => T;
-  aggregate: <T = AggregateMessagePromise>() => T;
+  edges: <T = FragmentableArray<ParameterEdge>>() => T;
+  aggregate: <T = AggregateParameterPromise>() => T;
 }
 
-export interface MessageConnectionSubscription
-  extends Promise<AsyncIterator<MessageConnection>>,
+export interface ParameterConnectionSubscription
+  extends Promise<AsyncIterator<ParameterConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<MessageEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateMessageSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ParameterEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateParameterSubscription>() => T;
+}
+
+export interface ObjectConnectionPreviousValues {
+  id: ID_Output;
+  description: String;
+  connectionId: ID_Output;
+  connectionType: Connection;
+}
+
+export interface ObjectConnectionPreviousValuesPromise
+  extends Promise<ObjectConnectionPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  description: () => Promise<String>;
+  connectionId: () => Promise<ID_Output>;
+  connectionType: () => Promise<Connection>;
+}
+
+export interface ObjectConnectionPreviousValuesSubscription
+  extends Promise<AsyncIterator<ObjectConnectionPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  description: () => Promise<AsyncIterator<String>>;
+  connectionId: () => Promise<AsyncIterator<ID_Output>>;
+  connectionType: () => Promise<AsyncIterator<Connection>>;
+}
+
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
+}
+
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
+}
+
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
+}
+
+export interface Dataset {
+  id: ID_Output;
+  value: Float;
+  createdAt?: DateTimeOutput;
+}
+
+export interface DatasetPromise extends Promise<Dataset>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  value: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  createdBy: <T = UserPromise>() => T;
+}
+
+export interface DatasetSubscription
+  extends Promise<AsyncIterator<Dataset>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  value: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  createdBy: <T = UserSubscription>() => T;
+}
+
+export interface AggregateMachine {
+  count: Int;
+}
+
+export interface AggregateMachinePromise
+  extends Promise<AggregateMachine>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateMachineSubscription
+  extends Promise<AsyncIterator<AggregateMachine>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ParameterSubscriptionPayload {
+  mutation: MutationType;
+  node: Parameter;
+  updatedFields: String[];
+  previousValues: ParameterPreviousValues;
+}
+
+export interface ParameterSubscriptionPayloadPromise
+  extends Promise<ParameterSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ParameterPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ParameterPreviousValuesPromise>() => T;
+}
+
+export interface ParameterSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ParameterSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ParameterSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ParameterPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateDataset {
+  count: Int;
+}
+
+export interface AggregateDatasetPromise
+  extends Promise<AggregateDataset>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateDatasetSubscription
+  extends Promise<AsyncIterator<AggregateDataset>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ParameterPreviousValues {
+  id: ID_Output;
+  name: String;
+  unit: Unit;
+  set: Float;
+  toleranceHigh: Float;
+  toleranceLow: Float;
+  connection?: Connection;
+}
+
+export interface ParameterPreviousValuesPromise
+  extends Promise<ParameterPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  unit: () => Promise<Unit>;
+  set: () => Promise<Float>;
+  toleranceHigh: () => Promise<Float>;
+  toleranceLow: () => Promise<Float>;
+  connection: () => Promise<Connection>;
+}
+
+export interface ParameterPreviousValuesSubscription
+  extends Promise<AsyncIterator<ParameterPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  unit: () => Promise<AsyncIterator<Unit>>;
+  set: () => Promise<AsyncIterator<Float>>;
+  toleranceHigh: () => Promise<AsyncIterator<Float>>;
+  toleranceLow: () => Promise<AsyncIterator<Float>>;
+  connection: () => Promise<AsyncIterator<Connection>>;
+}
+
+export interface AggregateTrend {
+  count: Int;
+}
+
+export interface AggregateTrendPromise
+  extends Promise<AggregateTrend>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTrendSubscription
+  extends Promise<AsyncIterator<AggregateTrend>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface PageInfo {
@@ -964,64 +4407,18 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface MessagePreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  subject: String;
-  body: String;
-}
-
-export interface MessagePreviousValuesPromise
-  extends Promise<MessagePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  subject: () => Promise<String>;
-  body: () => Promise<String>;
-}
-
-export interface MessagePreviousValuesSubscription
-  extends Promise<AsyncIterator<MessagePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  subject: () => Promise<AsyncIterator<String>>;
-  body: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface AggregateUser {
+export interface AggregateParameter {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateParameterPromise
+  extends Promise<AggregateParameter>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateParameterSubscription
+  extends Promise<AsyncIterator<AggregateParameter>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -1043,44 +4440,214 @@ export interface MessageEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateMessage {
-  count: Int;
+export interface ProductionLineSubscriptionPayload {
+  mutation: MutationType;
+  node: ProductionLine;
+  updatedFields: String[];
+  previousValues: ProductionLinePreviousValues;
 }
 
-export interface AggregateMessagePromise
-  extends Promise<AggregateMessage>,
+export interface ProductionLineSubscriptionPayloadPromise
+  extends Promise<ProductionLineSubscriptionPayload>,
     Fragmentable {
-  count: () => Promise<Int>;
+  mutation: () => Promise<MutationType>;
+  node: <T = ProductionLinePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProductionLinePreviousValuesPromise>() => T;
 }
 
-export interface AggregateMessageSubscription
-  extends Promise<AsyncIterator<AggregateMessage>>,
+export interface ProductionLineSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProductionLineSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProductionLineSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProductionLinePreviousValuesSubscription>() => T;
 }
 
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
+export interface TrendSubscriptionPayload {
+  mutation: MutationType;
+  node: Trend;
+  updatedFields: String[];
+  previousValues: TrendPreviousValues;
+}
 
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export interface TrendSubscriptionPayloadPromise
+  extends Promise<TrendSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TrendPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TrendPreviousValuesPromise>() => T;
+}
 
-export type Long = string;
+export interface TrendSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TrendSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TrendSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TrendPreviousValuesSubscription>() => T;
+}
+
+export interface ProductionPreviousValues {
+  id: ID_Output;
+  start: DateTimeOutput;
+  end: DateTimeOutput;
+  targetQty: Int;
+  acceptQty: Int;
+  rejectQty: Int;
+}
+
+export interface ProductionPreviousValuesPromise
+  extends Promise<ProductionPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  start: () => Promise<DateTimeOutput>;
+  end: () => Promise<DateTimeOutput>;
+  targetQty: () => Promise<Int>;
+  acceptQty: () => Promise<Int>;
+  rejectQty: () => Promise<Int>;
+}
+
+export interface ProductionPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProductionPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  start: () => Promise<AsyncIterator<DateTimeOutput>>;
+  end: () => Promise<AsyncIterator<DateTimeOutput>>;
+  targetQty: () => Promise<AsyncIterator<Int>>;
+  acceptQty: () => Promise<AsyncIterator<Int>>;
+  rejectQty: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProductionSubscriptionPayload {
+  mutation: MutationType;
+  node: Production;
+  updatedFields: String[];
+  previousValues: ProductionPreviousValues;
+}
+
+export interface ProductionSubscriptionPayloadPromise
+  extends Promise<ProductionSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProductionPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProductionPreviousValuesPromise>() => T;
+}
+
+export interface ProductionSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProductionSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProductionSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProductionPreviousValuesSubscription>() => T;
+}
+
+export interface MachineConnection {
+  pageInfo: PageInfo;
+  edges: MachineEdge[];
+}
+
+export interface MachineConnectionPromise
+  extends Promise<MachineConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<MachineEdge>>() => T;
+  aggregate: <T = AggregateMachinePromise>() => T;
+}
+
+export interface MachineConnectionSubscription
+  extends Promise<AsyncIterator<MachineConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<MachineEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateMachineSubscription>() => T;
+}
+
+export interface ObjectConnectionEdge {
+  node: ObjectConnection;
+  cursor: String;
+}
+
+export interface ObjectConnectionEdgePromise
+  extends Promise<ObjectConnectionEdge>,
+    Fragmentable {
+  node: <T = ObjectConnectionPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ObjectConnectionEdgeSubscription
+  extends Promise<AsyncIterator<ObjectConnectionEdge>>,
+    Fragmentable {
+  node: <T = ObjectConnectionSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ProductionLineEdge {
+  node: ProductionLine;
+  cursor: String;
+}
+
+export interface ProductionLineEdgePromise
+  extends Promise<ProductionLineEdge>,
+    Fragmentable {
+  node: <T = ProductionLinePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProductionLineEdgeSubscription
+  extends Promise<AsyncIterator<ProductionLineEdge>>,
+    Fragmentable {
+  node: <T = ProductionLineSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
 
+export type Long = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
+
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /*
 DateTime scalar input type, allowing Date
@@ -1107,6 +4674,58 @@ export const models: Model[] = [
   },
   {
     name: "Role",
+    embedded: false
+  },
+  {
+    name: "Machine",
+    embedded: false
+  },
+  {
+    name: "Connection",
+    embedded: false
+  },
+  {
+    name: "ValueType",
+    embedded: false
+  },
+  {
+    name: "Unit",
+    embedded: false
+  },
+  {
+    name: "Operation",
+    embedded: false
+  },
+  {
+    name: "Trend",
+    embedded: false
+  },
+  {
+    name: "Parameter",
+    embedded: false
+  },
+  {
+    name: "ObjectConnection",
+    embedded: false
+  },
+  {
+    name: "Check",
+    embedded: false
+  },
+  {
+    name: "ProductionLine",
+    embedded: false
+  },
+  {
+    name: "Production",
+    embedded: false
+  },
+  {
+    name: "Data",
+    embedded: false
+  },
+  {
+    name: "Dataset",
     embedded: false
   }
 ];

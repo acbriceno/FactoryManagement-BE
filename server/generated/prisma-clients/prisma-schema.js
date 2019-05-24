@@ -3,7 +3,43 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateMessage {
+/* GraphQL */ `type AggregateCheck {
+  count: Int!
+}
+
+type AggregateData {
+  count: Int!
+}
+
+type AggregateDataset {
+  count: Int!
+}
+
+type AggregateMachine {
+  count: Int!
+}
+
+type AggregateMessage {
+  count: Int!
+}
+
+type AggregateObjectConnection {
+  count: Int!
+}
+
+type AggregateParameter {
+  count: Int!
+}
+
+type AggregateProduction {
+  count: Int!
+}
+
+type AggregateProductionLine {
+  count: Int!
+}
+
+type AggregateTrend {
   count: Int!
 }
 
@@ -15,9 +51,1020 @@ type BatchPayload {
   count: Long!
 }
 
+type Check {
+  id: ID!
+  name: String!
+  description: String!
+  target: ObjectConnection!
+  valueType: ValueType!
+  lhsParameter: Parameter
+  rhsParameter: Parameter
+  lhsValue: Float!
+  operator: Operation!
+  rhsValue: Float!
+  unit: Unit
+}
+
+type CheckConnection {
+  pageInfo: PageInfo!
+  edges: [CheckEdge]!
+  aggregate: AggregateCheck!
+}
+
+input CheckCreateInput {
+  name: String!
+  description: String!
+  target: ObjectConnectionCreateOneInput!
+  valueType: ValueType!
+  lhsParameter: ParameterCreateOneInput
+  rhsParameter: ParameterCreateOneInput
+  lhsValue: Float!
+  operator: Operation!
+  rhsValue: Float!
+  unit: Unit
+}
+
+input CheckCreateManyInput {
+  create: [CheckCreateInput!]
+  connect: [CheckWhereUniqueInput!]
+}
+
+type CheckEdge {
+  node: Check!
+  cursor: String!
+}
+
+enum CheckOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  valueType_ASC
+  valueType_DESC
+  lhsValue_ASC
+  lhsValue_DESC
+  operator_ASC
+  operator_DESC
+  rhsValue_ASC
+  rhsValue_DESC
+  unit_ASC
+  unit_DESC
+}
+
+type CheckPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  valueType: ValueType!
+  lhsValue: Float!
+  operator: Operation!
+  rhsValue: Float!
+  unit: Unit
+}
+
+input CheckScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  valueType: ValueType
+  valueType_not: ValueType
+  valueType_in: [ValueType!]
+  valueType_not_in: [ValueType!]
+  lhsValue: Float
+  lhsValue_not: Float
+  lhsValue_in: [Float!]
+  lhsValue_not_in: [Float!]
+  lhsValue_lt: Float
+  lhsValue_lte: Float
+  lhsValue_gt: Float
+  lhsValue_gte: Float
+  operator: Operation
+  operator_not: Operation
+  operator_in: [Operation!]
+  operator_not_in: [Operation!]
+  rhsValue: Float
+  rhsValue_not: Float
+  rhsValue_in: [Float!]
+  rhsValue_not_in: [Float!]
+  rhsValue_lt: Float
+  rhsValue_lte: Float
+  rhsValue_gt: Float
+  rhsValue_gte: Float
+  unit: Unit
+  unit_not: Unit
+  unit_in: [Unit!]
+  unit_not_in: [Unit!]
+  AND: [CheckScalarWhereInput!]
+  OR: [CheckScalarWhereInput!]
+  NOT: [CheckScalarWhereInput!]
+}
+
+type CheckSubscriptionPayload {
+  mutation: MutationType!
+  node: Check
+  updatedFields: [String!]
+  previousValues: CheckPreviousValues
+}
+
+input CheckSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CheckWhereInput
+  AND: [CheckSubscriptionWhereInput!]
+}
+
+input CheckUpdateDataInput {
+  name: String
+  description: String
+  target: ObjectConnectionUpdateOneRequiredInput
+  valueType: ValueType
+  lhsParameter: ParameterUpdateOneInput
+  rhsParameter: ParameterUpdateOneInput
+  lhsValue: Float
+  operator: Operation
+  rhsValue: Float
+  unit: Unit
+}
+
+input CheckUpdateInput {
+  name: String
+  description: String
+  target: ObjectConnectionUpdateOneRequiredInput
+  valueType: ValueType
+  lhsParameter: ParameterUpdateOneInput
+  rhsParameter: ParameterUpdateOneInput
+  lhsValue: Float
+  operator: Operation
+  rhsValue: Float
+  unit: Unit
+}
+
+input CheckUpdateManyDataInput {
+  name: String
+  description: String
+  valueType: ValueType
+  lhsValue: Float
+  operator: Operation
+  rhsValue: Float
+  unit: Unit
+}
+
+input CheckUpdateManyInput {
+  create: [CheckCreateInput!]
+  update: [CheckUpdateWithWhereUniqueNestedInput!]
+  upsert: [CheckUpsertWithWhereUniqueNestedInput!]
+  delete: [CheckWhereUniqueInput!]
+  connect: [CheckWhereUniqueInput!]
+  set: [CheckWhereUniqueInput!]
+  disconnect: [CheckWhereUniqueInput!]
+  deleteMany: [CheckScalarWhereInput!]
+  updateMany: [CheckUpdateManyWithWhereNestedInput!]
+}
+
+input CheckUpdateManyMutationInput {
+  name: String
+  description: String
+  valueType: ValueType
+  lhsValue: Float
+  operator: Operation
+  rhsValue: Float
+  unit: Unit
+}
+
+input CheckUpdateManyWithWhereNestedInput {
+  where: CheckScalarWhereInput!
+  data: CheckUpdateManyDataInput!
+}
+
+input CheckUpdateWithWhereUniqueNestedInput {
+  where: CheckWhereUniqueInput!
+  data: CheckUpdateDataInput!
+}
+
+input CheckUpsertWithWhereUniqueNestedInput {
+  where: CheckWhereUniqueInput!
+  update: CheckUpdateDataInput!
+  create: CheckCreateInput!
+}
+
+input CheckWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  target: ObjectConnectionWhereInput
+  valueType: ValueType
+  valueType_not: ValueType
+  valueType_in: [ValueType!]
+  valueType_not_in: [ValueType!]
+  lhsParameter: ParameterWhereInput
+  rhsParameter: ParameterWhereInput
+  lhsValue: Float
+  lhsValue_not: Float
+  lhsValue_in: [Float!]
+  lhsValue_not_in: [Float!]
+  lhsValue_lt: Float
+  lhsValue_lte: Float
+  lhsValue_gt: Float
+  lhsValue_gte: Float
+  operator: Operation
+  operator_not: Operation
+  operator_in: [Operation!]
+  operator_not_in: [Operation!]
+  rhsValue: Float
+  rhsValue_not: Float
+  rhsValue_in: [Float!]
+  rhsValue_not_in: [Float!]
+  rhsValue_lt: Float
+  rhsValue_lte: Float
+  rhsValue_gt: Float
+  rhsValue_gte: Float
+  unit: Unit
+  unit_not: Unit
+  unit_in: [Unit!]
+  unit_not_in: [Unit!]
+  AND: [CheckWhereInput!]
+}
+
+input CheckWhereUniqueInput {
+  id: ID
+}
+
+enum Connection {
+  CMACHINE
+  CPRODUCTION
+  CCOMPONENT
+}
+
+type Data {
+  id: ID!
+  parameter: Parameter
+  value(where: DatasetWhereInput, orderBy: DatasetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dataset!]
+}
+
+type DataConnection {
+  pageInfo: PageInfo!
+  edges: [DataEdge]!
+  aggregate: AggregateData!
+}
+
+input DataCreateInput {
+  parameter: ParameterCreateOneInput
+  value: DatasetCreateManyInput
+}
+
+input DataCreateManyInput {
+  create: [DataCreateInput!]
+  connect: [DataWhereUniqueInput!]
+}
+
+type DataEdge {
+  node: Data!
+  cursor: String!
+}
+
+enum DataOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type DataPreviousValues {
+  id: ID!
+}
+
+input DataScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [DataScalarWhereInput!]
+  OR: [DataScalarWhereInput!]
+  NOT: [DataScalarWhereInput!]
+}
+
+type Dataset {
+  id: ID!
+  value: Float!
+  createdAt: DateTime
+  createdBy: User!
+}
+
+type DatasetConnection {
+  pageInfo: PageInfo!
+  edges: [DatasetEdge]!
+  aggregate: AggregateDataset!
+}
+
+input DatasetCreateInput {
+  value: Float!
+  createdBy: UserCreateOneInput!
+}
+
+input DatasetCreateManyInput {
+  create: [DatasetCreateInput!]
+  connect: [DatasetWhereUniqueInput!]
+}
+
+type DatasetEdge {
+  node: Dataset!
+  cursor: String!
+}
+
+enum DatasetOrderByInput {
+  id_ASC
+  id_DESC
+  value_ASC
+  value_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type DatasetPreviousValues {
+  id: ID!
+  value: Float!
+  createdAt: DateTime
+}
+
+input DatasetScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  value: Float
+  value_not: Float
+  value_in: [Float!]
+  value_not_in: [Float!]
+  value_lt: Float
+  value_lte: Float
+  value_gt: Float
+  value_gte: Float
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [DatasetScalarWhereInput!]
+  OR: [DatasetScalarWhereInput!]
+  NOT: [DatasetScalarWhereInput!]
+}
+
+type DatasetSubscriptionPayload {
+  mutation: MutationType!
+  node: Dataset
+  updatedFields: [String!]
+  previousValues: DatasetPreviousValues
+}
+
+input DatasetSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DatasetWhereInput
+  AND: [DatasetSubscriptionWhereInput!]
+}
+
+input DatasetUpdateDataInput {
+  value: Float
+  createdBy: UserUpdateOneRequiredInput
+}
+
+input DatasetUpdateInput {
+  value: Float
+  createdBy: UserUpdateOneRequiredInput
+}
+
+input DatasetUpdateManyDataInput {
+  value: Float
+}
+
+input DatasetUpdateManyInput {
+  create: [DatasetCreateInput!]
+  update: [DatasetUpdateWithWhereUniqueNestedInput!]
+  upsert: [DatasetUpsertWithWhereUniqueNestedInput!]
+  delete: [DatasetWhereUniqueInput!]
+  connect: [DatasetWhereUniqueInput!]
+  set: [DatasetWhereUniqueInput!]
+  disconnect: [DatasetWhereUniqueInput!]
+  deleteMany: [DatasetScalarWhereInput!]
+  updateMany: [DatasetUpdateManyWithWhereNestedInput!]
+}
+
+input DatasetUpdateManyMutationInput {
+  value: Float
+}
+
+input DatasetUpdateManyWithWhereNestedInput {
+  where: DatasetScalarWhereInput!
+  data: DatasetUpdateManyDataInput!
+}
+
+input DatasetUpdateWithWhereUniqueNestedInput {
+  where: DatasetWhereUniqueInput!
+  data: DatasetUpdateDataInput!
+}
+
+input DatasetUpsertWithWhereUniqueNestedInput {
+  where: DatasetWhereUniqueInput!
+  update: DatasetUpdateDataInput!
+  create: DatasetCreateInput!
+}
+
+input DatasetWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  value: Float
+  value_not: Float
+  value_in: [Float!]
+  value_not_in: [Float!]
+  value_lt: Float
+  value_lte: Float
+  value_gt: Float
+  value_gte: Float
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdBy: UserWhereInput
+  AND: [DatasetWhereInput!]
+}
+
+input DatasetWhereUniqueInput {
+  id: ID
+}
+
+type DataSubscriptionPayload {
+  mutation: MutationType!
+  node: Data
+  updatedFields: [String!]
+  previousValues: DataPreviousValues
+}
+
+input DataSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DataWhereInput
+  AND: [DataSubscriptionWhereInput!]
+}
+
+input DataUpdateDataInput {
+  parameter: ParameterUpdateOneInput
+  value: DatasetUpdateManyInput
+}
+
+input DataUpdateInput {
+  parameter: ParameterUpdateOneInput
+  value: DatasetUpdateManyInput
+}
+
+input DataUpdateManyInput {
+  create: [DataCreateInput!]
+  update: [DataUpdateWithWhereUniqueNestedInput!]
+  upsert: [DataUpsertWithWhereUniqueNestedInput!]
+  delete: [DataWhereUniqueInput!]
+  connect: [DataWhereUniqueInput!]
+  set: [DataWhereUniqueInput!]
+  disconnect: [DataWhereUniqueInput!]
+  deleteMany: [DataScalarWhereInput!]
+}
+
+input DataUpdateWithWhereUniqueNestedInput {
+  where: DataWhereUniqueInput!
+  data: DataUpdateDataInput!
+}
+
+input DataUpsertWithWhereUniqueNestedInput {
+  where: DataWhereUniqueInput!
+  update: DataUpdateDataInput!
+  create: DataCreateInput!
+}
+
+input DataWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  parameter: ParameterWhereInput
+  value_some: DatasetWhereInput
+  AND: [DataWhereInput!]
+}
+
+input DataWhereUniqueInput {
+  id: ID
+}
+
 scalar DateTime
 
 scalar Long
+
+type Machine {
+  id: ID!
+  name: String!
+  manufacturer: String!
+  year: Int
+  model: String!
+  serialNumber: String!
+  lastServiceDate: DateTime
+  nextServiceDate: DateTime
+  onlineStatus: Boolean!
+  parameters(where: ParameterWhereInput, orderBy: ParameterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parameter!]
+  data(where: DataWhereInput, orderBy: DataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Data!]
+}
+
+type MachineConnection {
+  pageInfo: PageInfo!
+  edges: [MachineEdge]!
+  aggregate: AggregateMachine!
+}
+
+input MachineCreateInput {
+  name: String!
+  manufacturer: String!
+  year: Int
+  model: String!
+  serialNumber: String!
+  lastServiceDate: DateTime
+  nextServiceDate: DateTime
+  onlineStatus: Boolean!
+  parameters: ParameterCreateManyInput
+  data: DataCreateManyInput
+}
+
+input MachineCreateManyInput {
+  create: [MachineCreateInput!]
+  connect: [MachineWhereUniqueInput!]
+}
+
+type MachineEdge {
+  node: Machine!
+  cursor: String!
+}
+
+enum MachineOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  manufacturer_ASC
+  manufacturer_DESC
+  year_ASC
+  year_DESC
+  model_ASC
+  model_DESC
+  serialNumber_ASC
+  serialNumber_DESC
+  lastServiceDate_ASC
+  lastServiceDate_DESC
+  nextServiceDate_ASC
+  nextServiceDate_DESC
+  onlineStatus_ASC
+  onlineStatus_DESC
+}
+
+type MachinePreviousValues {
+  id: ID!
+  name: String!
+  manufacturer: String!
+  year: Int
+  model: String!
+  serialNumber: String!
+  lastServiceDate: DateTime
+  nextServiceDate: DateTime
+  onlineStatus: Boolean!
+}
+
+input MachineScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  manufacturer: String
+  manufacturer_not: String
+  manufacturer_in: [String!]
+  manufacturer_not_in: [String!]
+  manufacturer_lt: String
+  manufacturer_lte: String
+  manufacturer_gt: String
+  manufacturer_gte: String
+  manufacturer_contains: String
+  manufacturer_not_contains: String
+  manufacturer_starts_with: String
+  manufacturer_not_starts_with: String
+  manufacturer_ends_with: String
+  manufacturer_not_ends_with: String
+  year: Int
+  year_not: Int
+  year_in: [Int!]
+  year_not_in: [Int!]
+  year_lt: Int
+  year_lte: Int
+  year_gt: Int
+  year_gte: Int
+  model: String
+  model_not: String
+  model_in: [String!]
+  model_not_in: [String!]
+  model_lt: String
+  model_lte: String
+  model_gt: String
+  model_gte: String
+  model_contains: String
+  model_not_contains: String
+  model_starts_with: String
+  model_not_starts_with: String
+  model_ends_with: String
+  model_not_ends_with: String
+  serialNumber: String
+  serialNumber_not: String
+  serialNumber_in: [String!]
+  serialNumber_not_in: [String!]
+  serialNumber_lt: String
+  serialNumber_lte: String
+  serialNumber_gt: String
+  serialNumber_gte: String
+  serialNumber_contains: String
+  serialNumber_not_contains: String
+  serialNumber_starts_with: String
+  serialNumber_not_starts_with: String
+  serialNumber_ends_with: String
+  serialNumber_not_ends_with: String
+  lastServiceDate: DateTime
+  lastServiceDate_not: DateTime
+  lastServiceDate_in: [DateTime!]
+  lastServiceDate_not_in: [DateTime!]
+  lastServiceDate_lt: DateTime
+  lastServiceDate_lte: DateTime
+  lastServiceDate_gt: DateTime
+  lastServiceDate_gte: DateTime
+  nextServiceDate: DateTime
+  nextServiceDate_not: DateTime
+  nextServiceDate_in: [DateTime!]
+  nextServiceDate_not_in: [DateTime!]
+  nextServiceDate_lt: DateTime
+  nextServiceDate_lte: DateTime
+  nextServiceDate_gt: DateTime
+  nextServiceDate_gte: DateTime
+  onlineStatus: Boolean
+  onlineStatus_not: Boolean
+  AND: [MachineScalarWhereInput!]
+  OR: [MachineScalarWhereInput!]
+  NOT: [MachineScalarWhereInput!]
+}
+
+type MachineSubscriptionPayload {
+  mutation: MutationType!
+  node: Machine
+  updatedFields: [String!]
+  previousValues: MachinePreviousValues
+}
+
+input MachineSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MachineWhereInput
+  AND: [MachineSubscriptionWhereInput!]
+}
+
+input MachineUpdateDataInput {
+  name: String
+  manufacturer: String
+  year: Int
+  model: String
+  serialNumber: String
+  lastServiceDate: DateTime
+  nextServiceDate: DateTime
+  onlineStatus: Boolean
+  parameters: ParameterUpdateManyInput
+  data: DataUpdateManyInput
+}
+
+input MachineUpdateInput {
+  name: String
+  manufacturer: String
+  year: Int
+  model: String
+  serialNumber: String
+  lastServiceDate: DateTime
+  nextServiceDate: DateTime
+  onlineStatus: Boolean
+  parameters: ParameterUpdateManyInput
+  data: DataUpdateManyInput
+}
+
+input MachineUpdateManyDataInput {
+  name: String
+  manufacturer: String
+  year: Int
+  model: String
+  serialNumber: String
+  lastServiceDate: DateTime
+  nextServiceDate: DateTime
+  onlineStatus: Boolean
+}
+
+input MachineUpdateManyInput {
+  create: [MachineCreateInput!]
+  update: [MachineUpdateWithWhereUniqueNestedInput!]
+  upsert: [MachineUpsertWithWhereUniqueNestedInput!]
+  delete: [MachineWhereUniqueInput!]
+  connect: [MachineWhereUniqueInput!]
+  set: [MachineWhereUniqueInput!]
+  disconnect: [MachineWhereUniqueInput!]
+  deleteMany: [MachineScalarWhereInput!]
+  updateMany: [MachineUpdateManyWithWhereNestedInput!]
+}
+
+input MachineUpdateManyMutationInput {
+  name: String
+  manufacturer: String
+  year: Int
+  model: String
+  serialNumber: String
+  lastServiceDate: DateTime
+  nextServiceDate: DateTime
+  onlineStatus: Boolean
+}
+
+input MachineUpdateManyWithWhereNestedInput {
+  where: MachineScalarWhereInput!
+  data: MachineUpdateManyDataInput!
+}
+
+input MachineUpdateWithWhereUniqueNestedInput {
+  where: MachineWhereUniqueInput!
+  data: MachineUpdateDataInput!
+}
+
+input MachineUpsertWithWhereUniqueNestedInput {
+  where: MachineWhereUniqueInput!
+  update: MachineUpdateDataInput!
+  create: MachineCreateInput!
+}
+
+input MachineWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  manufacturer: String
+  manufacturer_not: String
+  manufacturer_in: [String!]
+  manufacturer_not_in: [String!]
+  manufacturer_lt: String
+  manufacturer_lte: String
+  manufacturer_gt: String
+  manufacturer_gte: String
+  manufacturer_contains: String
+  manufacturer_not_contains: String
+  manufacturer_starts_with: String
+  manufacturer_not_starts_with: String
+  manufacturer_ends_with: String
+  manufacturer_not_ends_with: String
+  year: Int
+  year_not: Int
+  year_in: [Int!]
+  year_not_in: [Int!]
+  year_lt: Int
+  year_lte: Int
+  year_gt: Int
+  year_gte: Int
+  model: String
+  model_not: String
+  model_in: [String!]
+  model_not_in: [String!]
+  model_lt: String
+  model_lte: String
+  model_gt: String
+  model_gte: String
+  model_contains: String
+  model_not_contains: String
+  model_starts_with: String
+  model_not_starts_with: String
+  model_ends_with: String
+  model_not_ends_with: String
+  serialNumber: String
+  serialNumber_not: String
+  serialNumber_in: [String!]
+  serialNumber_not_in: [String!]
+  serialNumber_lt: String
+  serialNumber_lte: String
+  serialNumber_gt: String
+  serialNumber_gte: String
+  serialNumber_contains: String
+  serialNumber_not_contains: String
+  serialNumber_starts_with: String
+  serialNumber_not_starts_with: String
+  serialNumber_ends_with: String
+  serialNumber_not_ends_with: String
+  lastServiceDate: DateTime
+  lastServiceDate_not: DateTime
+  lastServiceDate_in: [DateTime!]
+  lastServiceDate_not_in: [DateTime!]
+  lastServiceDate_lt: DateTime
+  lastServiceDate_lte: DateTime
+  lastServiceDate_gt: DateTime
+  lastServiceDate_gte: DateTime
+  nextServiceDate: DateTime
+  nextServiceDate_not: DateTime
+  nextServiceDate_in: [DateTime!]
+  nextServiceDate_not_in: [DateTime!]
+  nextServiceDate_lt: DateTime
+  nextServiceDate_lte: DateTime
+  nextServiceDate_gt: DateTime
+  nextServiceDate_gte: DateTime
+  onlineStatus: Boolean
+  onlineStatus_not: Boolean
+  parameters_some: ParameterWhereInput
+  data_some: DataWhereInput
+  AND: [MachineWhereInput!]
+}
+
+input MachineWhereUniqueInput {
+  id: ID
+  serialNumber: String
+}
 
 type Message {
   id: ID!
@@ -299,12 +1346,65 @@ input MessageWhereUniqueInput {
 }
 
 type Mutation {
+  createCheck(data: CheckCreateInput!): Check!
+  updateCheck(data: CheckUpdateInput!, where: CheckWhereUniqueInput!): Check
+  updateManyChecks(data: CheckUpdateManyMutationInput!, where: CheckWhereInput): BatchPayload!
+  upsertCheck(where: CheckWhereUniqueInput!, create: CheckCreateInput!, update: CheckUpdateInput!): Check!
+  deleteCheck(where: CheckWhereUniqueInput!): Check
+  deleteManyChecks(where: CheckWhereInput): BatchPayload!
+  createData(data: DataCreateInput!): Data!
+  updateData(data: DataUpdateInput!, where: DataWhereUniqueInput!): Data
+  upsertData(where: DataWhereUniqueInput!, create: DataCreateInput!, update: DataUpdateInput!): Data!
+  deleteData(where: DataWhereUniqueInput!): Data
+  deleteManyDatas(where: DataWhereInput): BatchPayload!
+  createDataset(data: DatasetCreateInput!): Dataset!
+  updateDataset(data: DatasetUpdateInput!, where: DatasetWhereUniqueInput!): Dataset
+  updateManyDatasets(data: DatasetUpdateManyMutationInput!, where: DatasetWhereInput): BatchPayload!
+  upsertDataset(where: DatasetWhereUniqueInput!, create: DatasetCreateInput!, update: DatasetUpdateInput!): Dataset!
+  deleteDataset(where: DatasetWhereUniqueInput!): Dataset
+  deleteManyDatasets(where: DatasetWhereInput): BatchPayload!
+  createMachine(data: MachineCreateInput!): Machine!
+  updateMachine(data: MachineUpdateInput!, where: MachineWhereUniqueInput!): Machine
+  updateManyMachines(data: MachineUpdateManyMutationInput!, where: MachineWhereInput): BatchPayload!
+  upsertMachine(where: MachineWhereUniqueInput!, create: MachineCreateInput!, update: MachineUpdateInput!): Machine!
+  deleteMachine(where: MachineWhereUniqueInput!): Machine
+  deleteManyMachines(where: MachineWhereInput): BatchPayload!
   createMessage(data: MessageCreateInput!): Message!
   updateMessage(data: MessageUpdateInput!, where: MessageWhereUniqueInput!): Message
   updateManyMessages(data: MessageUpdateManyMutationInput!, where: MessageWhereInput): BatchPayload!
   upsertMessage(where: MessageWhereUniqueInput!, create: MessageCreateInput!, update: MessageUpdateInput!): Message!
   deleteMessage(where: MessageWhereUniqueInput!): Message
   deleteManyMessages(where: MessageWhereInput): BatchPayload!
+  createObjectConnection(data: ObjectConnectionCreateInput!): ObjectConnection!
+  updateObjectConnection(data: ObjectConnectionUpdateInput!, where: ObjectConnectionWhereUniqueInput!): ObjectConnection
+  updateManyObjectConnections(data: ObjectConnectionUpdateManyMutationInput!, where: ObjectConnectionWhereInput): BatchPayload!
+  upsertObjectConnection(where: ObjectConnectionWhereUniqueInput!, create: ObjectConnectionCreateInput!, update: ObjectConnectionUpdateInput!): ObjectConnection!
+  deleteObjectConnection(where: ObjectConnectionWhereUniqueInput!): ObjectConnection
+  deleteManyObjectConnections(where: ObjectConnectionWhereInput): BatchPayload!
+  createParameter(data: ParameterCreateInput!): Parameter!
+  updateParameter(data: ParameterUpdateInput!, where: ParameterWhereUniqueInput!): Parameter
+  updateManyParameters(data: ParameterUpdateManyMutationInput!, where: ParameterWhereInput): BatchPayload!
+  upsertParameter(where: ParameterWhereUniqueInput!, create: ParameterCreateInput!, update: ParameterUpdateInput!): Parameter!
+  deleteParameter(where: ParameterWhereUniqueInput!): Parameter
+  deleteManyParameters(where: ParameterWhereInput): BatchPayload!
+  createProduction(data: ProductionCreateInput!): Production!
+  updateProduction(data: ProductionUpdateInput!, where: ProductionWhereUniqueInput!): Production
+  updateManyProductions(data: ProductionUpdateManyMutationInput!, where: ProductionWhereInput): BatchPayload!
+  upsertProduction(where: ProductionWhereUniqueInput!, create: ProductionCreateInput!, update: ProductionUpdateInput!): Production!
+  deleteProduction(where: ProductionWhereUniqueInput!): Production
+  deleteManyProductions(where: ProductionWhereInput): BatchPayload!
+  createProductionLine(data: ProductionLineCreateInput!): ProductionLine!
+  updateProductionLine(data: ProductionLineUpdateInput!, where: ProductionLineWhereUniqueInput!): ProductionLine
+  updateManyProductionLines(data: ProductionLineUpdateManyMutationInput!, where: ProductionLineWhereInput): BatchPayload!
+  upsertProductionLine(where: ProductionLineWhereUniqueInput!, create: ProductionLineCreateInput!, update: ProductionLineUpdateInput!): ProductionLine!
+  deleteProductionLine(where: ProductionLineWhereUniqueInput!): ProductionLine
+  deleteManyProductionLines(where: ProductionLineWhereInput): BatchPayload!
+  createTrend(data: TrendCreateInput!): Trend!
+  updateTrend(data: TrendUpdateInput!, where: TrendWhereUniqueInput!): Trend
+  updateManyTrends(data: TrendUpdateManyMutationInput!, where: TrendWhereInput): BatchPayload!
+  upsertTrend(where: TrendWhereUniqueInput!, create: TrendCreateInput!, update: TrendUpdateInput!): Trend!
+  deleteTrend(where: TrendWhereUniqueInput!): Trend
+  deleteManyTrends(where: TrendWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -323,6 +1423,161 @@ interface Node {
   id: ID!
 }
 
+type ObjectConnection {
+  id: ID!
+  description: String!
+  connectionId: ID!
+  connectionType: Connection!
+}
+
+type ObjectConnectionConnection {
+  pageInfo: PageInfo!
+  edges: [ObjectConnectionEdge]!
+  aggregate: AggregateObjectConnection!
+}
+
+input ObjectConnectionCreateInput {
+  description: String!
+  connectionId: ID!
+  connectionType: Connection!
+}
+
+input ObjectConnectionCreateOneInput {
+  create: ObjectConnectionCreateInput
+  connect: ObjectConnectionWhereUniqueInput
+}
+
+type ObjectConnectionEdge {
+  node: ObjectConnection!
+  cursor: String!
+}
+
+enum ObjectConnectionOrderByInput {
+  id_ASC
+  id_DESC
+  description_ASC
+  description_DESC
+  connectionId_ASC
+  connectionId_DESC
+  connectionType_ASC
+  connectionType_DESC
+}
+
+type ObjectConnectionPreviousValues {
+  id: ID!
+  description: String!
+  connectionId: ID!
+  connectionType: Connection!
+}
+
+type ObjectConnectionSubscriptionPayload {
+  mutation: MutationType!
+  node: ObjectConnection
+  updatedFields: [String!]
+  previousValues: ObjectConnectionPreviousValues
+}
+
+input ObjectConnectionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ObjectConnectionWhereInput
+  AND: [ObjectConnectionSubscriptionWhereInput!]
+}
+
+input ObjectConnectionUpdateDataInput {
+  description: String
+  connectionId: ID
+  connectionType: Connection
+}
+
+input ObjectConnectionUpdateInput {
+  description: String
+  connectionId: ID
+  connectionType: Connection
+}
+
+input ObjectConnectionUpdateManyMutationInput {
+  description: String
+  connectionId: ID
+  connectionType: Connection
+}
+
+input ObjectConnectionUpdateOneRequiredInput {
+  create: ObjectConnectionCreateInput
+  update: ObjectConnectionUpdateDataInput
+  upsert: ObjectConnectionUpsertNestedInput
+  connect: ObjectConnectionWhereUniqueInput
+}
+
+input ObjectConnectionUpsertNestedInput {
+  update: ObjectConnectionUpdateDataInput!
+  create: ObjectConnectionCreateInput!
+}
+
+input ObjectConnectionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  connectionId: ID
+  connectionId_not: ID
+  connectionId_in: [ID!]
+  connectionId_not_in: [ID!]
+  connectionId_lt: ID
+  connectionId_lte: ID
+  connectionId_gt: ID
+  connectionId_gte: ID
+  connectionId_contains: ID
+  connectionId_not_contains: ID
+  connectionId_starts_with: ID
+  connectionId_not_starts_with: ID
+  connectionId_ends_with: ID
+  connectionId_not_ends_with: ID
+  connectionType: Connection
+  connectionType_not: Connection
+  connectionType_in: [Connection!]
+  connectionType_not_in: [Connection!]
+  AND: [ObjectConnectionWhereInput!]
+}
+
+input ObjectConnectionWhereUniqueInput {
+  id: ID
+}
+
+enum Operation {
+  LESS
+  MORE
+  EQUAL
+  ON
+  OFF
+}
+
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
@@ -330,10 +1585,660 @@ type PageInfo {
   endCursor: String
 }
 
+type Parameter {
+  id: ID!
+  name: String!
+  unit: Unit!
+  set: Float!
+  toleranceHigh: Float!
+  toleranceLow: Float!
+  connection: Connection
+}
+
+type ParameterConnection {
+  pageInfo: PageInfo!
+  edges: [ParameterEdge]!
+  aggregate: AggregateParameter!
+}
+
+input ParameterCreateInput {
+  name: String!
+  unit: Unit!
+  set: Float!
+  toleranceHigh: Float!
+  toleranceLow: Float!
+  connection: Connection
+}
+
+input ParameterCreateManyInput {
+  create: [ParameterCreateInput!]
+  connect: [ParameterWhereUniqueInput!]
+}
+
+input ParameterCreateOneInput {
+  create: ParameterCreateInput
+  connect: ParameterWhereUniqueInput
+}
+
+type ParameterEdge {
+  node: Parameter!
+  cursor: String!
+}
+
+enum ParameterOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  unit_ASC
+  unit_DESC
+  set_ASC
+  set_DESC
+  toleranceHigh_ASC
+  toleranceHigh_DESC
+  toleranceLow_ASC
+  toleranceLow_DESC
+  connection_ASC
+  connection_DESC
+}
+
+type ParameterPreviousValues {
+  id: ID!
+  name: String!
+  unit: Unit!
+  set: Float!
+  toleranceHigh: Float!
+  toleranceLow: Float!
+  connection: Connection
+}
+
+input ParameterScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  unit: Unit
+  unit_not: Unit
+  unit_in: [Unit!]
+  unit_not_in: [Unit!]
+  set: Float
+  set_not: Float
+  set_in: [Float!]
+  set_not_in: [Float!]
+  set_lt: Float
+  set_lte: Float
+  set_gt: Float
+  set_gte: Float
+  toleranceHigh: Float
+  toleranceHigh_not: Float
+  toleranceHigh_in: [Float!]
+  toleranceHigh_not_in: [Float!]
+  toleranceHigh_lt: Float
+  toleranceHigh_lte: Float
+  toleranceHigh_gt: Float
+  toleranceHigh_gte: Float
+  toleranceLow: Float
+  toleranceLow_not: Float
+  toleranceLow_in: [Float!]
+  toleranceLow_not_in: [Float!]
+  toleranceLow_lt: Float
+  toleranceLow_lte: Float
+  toleranceLow_gt: Float
+  toleranceLow_gte: Float
+  connection: Connection
+  connection_not: Connection
+  connection_in: [Connection!]
+  connection_not_in: [Connection!]
+  AND: [ParameterScalarWhereInput!]
+  OR: [ParameterScalarWhereInput!]
+  NOT: [ParameterScalarWhereInput!]
+}
+
+type ParameterSubscriptionPayload {
+  mutation: MutationType!
+  node: Parameter
+  updatedFields: [String!]
+  previousValues: ParameterPreviousValues
+}
+
+input ParameterSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ParameterWhereInput
+  AND: [ParameterSubscriptionWhereInput!]
+}
+
+input ParameterUpdateDataInput {
+  name: String
+  unit: Unit
+  set: Float
+  toleranceHigh: Float
+  toleranceLow: Float
+  connection: Connection
+}
+
+input ParameterUpdateInput {
+  name: String
+  unit: Unit
+  set: Float
+  toleranceHigh: Float
+  toleranceLow: Float
+  connection: Connection
+}
+
+input ParameterUpdateManyDataInput {
+  name: String
+  unit: Unit
+  set: Float
+  toleranceHigh: Float
+  toleranceLow: Float
+  connection: Connection
+}
+
+input ParameterUpdateManyInput {
+  create: [ParameterCreateInput!]
+  update: [ParameterUpdateWithWhereUniqueNestedInput!]
+  upsert: [ParameterUpsertWithWhereUniqueNestedInput!]
+  delete: [ParameterWhereUniqueInput!]
+  connect: [ParameterWhereUniqueInput!]
+  set: [ParameterWhereUniqueInput!]
+  disconnect: [ParameterWhereUniqueInput!]
+  deleteMany: [ParameterScalarWhereInput!]
+  updateMany: [ParameterUpdateManyWithWhereNestedInput!]
+}
+
+input ParameterUpdateManyMutationInput {
+  name: String
+  unit: Unit
+  set: Float
+  toleranceHigh: Float
+  toleranceLow: Float
+  connection: Connection
+}
+
+input ParameterUpdateManyWithWhereNestedInput {
+  where: ParameterScalarWhereInput!
+  data: ParameterUpdateManyDataInput!
+}
+
+input ParameterUpdateOneInput {
+  create: ParameterCreateInput
+  update: ParameterUpdateDataInput
+  upsert: ParameterUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ParameterWhereUniqueInput
+}
+
+input ParameterUpdateWithWhereUniqueNestedInput {
+  where: ParameterWhereUniqueInput!
+  data: ParameterUpdateDataInput!
+}
+
+input ParameterUpsertNestedInput {
+  update: ParameterUpdateDataInput!
+  create: ParameterCreateInput!
+}
+
+input ParameterUpsertWithWhereUniqueNestedInput {
+  where: ParameterWhereUniqueInput!
+  update: ParameterUpdateDataInput!
+  create: ParameterCreateInput!
+}
+
+input ParameterWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  unit: Unit
+  unit_not: Unit
+  unit_in: [Unit!]
+  unit_not_in: [Unit!]
+  set: Float
+  set_not: Float
+  set_in: [Float!]
+  set_not_in: [Float!]
+  set_lt: Float
+  set_lte: Float
+  set_gt: Float
+  set_gte: Float
+  toleranceHigh: Float
+  toleranceHigh_not: Float
+  toleranceHigh_in: [Float!]
+  toleranceHigh_not_in: [Float!]
+  toleranceHigh_lt: Float
+  toleranceHigh_lte: Float
+  toleranceHigh_gt: Float
+  toleranceHigh_gte: Float
+  toleranceLow: Float
+  toleranceLow_not: Float
+  toleranceLow_in: [Float!]
+  toleranceLow_not_in: [Float!]
+  toleranceLow_lt: Float
+  toleranceLow_lte: Float
+  toleranceLow_gt: Float
+  toleranceLow_gte: Float
+  connection: Connection
+  connection_not: Connection
+  connection_in: [Connection!]
+  connection_not_in: [Connection!]
+  AND: [ParameterWhereInput!]
+}
+
+input ParameterWhereUniqueInput {
+  id: ID
+}
+
+type Production {
+  id: ID!
+  productionLine: ProductionLine
+  start: DateTime!
+  end: DateTime!
+  targetQty: Int!
+  acceptQty: Int!
+  rejectQty: Int!
+  data(where: DataWhereInput, orderBy: DataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Data!]
+}
+
+type ProductionConnection {
+  pageInfo: PageInfo!
+  edges: [ProductionEdge]!
+  aggregate: AggregateProduction!
+}
+
+input ProductionCreateInput {
+  productionLine: ProductionLineCreateOneInput
+  start: DateTime!
+  end: DateTime!
+  targetQty: Int!
+  acceptQty: Int!
+  rejectQty: Int!
+  data: DataCreateManyInput
+}
+
+type ProductionEdge {
+  node: Production!
+  cursor: String!
+}
+
+type ProductionLine {
+  id: ID!
+  name: String!
+  description: String!
+  startUpChecks(where: CheckWhereInput, orderBy: CheckOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Check!]
+  parameters(where: ParameterWhereInput, orderBy: ParameterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parameter!]
+  machines(where: MachineWhereInput, orderBy: MachineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Machine!]
+  trends(where: TrendWhereInput, orderBy: TrendOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Trend!]
+  createdAt: DateTime!
+  createdBy: User!
+}
+
+type ProductionLineConnection {
+  pageInfo: PageInfo!
+  edges: [ProductionLineEdge]!
+  aggregate: AggregateProductionLine!
+}
+
+input ProductionLineCreateInput {
+  name: String!
+  description: String!
+  startUpChecks: CheckCreateManyInput
+  parameters: ParameterCreateManyInput
+  machines: MachineCreateManyInput
+  trends: TrendCreateManyInput
+  createdBy: UserCreateOneInput!
+}
+
+input ProductionLineCreateOneInput {
+  create: ProductionLineCreateInput
+  connect: ProductionLineWhereUniqueInput
+}
+
+type ProductionLineEdge {
+  node: ProductionLine!
+  cursor: String!
+}
+
+enum ProductionLineOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ProductionLinePreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  createdAt: DateTime!
+}
+
+type ProductionLineSubscriptionPayload {
+  mutation: MutationType!
+  node: ProductionLine
+  updatedFields: [String!]
+  previousValues: ProductionLinePreviousValues
+}
+
+input ProductionLineSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProductionLineWhereInput
+  AND: [ProductionLineSubscriptionWhereInput!]
+}
+
+input ProductionLineUpdateDataInput {
+  name: String
+  description: String
+  startUpChecks: CheckUpdateManyInput
+  parameters: ParameterUpdateManyInput
+  machines: MachineUpdateManyInput
+  trends: TrendUpdateManyInput
+  createdBy: UserUpdateOneRequiredInput
+}
+
+input ProductionLineUpdateInput {
+  name: String
+  description: String
+  startUpChecks: CheckUpdateManyInput
+  parameters: ParameterUpdateManyInput
+  machines: MachineUpdateManyInput
+  trends: TrendUpdateManyInput
+  createdBy: UserUpdateOneRequiredInput
+}
+
+input ProductionLineUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input ProductionLineUpdateOneInput {
+  create: ProductionLineCreateInput
+  update: ProductionLineUpdateDataInput
+  upsert: ProductionLineUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ProductionLineWhereUniqueInput
+}
+
+input ProductionLineUpsertNestedInput {
+  update: ProductionLineUpdateDataInput!
+  create: ProductionLineCreateInput!
+}
+
+input ProductionLineWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  startUpChecks_some: CheckWhereInput
+  parameters_some: ParameterWhereInput
+  machines_some: MachineWhereInput
+  trends_some: TrendWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdBy: UserWhereInput
+  AND: [ProductionLineWhereInput!]
+}
+
+input ProductionLineWhereUniqueInput {
+  id: ID
+}
+
+enum ProductionOrderByInput {
+  id_ASC
+  id_DESC
+  start_ASC
+  start_DESC
+  end_ASC
+  end_DESC
+  targetQty_ASC
+  targetQty_DESC
+  acceptQty_ASC
+  acceptQty_DESC
+  rejectQty_ASC
+  rejectQty_DESC
+}
+
+type ProductionPreviousValues {
+  id: ID!
+  start: DateTime!
+  end: DateTime!
+  targetQty: Int!
+  acceptQty: Int!
+  rejectQty: Int!
+}
+
+type ProductionSubscriptionPayload {
+  mutation: MutationType!
+  node: Production
+  updatedFields: [String!]
+  previousValues: ProductionPreviousValues
+}
+
+input ProductionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProductionWhereInput
+  AND: [ProductionSubscriptionWhereInput!]
+}
+
+input ProductionUpdateInput {
+  productionLine: ProductionLineUpdateOneInput
+  start: DateTime
+  end: DateTime
+  targetQty: Int
+  acceptQty: Int
+  rejectQty: Int
+  data: DataUpdateManyInput
+}
+
+input ProductionUpdateManyMutationInput {
+  start: DateTime
+  end: DateTime
+  targetQty: Int
+  acceptQty: Int
+  rejectQty: Int
+}
+
+input ProductionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  productionLine: ProductionLineWhereInput
+  start: DateTime
+  start_not: DateTime
+  start_in: [DateTime!]
+  start_not_in: [DateTime!]
+  start_lt: DateTime
+  start_lte: DateTime
+  start_gt: DateTime
+  start_gte: DateTime
+  end: DateTime
+  end_not: DateTime
+  end_in: [DateTime!]
+  end_not_in: [DateTime!]
+  end_lt: DateTime
+  end_lte: DateTime
+  end_gt: DateTime
+  end_gte: DateTime
+  targetQty: Int
+  targetQty_not: Int
+  targetQty_in: [Int!]
+  targetQty_not_in: [Int!]
+  targetQty_lt: Int
+  targetQty_lte: Int
+  targetQty_gt: Int
+  targetQty_gte: Int
+  acceptQty: Int
+  acceptQty_not: Int
+  acceptQty_in: [Int!]
+  acceptQty_not_in: [Int!]
+  acceptQty_lt: Int
+  acceptQty_lte: Int
+  acceptQty_gt: Int
+  acceptQty_gte: Int
+  rejectQty: Int
+  rejectQty_not: Int
+  rejectQty_in: [Int!]
+  rejectQty_not_in: [Int!]
+  rejectQty_lt: Int
+  rejectQty_lte: Int
+  rejectQty_gt: Int
+  rejectQty_gte: Int
+  data_some: DataWhereInput
+  AND: [ProductionWhereInput!]
+}
+
+input ProductionWhereUniqueInput {
+  id: ID
+}
+
 type Query {
+  check(where: CheckWhereUniqueInput!): Check
+  checks(where: CheckWhereInput, orderBy: CheckOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Check]!
+  checksConnection(where: CheckWhereInput, orderBy: CheckOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CheckConnection!
+  data(where: DataWhereUniqueInput!): Data
+  datas(where: DataWhereInput, orderBy: DataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Data]!
+  datasConnection(where: DataWhereInput, orderBy: DataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DataConnection!
+  dataset(where: DatasetWhereUniqueInput!): Dataset
+  datasets(where: DatasetWhereInput, orderBy: DatasetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dataset]!
+  datasetsConnection(where: DatasetWhereInput, orderBy: DatasetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DatasetConnection!
+  machine(where: MachineWhereUniqueInput!): Machine
+  machines(where: MachineWhereInput, orderBy: MachineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Machine]!
+  machinesConnection(where: MachineWhereInput, orderBy: MachineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MachineConnection!
   message(where: MessageWhereUniqueInput!): Message
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message]!
   messagesConnection(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MessageConnection!
+  objectConnection(where: ObjectConnectionWhereUniqueInput!): ObjectConnection
+  objectConnections(where: ObjectConnectionWhereInput, orderBy: ObjectConnectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ObjectConnection]!
+  objectConnectionsConnection(where: ObjectConnectionWhereInput, orderBy: ObjectConnectionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ObjectConnectionConnection!
+  parameter(where: ParameterWhereUniqueInput!): Parameter
+  parameters(where: ParameterWhereInput, orderBy: ParameterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parameter]!
+  parametersConnection(where: ParameterWhereInput, orderBy: ParameterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParameterConnection!
+  production(where: ProductionWhereUniqueInput!): Production
+  productions(where: ProductionWhereInput, orderBy: ProductionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Production]!
+  productionsConnection(where: ProductionWhereInput, orderBy: ProductionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProductionConnection!
+  productionLine(where: ProductionLineWhereUniqueInput!): ProductionLine
+  productionLines(where: ProductionLineWhereInput, orderBy: ProductionLineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProductionLine]!
+  productionLinesConnection(where: ProductionLineWhereInput, orderBy: ProductionLineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProductionLineConnection!
+  trend(where: TrendWhereUniqueInput!): Trend
+  trends(where: TrendWhereInput, orderBy: TrendOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Trend]!
+  trendsConnection(where: TrendWhereInput, orderBy: TrendOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TrendConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -347,8 +2252,231 @@ enum Role {
 }
 
 type Subscription {
+  check(where: CheckSubscriptionWhereInput): CheckSubscriptionPayload
+  data(where: DataSubscriptionWhereInput): DataSubscriptionPayload
+  dataset(where: DatasetSubscriptionWhereInput): DatasetSubscriptionPayload
+  machine(where: MachineSubscriptionWhereInput): MachineSubscriptionPayload
   message(where: MessageSubscriptionWhereInput): MessageSubscriptionPayload
+  objectConnection(where: ObjectConnectionSubscriptionWhereInput): ObjectConnectionSubscriptionPayload
+  parameter(where: ParameterSubscriptionWhereInput): ParameterSubscriptionPayload
+  production(where: ProductionSubscriptionWhereInput): ProductionSubscriptionPayload
+  productionLine(where: ProductionLineSubscriptionWhereInput): ProductionLineSubscriptionPayload
+  trend(where: TrendSubscriptionWhereInput): TrendSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Trend {
+  id: ID!
+  name: String!
+  description: String!
+  parameters(where: ParameterWhereInput, orderBy: ParameterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parameter!]
+}
+
+type TrendConnection {
+  pageInfo: PageInfo!
+  edges: [TrendEdge]!
+  aggregate: AggregateTrend!
+}
+
+input TrendCreateInput {
+  name: String!
+  description: String!
+  parameters: ParameterCreateManyInput
+}
+
+input TrendCreateManyInput {
+  create: [TrendCreateInput!]
+  connect: [TrendWhereUniqueInput!]
+}
+
+type TrendEdge {
+  node: Trend!
+  cursor: String!
+}
+
+enum TrendOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+}
+
+type TrendPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+input TrendScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [TrendScalarWhereInput!]
+  OR: [TrendScalarWhereInput!]
+  NOT: [TrendScalarWhereInput!]
+}
+
+type TrendSubscriptionPayload {
+  mutation: MutationType!
+  node: Trend
+  updatedFields: [String!]
+  previousValues: TrendPreviousValues
+}
+
+input TrendSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TrendWhereInput
+  AND: [TrendSubscriptionWhereInput!]
+}
+
+input TrendUpdateDataInput {
+  name: String
+  description: String
+  parameters: ParameterUpdateManyInput
+}
+
+input TrendUpdateInput {
+  name: String
+  description: String
+  parameters: ParameterUpdateManyInput
+}
+
+input TrendUpdateManyDataInput {
+  name: String
+  description: String
+}
+
+input TrendUpdateManyInput {
+  create: [TrendCreateInput!]
+  update: [TrendUpdateWithWhereUniqueNestedInput!]
+  upsert: [TrendUpsertWithWhereUniqueNestedInput!]
+  delete: [TrendWhereUniqueInput!]
+  connect: [TrendWhereUniqueInput!]
+  set: [TrendWhereUniqueInput!]
+  disconnect: [TrendWhereUniqueInput!]
+  deleteMany: [TrendScalarWhereInput!]
+  updateMany: [TrendUpdateManyWithWhereNestedInput!]
+}
+
+input TrendUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input TrendUpdateManyWithWhereNestedInput {
+  where: TrendScalarWhereInput!
+  data: TrendUpdateManyDataInput!
+}
+
+input TrendUpdateWithWhereUniqueNestedInput {
+  where: TrendWhereUniqueInput!
+  data: TrendUpdateDataInput!
+}
+
+input TrendUpsertWithWhereUniqueNestedInput {
+  where: TrendWhereUniqueInput!
+  update: TrendUpdateDataInput!
+  create: TrendCreateInput!
+}
+
+input TrendWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  parameters_some: ParameterWhereInput
+  AND: [TrendWhereInput!]
+}
+
+input TrendWhereUniqueInput {
+  id: ID
+}
+
+enum Unit {
+  Kilogram
+  Meter
 }
 
 type User {
@@ -379,6 +2507,11 @@ input UserCreateInput {
 input UserCreateManyWithoutInboxInput {
   create: [UserCreateWithoutInboxInput!]
   connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutOutboxInput {
@@ -510,6 +2643,15 @@ input UserSubscriptionWhereInput {
   AND: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  username: String
+  name: String
+  password: String
+  inbox: MessageUpdateManyWithoutRecipientsInput
+  outbox: MessageUpdateManyWithoutSenderInput
+  role: Role
+}
+
 input UserUpdateInput {
   username: String
   name: String
@@ -550,6 +2692,13 @@ input UserUpdateManyWithWhereNestedInput {
   data: UserUpdateManyDataInput!
 }
 
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
 input UserUpdateOneRequiredWithoutOutboxInput {
   create: UserCreateWithoutOutboxInput
   update: UserUpdateWithoutOutboxDataInput
@@ -576,6 +2725,11 @@ input UserUpdateWithoutOutboxDataInput {
 input UserUpdateWithWhereUniqueWithoutInboxInput {
   where: UserWhereUniqueInput!
   data: UserUpdateWithoutInboxDataInput!
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserUpsertWithoutOutboxInput {
@@ -658,6 +2812,12 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   username: String
+}
+
+enum ValueType {
+  NUMBER
+  LOGIC
+  DATE
 }
 `
       }

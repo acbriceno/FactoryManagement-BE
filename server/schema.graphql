@@ -1,12 +1,16 @@
+scalar DateTime
+
 type Query {
 	info: String!
 	messages: [Message!]!
+	machines: [Machine!]!
 }
 
 type Mutation {
 	sendMessage(subject: String!, body: String!, recipients: [String!]): Message!
 	signup(username: String!, name:String!, password: String!, role: Role!): AuthPayload
 	login(username: String!, password: String!): AuthPayload
+	addMachine(name: String!, manufacturer: String!, year: Int, model: String!, serialNumber: String!, lastServiceDate: DateTime, nextServiceDate: DateTime, onlineStatus: Boolean!): Machine!
 	
 }
 
@@ -32,7 +36,19 @@ type User {
 	role: Role!
 }
 
-enum Role{
+type Machine {
+	id: ID!
+	name: String!
+	manufacturer: String!
+	year: Int
+	model: String!
+	serialNumber: String! 
+	lastServiceDate: DateTime
+	nextServiceDate: DateTime
+	onlineStatus: Boolean!
+}
+
+enum Role {
 USER
 ADMIN
 ADMINVIEW

@@ -15,6 +15,58 @@ var models = [
   {
     name: "Role",
     embedded: false
+  },
+  {
+    name: "Machine",
+    embedded: false
+  },
+  {
+    name: "Connection",
+    embedded: false
+  },
+  {
+    name: "ValueType",
+    embedded: false
+  },
+  {
+    name: "Unit",
+    embedded: false
+  },
+  {
+    name: "Operation",
+    embedded: false
+  },
+  {
+    name: "Trend",
+    embedded: false
+  },
+  {
+    name: "Parameter",
+    embedded: false
+  },
+  {
+    name: "ObjectConnection",
+    embedded: false
+  },
+  {
+    name: "Check",
+    embedded: false
+  },
+  {
+    name: "ProductionLine",
+    embedded: false
+  },
+  {
+    name: "Production",
+    embedded: false
+  },
+  {
+    name: "Data",
+    embedded: false
+  },
+  {
+    name: "Dataset",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
