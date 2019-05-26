@@ -36,6 +36,8 @@ type Machine {
 	onlineStatus: Boolean!
 	parameters: [Parameter] @relation(link: INLINE)
 	data: [Data!]! @relation(link: INLINE)
+	createdAt: DateTime! @createdAt
+	createdBy: User! @relation(link: INLINE)
 }
 
 
@@ -69,6 +71,7 @@ type Trend {
 	name: String!
 	description: String!
 	parameters: [Parameter]! @relation(link: INLINE)
+	owner: ObjectConnection! @relation(link: INLINE)
 }
 
 #where to save data values for parameters
@@ -79,7 +82,7 @@ type Parameter {
 	set: Float!
 	toleranceHigh: Float!
 	toleranceLow: Float!
-	connection : Connection
+	connection : Connection!
 }
 #Do I use a target or connection to Parameter... then where to save data? each connection type holds its own data?
 type ObjectConnection{
@@ -100,7 +103,9 @@ type Check{
 	lhsValue: Float!
 	operator: Operation!
 	rhsValue: Float!
-	unit: Unit
+	unit: Unit!
+	createdAt: DateTime! @createdAt
+	createdBy: User! @relation(link: INLINE)
 }
 
 type ProductionLine {
@@ -115,27 +120,40 @@ type ProductionLine {
 	createdBy: User!  @relation(link: INLINE)
 }
 
+type Task{
+	id: ID! @id
+	objectResponsiblity: ObjectConnection @relation(link: INLINE)
+	assignedTo: User! @relation(link: INLINE name: "ASSIGNEDTO")
+	assignedBy: User! @relation(link: INLINE name: "ASSIGNEDBY")
+	createdAt: DateTime! @createdAt
+	description: String!
+	completed: Boolean!
+	
+}	
+
+
 type Production {
 	id: ID! @id
-	productionLine: ProductionLine @relation(link: INLINE)
+	productionLine: ProductionLine! @relation(link: INLINE)
 	start: DateTime!
 	end: DateTime!
 	targetQty: Int!
 	acceptQty: Int!
 	rejectQty: Int!
 	data: [Data!]! @relation(link: INLINE)
+	tasks: [Task!]! @relation(link: INLINE)
+	operators: [User!]! @relation(link: INLINE)
 }
-
 type Data{
    id: ID! @id 
    parameter: Parameter @unique @relation(link: INLINE)
-   value : [Dataset] @relation(link: INLINE)
+   value : [Dataset!]! @relation(link: INLINE)
 }
 
 type Dataset {
    id: ID! @id
    value: Float!
-   createdAt: DateTime @createdAt
+   createdAt: DateTime! @createdAt
    createdBy: User! @relation(link: INLINE)
 }
 

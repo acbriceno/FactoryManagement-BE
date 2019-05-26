@@ -55,18 +55,18 @@ server.start(()=> console.log(`Server is running at http://localhost:4000`))
 //
 // main().catch(e=> console.error(e))
 
-async function main() {
-
-
-	// const user = await prisma.user({id: '5ce504e9857aba00080a7e75'})
-	// console.log(user)
-	// Create new Message
-	// const ProductionLine = await prisma.createProductionLine({name:'4" Elbow Pipe', description:'INTL Elbow', createdBy: {connect: {id: user.id }} })
-	// console.log(ProductionLine)
-
-	//Read all Messages
-	const allProductionLine = await prisma.productionLines()
-	console.log(allProductionLine)
-}
-
-main().catch(e=> console.error(e))
+// async function main() {
+//
+//
+// 	const user = await prisma.user({id: '5ce504e9857aba00080a7e75'})
+// 	console.log(user)
+// 	//Create new Message
+// 	const ProductionLine = await prisma.createProductionLine({name:'4" Elbow Pipe', description:'INTL Elbow', createdBy: {connect: {id: user.id }} })
+// 	console.log(ProductionLine)
+//
+// 	//Read all Messages
+// 	const allProductionLine = await prisma.productionLines()
+// 	console.log(allProductionLine)
+// }
+//
+// main().catch(e=> console.error(e))

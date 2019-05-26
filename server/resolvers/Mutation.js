@@ -70,7 +70,8 @@ async function addMachine(parent, args, context){
 		return context.prisma.createMachine({
 			...args,
 			lastServiceDate: GraphQLDate.DateTime.parseValue(args.lastServiceDate),
-			nextServiceDate: GraphQLDate.DateTime.parseValue(args.nextServiceDate)
+			nextServiceDate: GraphQLDate.DateTime.parseValue(args.nextServiceDate),
+			createdBy: {connect: {id: userId}}
 		})
 	}
 }

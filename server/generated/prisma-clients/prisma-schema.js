@@ -39,6 +39,10 @@ type AggregateProductionLine {
   count: Int!
 }
 
+type AggregateTask {
+  count: Int!
+}
+
 type AggregateTrend {
   count: Int!
 }
@@ -62,7 +66,9 @@ type Check {
   lhsValue: Float!
   operator: Operation!
   rhsValue: Float!
-  unit: Unit
+  unit: Unit!
+  createdAt: DateTime!
+  createdBy: User!
 }
 
 type CheckConnection {
@@ -81,7 +87,8 @@ input CheckCreateInput {
   lhsValue: Float!
   operator: Operation!
   rhsValue: Float!
-  unit: Unit
+  unit: Unit!
+  createdBy: UserCreateOneInput!
 }
 
 input CheckCreateManyInput {
@@ -111,6 +118,8 @@ enum CheckOrderByInput {
   rhsValue_DESC
   unit_ASC
   unit_DESC
+  createdAt_ASC
+  createdAt_DESC
 }
 
 type CheckPreviousValues {
@@ -121,7 +130,8 @@ type CheckPreviousValues {
   lhsValue: Float!
   operator: Operation!
   rhsValue: Float!
-  unit: Unit
+  unit: Unit!
+  createdAt: DateTime!
 }
 
 input CheckScalarWhereInput {
@@ -195,6 +205,14 @@ input CheckScalarWhereInput {
   unit_not: Unit
   unit_in: [Unit!]
   unit_not_in: [Unit!]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   AND: [CheckScalarWhereInput!]
   OR: [CheckScalarWhereInput!]
   NOT: [CheckScalarWhereInput!]
@@ -227,6 +245,7 @@ input CheckUpdateDataInput {
   operator: Operation
   rhsValue: Float
   unit: Unit
+  createdBy: UserUpdateOneRequiredInput
 }
 
 input CheckUpdateInput {
@@ -240,6 +259,7 @@ input CheckUpdateInput {
   operator: Operation
   rhsValue: Float
   unit: Unit
+  createdBy: UserUpdateOneRequiredInput
 }
 
 input CheckUpdateManyDataInput {
@@ -364,6 +384,15 @@ input CheckWhereInput {
   unit_not: Unit
   unit_in: [Unit!]
   unit_not_in: [Unit!]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdBy: UserWhereInput
   AND: [CheckWhereInput!]
 }
 
@@ -436,7 +465,7 @@ input DataScalarWhereInput {
 type Dataset {
   id: ID!
   value: Float!
-  createdAt: DateTime
+  createdAt: DateTime!
   createdBy: User!
 }
 
@@ -473,7 +502,7 @@ enum DatasetOrderByInput {
 type DatasetPreviousValues {
   id: ID!
   value: Float!
-  createdAt: DateTime
+  createdAt: DateTime!
 }
 
 input DatasetScalarWhereInput {
@@ -701,6 +730,8 @@ type Machine {
   onlineStatus: Boolean!
   parameters(where: ParameterWhereInput, orderBy: ParameterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parameter!]
   data(where: DataWhereInput, orderBy: DataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Data!]
+  createdAt: DateTime!
+  createdBy: User!
 }
 
 type MachineConnection {
@@ -720,6 +751,7 @@ input MachineCreateInput {
   onlineStatus: Boolean!
   parameters: ParameterCreateManyInput
   data: DataCreateManyInput
+  createdBy: UserCreateOneInput!
 }
 
 input MachineCreateManyInput {
@@ -751,6 +783,8 @@ enum MachineOrderByInput {
   nextServiceDate_DESC
   onlineStatus_ASC
   onlineStatus_DESC
+  createdAt_ASC
+  createdAt_DESC
 }
 
 type MachinePreviousValues {
@@ -763,6 +797,7 @@ type MachinePreviousValues {
   lastServiceDate: DateTime
   nextServiceDate: DateTime
   onlineStatus: Boolean!
+  createdAt: DateTime!
 }
 
 input MachineScalarWhereInput {
@@ -862,6 +897,14 @@ input MachineScalarWhereInput {
   nextServiceDate_gte: DateTime
   onlineStatus: Boolean
   onlineStatus_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   AND: [MachineScalarWhereInput!]
   OR: [MachineScalarWhereInput!]
   NOT: [MachineScalarWhereInput!]
@@ -894,6 +937,7 @@ input MachineUpdateDataInput {
   onlineStatus: Boolean
   parameters: ParameterUpdateManyInput
   data: DataUpdateManyInput
+  createdBy: UserUpdateOneRequiredInput
 }
 
 input MachineUpdateInput {
@@ -907,6 +951,7 @@ input MachineUpdateInput {
   onlineStatus: Boolean
   parameters: ParameterUpdateManyInput
   data: DataUpdateManyInput
+  createdBy: UserUpdateOneRequiredInput
 }
 
 input MachineUpdateManyDataInput {
@@ -1058,6 +1103,15 @@ input MachineWhereInput {
   onlineStatus_not: Boolean
   parameters_some: ParameterWhereInput
   data_some: DataWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  createdBy: UserWhereInput
   AND: [MachineWhereInput!]
 }
 
@@ -1399,6 +1453,12 @@ type Mutation {
   upsertProductionLine(where: ProductionLineWhereUniqueInput!, create: ProductionLineCreateInput!, update: ProductionLineUpdateInput!): ProductionLine!
   deleteProductionLine(where: ProductionLineWhereUniqueInput!): ProductionLine
   deleteManyProductionLines(where: ProductionLineWhereInput): BatchPayload!
+  createTask(data: TaskCreateInput!): Task!
+  updateTask(data: TaskUpdateInput!, where: TaskWhereUniqueInput!): Task
+  updateManyTasks(data: TaskUpdateManyMutationInput!, where: TaskWhereInput): BatchPayload!
+  upsertTask(where: TaskWhereUniqueInput!, create: TaskCreateInput!, update: TaskUpdateInput!): Task!
+  deleteTask(where: TaskWhereUniqueInput!): Task
+  deleteManyTasks(where: TaskWhereInput): BatchPayload!
   createTrend(data: TrendCreateInput!): Trend!
   updateTrend(data: TrendUpdateInput!, where: TrendWhereUniqueInput!): Trend
   updateManyTrends(data: TrendUpdateManyMutationInput!, where: TrendWhereInput): BatchPayload!
@@ -1504,6 +1564,15 @@ input ObjectConnectionUpdateManyMutationInput {
   connectionType: Connection
 }
 
+input ObjectConnectionUpdateOneInput {
+  create: ObjectConnectionCreateInput
+  update: ObjectConnectionUpdateDataInput
+  upsert: ObjectConnectionUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ObjectConnectionWhereUniqueInput
+}
+
 input ObjectConnectionUpdateOneRequiredInput {
   create: ObjectConnectionCreateInput
   update: ObjectConnectionUpdateDataInput
@@ -1592,7 +1661,7 @@ type Parameter {
   set: Float!
   toleranceHigh: Float!
   toleranceLow: Float!
-  connection: Connection
+  connection: Connection!
 }
 
 type ParameterConnection {
@@ -1607,7 +1676,7 @@ input ParameterCreateInput {
   set: Float!
   toleranceHigh: Float!
   toleranceLow: Float!
-  connection: Connection
+  connection: Connection!
 }
 
 input ParameterCreateManyInput {
@@ -1649,7 +1718,7 @@ type ParameterPreviousValues {
   set: Float!
   toleranceHigh: Float!
   toleranceLow: Float!
-  connection: Connection
+  connection: Connection!
 }
 
 input ParameterScalarWhereInput {
@@ -1882,13 +1951,15 @@ input ParameterWhereUniqueInput {
 
 type Production {
   id: ID!
-  productionLine: ProductionLine
+  productionLine: ProductionLine!
   start: DateTime!
   end: DateTime!
   targetQty: Int!
   acceptQty: Int!
   rejectQty: Int!
   data(where: DataWhereInput, orderBy: DataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Data!]
+  tasks(where: TaskWhereInput, orderBy: TaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Task!]
+  operators(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
 }
 
 type ProductionConnection {
@@ -1898,13 +1969,15 @@ type ProductionConnection {
 }
 
 input ProductionCreateInput {
-  productionLine: ProductionLineCreateOneInput
+  productionLine: ProductionLineCreateOneInput!
   start: DateTime!
   end: DateTime!
   targetQty: Int!
   acceptQty: Int!
   rejectQty: Int!
   data: DataCreateManyInput
+  tasks: TaskCreateManyInput
+  operators: UserCreateManyInput
 }
 
 type ProductionEdge {
@@ -2009,12 +2082,10 @@ input ProductionLineUpdateManyMutationInput {
   description: String
 }
 
-input ProductionLineUpdateOneInput {
+input ProductionLineUpdateOneRequiredInput {
   create: ProductionLineCreateInput
   update: ProductionLineUpdateDataInput
   upsert: ProductionLineUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: ProductionLineWhereUniqueInput
 }
 
@@ -2127,13 +2198,15 @@ input ProductionSubscriptionWhereInput {
 }
 
 input ProductionUpdateInput {
-  productionLine: ProductionLineUpdateOneInput
+  productionLine: ProductionLineUpdateOneRequiredInput
   start: DateTime
   end: DateTime
   targetQty: Int
   acceptQty: Int
   rejectQty: Int
   data: DataUpdateManyInput
+  tasks: TaskUpdateManyInput
+  operators: UserUpdateManyInput
 }
 
 input ProductionUpdateManyMutationInput {
@@ -2201,6 +2274,8 @@ input ProductionWhereInput {
   rejectQty_gt: Int
   rejectQty_gte: Int
   data_some: DataWhereInput
+  tasks_some: TaskWhereInput
+  operators_some: UserWhereInput
   AND: [ProductionWhereInput!]
 }
 
@@ -2236,6 +2311,9 @@ type Query {
   productionLine(where: ProductionLineWhereUniqueInput!): ProductionLine
   productionLines(where: ProductionLineWhereInput, orderBy: ProductionLineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProductionLine]!
   productionLinesConnection(where: ProductionLineWhereInput, orderBy: ProductionLineOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProductionLineConnection!
+  task(where: TaskWhereUniqueInput!): Task
+  tasks(where: TaskWhereInput, orderBy: TaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Task]!
+  tasksConnection(where: TaskWhereInput, orderBy: TaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TaskConnection!
   trend(where: TrendWhereUniqueInput!): Trend
   trends(where: TrendWhereInput, orderBy: TrendOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Trend]!
   trendsConnection(where: TrendWhereInput, orderBy: TrendOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TrendConnection!
@@ -2261,8 +2339,224 @@ type Subscription {
   parameter(where: ParameterSubscriptionWhereInput): ParameterSubscriptionPayload
   production(where: ProductionSubscriptionWhereInput): ProductionSubscriptionPayload
   productionLine(where: ProductionLineSubscriptionWhereInput): ProductionLineSubscriptionPayload
+  task(where: TaskSubscriptionWhereInput): TaskSubscriptionPayload
   trend(where: TrendSubscriptionWhereInput): TrendSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Task {
+  id: ID!
+  objectResponsiblity: ObjectConnection
+  assignedTo: User!
+  assignedBy: User!
+  createdAt: DateTime!
+  description: String!
+  completed: Boolean!
+}
+
+type TaskConnection {
+  pageInfo: PageInfo!
+  edges: [TaskEdge]!
+  aggregate: AggregateTask!
+}
+
+input TaskCreateInput {
+  objectResponsiblity: ObjectConnectionCreateOneInput
+  assignedTo: UserCreateOneInput!
+  assignedBy: UserCreateOneInput!
+  description: String!
+  completed: Boolean!
+}
+
+input TaskCreateManyInput {
+  create: [TaskCreateInput!]
+  connect: [TaskWhereUniqueInput!]
+}
+
+type TaskEdge {
+  node: Task!
+  cursor: String!
+}
+
+enum TaskOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  description_ASC
+  description_DESC
+  completed_ASC
+  completed_DESC
+}
+
+type TaskPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  description: String!
+  completed: Boolean!
+}
+
+input TaskScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  completed: Boolean
+  completed_not: Boolean
+  AND: [TaskScalarWhereInput!]
+  OR: [TaskScalarWhereInput!]
+  NOT: [TaskScalarWhereInput!]
+}
+
+type TaskSubscriptionPayload {
+  mutation: MutationType!
+  node: Task
+  updatedFields: [String!]
+  previousValues: TaskPreviousValues
+}
+
+input TaskSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TaskWhereInput
+  AND: [TaskSubscriptionWhereInput!]
+}
+
+input TaskUpdateDataInput {
+  objectResponsiblity: ObjectConnectionUpdateOneInput
+  assignedTo: UserUpdateOneRequiredInput
+  assignedBy: UserUpdateOneRequiredInput
+  description: String
+  completed: Boolean
+}
+
+input TaskUpdateInput {
+  objectResponsiblity: ObjectConnectionUpdateOneInput
+  assignedTo: UserUpdateOneRequiredInput
+  assignedBy: UserUpdateOneRequiredInput
+  description: String
+  completed: Boolean
+}
+
+input TaskUpdateManyDataInput {
+  description: String
+  completed: Boolean
+}
+
+input TaskUpdateManyInput {
+  create: [TaskCreateInput!]
+  update: [TaskUpdateWithWhereUniqueNestedInput!]
+  upsert: [TaskUpsertWithWhereUniqueNestedInput!]
+  delete: [TaskWhereUniqueInput!]
+  connect: [TaskWhereUniqueInput!]
+  set: [TaskWhereUniqueInput!]
+  disconnect: [TaskWhereUniqueInput!]
+  deleteMany: [TaskScalarWhereInput!]
+  updateMany: [TaskUpdateManyWithWhereNestedInput!]
+}
+
+input TaskUpdateManyMutationInput {
+  description: String
+  completed: Boolean
+}
+
+input TaskUpdateManyWithWhereNestedInput {
+  where: TaskScalarWhereInput!
+  data: TaskUpdateManyDataInput!
+}
+
+input TaskUpdateWithWhereUniqueNestedInput {
+  where: TaskWhereUniqueInput!
+  data: TaskUpdateDataInput!
+}
+
+input TaskUpsertWithWhereUniqueNestedInput {
+  where: TaskWhereUniqueInput!
+  update: TaskUpdateDataInput!
+  create: TaskCreateInput!
+}
+
+input TaskWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  objectResponsiblity: ObjectConnectionWhereInput
+  assignedTo: UserWhereInput
+  assignedBy: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  completed: Boolean
+  completed_not: Boolean
+  AND: [TaskWhereInput!]
+}
+
+input TaskWhereUniqueInput {
+  id: ID
 }
 
 type Trend {
@@ -2270,6 +2564,7 @@ type Trend {
   name: String!
   description: String!
   parameters(where: ParameterWhereInput, orderBy: ParameterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Parameter!]
+  owner: ObjectConnection!
 }
 
 type TrendConnection {
@@ -2282,6 +2577,7 @@ input TrendCreateInput {
   name: String!
   description: String!
   parameters: ParameterCreateManyInput
+  owner: ObjectConnectionCreateOneInput!
 }
 
 input TrendCreateManyInput {
@@ -2377,12 +2673,14 @@ input TrendUpdateDataInput {
   name: String
   description: String
   parameters: ParameterUpdateManyInput
+  owner: ObjectConnectionUpdateOneRequiredInput
 }
 
 input TrendUpdateInput {
   name: String
   description: String
   parameters: ParameterUpdateManyInput
+  owner: ObjectConnectionUpdateOneRequiredInput
 }
 
 input TrendUpdateManyDataInput {
@@ -2467,6 +2765,7 @@ input TrendWhereInput {
   description_ends_with: String
   description_not_ends_with: String
   parameters_some: ParameterWhereInput
+  owner: ObjectConnectionWhereInput
   AND: [TrendWhereInput!]
 }
 
@@ -2502,6 +2801,11 @@ input UserCreateInput {
   inbox: MessageCreateManyWithoutRecipientsInput
   outbox: MessageCreateManyWithoutSenderInput
   role: Role
+}
+
+input UserCreateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
 }
 
 input UserCreateManyWithoutInboxInput {
@@ -2668,6 +2972,18 @@ input UserUpdateManyDataInput {
   role: Role
 }
 
+input UserUpdateManyInput {
+  create: [UserCreateInput!]
+  update: [UserUpdateWithWhereUniqueNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueNestedInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
 input UserUpdateManyMutationInput {
   username: String
   name: String
@@ -2722,6 +3038,11 @@ input UserUpdateWithoutOutboxDataInput {
   role: Role
 }
 
+input UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateDataInput!
+}
+
 input UserUpdateWithWhereUniqueWithoutInboxInput {
   where: UserWhereUniqueInput!
   data: UserUpdateWithoutInboxDataInput!
@@ -2735,6 +3056,12 @@ input UserUpsertNestedInput {
 input UserUpsertWithoutOutboxInput {
   update: UserUpdateWithoutOutboxDataInput!
   create: UserCreateWithoutOutboxInput!
+}
+
+input UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserUpsertWithWhereUniqueWithoutInboxInput {

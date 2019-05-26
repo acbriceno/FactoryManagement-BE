@@ -4,6 +4,15 @@ type Query {
 	info: String!
 	messages: [Message!]!
 	machines: [Machine!]!
+	productionLines : [ProductionLine!]!
+	productions: [Production!]!
+	parameters: [Parameter!]!
+	checks: [Check!]!
+	tasks: [Task!]!
+	datas: [Data!]!
+	datasets: [Dataset!]!
+	objectConnection: [ObjectConnection!]!
+	trends: [Trend!]!
 }
 
 type Mutation {
@@ -13,6 +22,7 @@ type Mutation {
 	addMachine(name: String!, manufacturer: String!, year: Int, model: String!, serialNumber: String!, lastServiceDate: DateTime, nextServiceDate: DateTime, onlineStatus: Boolean!): Machine!
 	
 }
+#addMachineParameters(parameters:[Parameter!]!): Machine!
 
 type Message {
 	id: ID!
@@ -36,8 +46,14 @@ type User {
 	role: Role!
 }
 
+enum Role {
+USER
+ADMIN
+ADMINVIEW
+}
+
 type Machine {
-	id: ID!
+	id: ID! 
 	name: String!
 	manufacturer: String!
 	year: Int
@@ -46,10 +62,119 @@ type Machine {
 	lastServiceDate: DateTime
 	nextServiceDate: DateTime
 	onlineStatus: Boolean!
+	parameters: [Parameter] 
+	data: [Data!]! 
+	createdBy: User!
 }
 
-enum Role {
-USER
-ADMIN
-ADMINVIEW
+
+enum Connection{
+CMACHINE
+CPRODUCTION
+CCOMPONENT
 }
+
+enum ValueType{
+NUMBER
+LOGIC
+DATE
+}
+enum Unit{
+Kilogram
+Meter
+}
+
+enum Operation{
+LESS
+MORE
+EQUAL
+ON
+OFF
+}
+
+
+type Trend {
+	id: ID! 
+	name: String!
+	description: String!
+	parameters: [Parameter]! 
+	owner: ObjectConnection! 
+}
+
+#where to save data values for parameters
+type Parameter {
+	id: ID!
+	name: String!
+	unit: Unit!
+	set: Float!
+	toleranceHigh: Float!
+	toleranceLow: Float!
+	connection : Connection!
+}
+type ObjectConnection{
+	id: ID! 
+	description: String!
+	connectionId: ID!
+	connectionType: Connection!
+
+}
+type Check{
+	id: ID! 
+	name: String!
+	description: String!
+	target: ObjectConnection! 
+	valueType: ValueType!
+	lhsParameter: Parameter  
+	rhsParameter: Parameter  
+	lhsValue: Float!
+	operator: Operation!
+	rhsValue: Float!
+	unit: Unit!
+	createdBy: User! 
+}
+
+type ProductionLine {
+	id: ID! 
+	name: String! 
+	description: String!
+	startUpChecks: [Check!]! 
+	parameters: [Parameter!]!
+	machines: [Machine!]! 
+	trends: [Trend!]! 
+	createdBy: User! 
+}
+
+type Task{
+	id: ID! 
+	objectResponsiblity: ObjectConnection
+	assignedTo: User! 
+	assignedBy: User!
+	description: String!
+	completed: Boolean!
+}	
+
+
+type Production{
+	id: ID! 
+	productionLine: ProductionLine! 
+	start: DateTime!
+	end: DateTime!
+	targetQty: Int!
+	acceptQty: Int!
+	rejectQty: Int!
+	data: [Data!]! 
+	tasks: [Task!]! 
+	operators: [User!]! 
+}
+type Data{
+   id: ID! 
+   parameter: Parameter 
+   value : [Dataset!]! 
+}
+
+type Dataset {
+   id: ID! 
+   value: Float!
+   createdBy: User! 
+}
+

@@ -57,6 +57,10 @@ var models = [
     embedded: false
   },
   {
+    name: "Task",
+    embedded: false
+  },
+  {
     name: "Production",
     embedded: false
   },
