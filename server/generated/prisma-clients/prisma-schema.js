@@ -2783,6 +2783,28 @@ input TrendWhereUniqueInput {
 enum Unit {
   Kilogram
   Meter
+  Celsius
+  Farenheight
+  Kelvin
+  Candela
+  Ampere
+  Meters_per_second
+  Meters_per_second_squared
+  Square_Meter
+  Cubic_Meter
+  Kilogram_per_square_meter
+  Cubic_meter_per_kilogram
+  Kilogram_per_cubic_meter
+  Pascal
+  Newton
+  Hertz
+  Henry
+  Siemens
+  Volt
+  Coulomb
+  Joule
+  Watt
+  Ohm
 }
 
 type User {

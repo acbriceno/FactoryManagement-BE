@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { APP_SECRET, getUserId, } = require('../util')
 const {Role, isAdmin} = require('../Auth/Auth')
+const {Connection} = require('../Connection/Connection')
 const GraphQLDate = require('./Date')
 async function signup(parent, args, context, info){
 	const password = await bcrypt.hash(args.password, 10)
@@ -93,7 +94,7 @@ async function addMachine(parent, args, context){
 			datas.push(data)
 		}
 		//Need to add action to error: unique constraint on machine due to serial number
-		return context.prisma.createMachine({
+		let machine = await context.prisma.createMachine({
 			...args,
 			lastServiceDate: GraphQLDate.DateTime.parseValue(args.lastServiceDate),
 			nextServiceDate: GraphQLDate.DateTime.parseValue(args.nextServiceDate),
@@ -101,6 +102,14 @@ async function addMachine(parent, args, context){
 			parameters: {connect: parameters},
 			data: {connect: datas}
 		})
+		console.log(Connection)
+		let connection = Connection.CMACHINE
+		await context.prisma.createObjectConnection({
+			description: machine.manufacturer + machine.name + machine.model,
+			connectionId: machine.id,
+			connectionType: Connection.properties[connection].code
+		})
+		return machine
 	}
 }
 

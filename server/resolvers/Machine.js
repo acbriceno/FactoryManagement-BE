@@ -1,6 +1,4 @@
 async function createdBy(parent, args, context){
-    console.log("getting user")
-    console.log(parent.id)
      return await context.prisma.machine({id: parent.id}).createdBy()
 }
 

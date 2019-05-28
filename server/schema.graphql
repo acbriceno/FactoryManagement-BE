@@ -82,6 +82,28 @@ DATE
 enum Unit{
 Kilogram
 Meter
+Celsius
+Farenheight
+Kelvin
+Candela
+Ampere
+Meters_per_second
+Meters_per_second_squared
+Square_Meter
+Cubic_Meter
+Kilogram_per_square_meter
+Cubic_meter_per_kilogram
+Kilogram_per_cubic_meter
+Pascal
+Newton
+Hertz
+Henry
+Siemens
+Volt
+Coulomb
+Joule
+Watt
+Ohm
 }
 
 enum Operation{
@@ -100,6 +122,8 @@ type Trend {
 	parameters: [Parameter]! 
 	owner: ObjectConnection! 
 }
+
+
 
 #where to save data values for parameters
 type Parameter {

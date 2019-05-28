@@ -34,10 +34,10 @@ type Machine {
 	lastServiceDate: DateTime
 	nextServiceDate: DateTime
 	onlineStatus: Boolean!
-	parameters: [Parameter] @relation(link: INLINE)
+	parameters: [Parameter!]! @relation(link: INLINE)
 	data: [Data!]! @relation(link: INLINE)
 	createdAt: DateTime! @createdAt
-	createdBy: User! @relation(link: INLINE)
+	createdBy: User! @relation(link: INLINE name: "CREATEDBY")
 }
 
 
@@ -55,6 +55,28 @@ DATE
 enum Unit{
 Kilogram
 Meter
+Celsius
+Farenheight
+Kelvin
+Candela
+Ampere
+Meters_per_second
+Meters_per_second_squared
+Square_Meter
+Cubic_Meter
+Kilogram_per_square_meter
+Cubic_meter_per_kilogram
+Kilogram_per_cubic_meter
+Pascal
+Newton
+Hertz
+Henry
+Siemens
+Volt
+Coulomb
+Joule
+Watt
+Ohm
 }
 
 enum Operation{
@@ -116,7 +138,7 @@ type ProductionLine {
 	parameters: [Parameter!]! @relation(link: INLINE)
 	machines: [Machine!]! @relation(link: INLINE)
 	trends: [Trend!]! @relation(link: INLINE)
-	createdAt:  DateTime! @createdAt
+	createdAt:  DateTime! @createdAt	
 	createdBy: User!  @relation(link: INLINE)
 }
 
@@ -146,7 +168,7 @@ type Production {
 }
 type Data{
    id: ID! @id 
-   parameter: Parameter @unique @relation(link: INLINE)
+   parameter: Parameter! @unique @relation(link: INLINE)
    value : [Dataset!]! @relation(link: INLINE)
 }
 
