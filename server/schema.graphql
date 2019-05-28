@@ -19,10 +19,10 @@ type Mutation {
 	sendMessage(subject: String!, body: String!, recipients: [String!]): Message!
 	signup(username: String!, name:String!, password: String!, role: Role!): AuthPayload
 	login(username: String!, password: String!): AuthPayload
-	addMachine(name: String!, manufacturer: String!, year: Int, model: String!, serialNumber: String!, lastServiceDate: DateTime, nextServiceDate: DateTime, onlineStatus: Boolean!): Machine!
-	
+	addMachine(name: String!, manufacturer: String!, year: Int, model: String!, serialNumber: String!, lastServiceDate: DateTime, nextServiceDate: DateTime, onlineStatus: Boolean!, parameters:[ParameterInput]!): Machine!
+	addParameter(name:String!, unit: Unit!, set: Float!, toleranceHigh: Float, toleranceLow:Float!, connection: Connection!):Parameter!
+
 }
-#addMachineParameters(parameters:[Parameter!]!): Machine!
 
 type Message {
 	id: ID!
@@ -62,7 +62,7 @@ type Machine {
 	lastServiceDate: DateTime
 	nextServiceDate: DateTime
 	onlineStatus: Boolean!
-	parameters: [Parameter] 
+	parameters: [Parameter!]!
 	data: [Data!]! 
 	createdBy: User!
 }
@@ -104,6 +104,15 @@ type Trend {
 #where to save data values for parameters
 type Parameter {
 	id: ID!
+	name: String!
+	unit: Unit!
+	set: Float!
+	toleranceHigh: Float!
+	toleranceLow: Float!
+	connection : Connection!
+}
+
+input ParameterInput {
 	name: String!
 	unit: Unit!
 	set: Float!
@@ -168,7 +177,7 @@ type Production{
 }
 type Data{
    id: ID! 
-   parameter: Parameter 
+   parameter: Parameter! 
    value : [Dataset!]! 
 }
 

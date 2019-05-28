@@ -408,7 +408,7 @@ enum Connection {
 
 type Data {
   id: ID!
-  parameter: Parameter
+  parameter: Parameter!
   value(where: DatasetWhereInput, orderBy: DatasetOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Dataset!]
 }
 
@@ -419,7 +419,7 @@ type DataConnection {
 }
 
 input DataCreateInput {
-  parameter: ParameterCreateOneInput
+  parameter: ParameterCreateOneInput!
   value: DatasetCreateManyInput
 }
 
@@ -659,12 +659,12 @@ input DataSubscriptionWhereInput {
 }
 
 input DataUpdateDataInput {
-  parameter: ParameterUpdateOneInput
+  parameter: ParameterUpdateOneRequiredInput
   value: DatasetUpdateManyInput
 }
 
 input DataUpdateInput {
-  parameter: ParameterUpdateOneInput
+  parameter: ParameterUpdateOneRequiredInput
   value: DatasetUpdateManyInput
 }
 
@@ -1862,6 +1862,13 @@ input ParameterUpdateOneInput {
   upsert: ParameterUpsertNestedInput
   delete: Boolean
   disconnect: Boolean
+  connect: ParameterWhereUniqueInput
+}
+
+input ParameterUpdateOneRequiredInput {
+  create: ParameterCreateInput
+  update: ParameterUpdateDataInput
+  upsert: ParameterUpsertNestedInput
   connect: ParameterWhereUniqueInput
 }
 

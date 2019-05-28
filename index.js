@@ -18,13 +18,15 @@ const Query = require('./server/resolvers/Query')
 const Mutation = require('./server/resolvers/Mutation')
 const User = require('./server/resolvers/User')
 const Message = require('./server/resolvers/Message')
-
-
+const Machine = require('./server/resolvers/Machine')
+const Data = require('./server/resolvers/Data')
 const resolvers = {
   Query,
   Mutation,
   User,
-  Message
+  Message,
+  Machine,
+  Data
 }
 
 const server = new GraphQLServer({
@@ -56,17 +58,17 @@ server.start(()=> console.log(`Server is running at http://localhost:4000`))
 // main().catch(e=> console.error(e))
 
 // async function main() {
-//
-//
-// 	const user = await prisma.user({id: '5ce504e9857aba00080a7e75'})
-// 	console.log(user)
-// 	//Create new Message
-// 	const ProductionLine = await prisma.createProductionLine({name:'4" Elbow Pipe', description:'INTL Elbow', createdBy: {connect: {id: user.id }} })
-// 	console.log(ProductionLine)
-//
-// 	//Read all Messages
-// 	const allProductionLine = await prisma.productionLines()
-// 	console.log(allProductionLine)
+
+
+// 	const machine = await prisma.machine({id: '5cec0fab0274390007ab1b5b'}).createdBy()
+// 	console.log(machine)
+// 	// //Create new Message
+// 	// const ProductionLine = await prisma.createProductionLine({name:'4" Elbow Pipe', description:'INTL Elbow', createdBy: {connect: {id: user.id }} })
+// 	// console.log(ProductionLine)
+
+// 	// Read all Messages
+// 	// const allProductionLine = await prisma.productionLines()
+// 	// console.log(allProductionLine)
 // }
-//
+
 // main().catch(e=> console.error(e))

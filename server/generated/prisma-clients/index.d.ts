@@ -931,10 +931,9 @@ export interface ParameterWhereInput {
   AND?: ParameterWhereInput[] | ParameterWhereInput;
 }
 
-export interface MessageCreateWithoutSenderInput {
-  subject: String;
-  body: String;
-  recipients?: UserCreateManyWithoutInboxInput;
+export interface UserCreateManyWithoutInboxInput {
+  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
 export interface ProductionLineUpdateOneRequiredInput {
@@ -942,16 +941,6 @@ export interface ProductionLineUpdateOneRequiredInput {
   update?: ProductionLineUpdateDataInput;
   upsert?: ProductionLineUpsertNestedInput;
   connect?: ProductionLineWhereUniqueInput;
-}
-
-export interface UserCreateManyWithoutInboxInput {
-  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-}
-
-export interface DataUpdateInput {
-  parameter?: ParameterUpdateOneInput;
-  value?: DatasetUpdateManyInput;
 }
 
 export interface UserCreateWithoutInboxInput {
@@ -962,13 +951,9 @@ export interface UserCreateWithoutInboxInput {
   role?: Role;
 }
 
-export interface TrendSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: TrendWhereInput;
-  AND?: TrendSubscriptionWhereInput[] | TrendSubscriptionWhereInput;
+export interface DataUpdateInput {
+  parameter?: ParameterUpdateOneRequiredInput;
+  value?: DatasetUpdateManyInput;
 }
 
 export interface CheckUpdateInput {
@@ -985,15 +970,30 @@ export interface CheckUpdateInput {
   createdBy?: UserUpdateOneRequiredInput;
 }
 
-export type DataWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface TrendSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: TrendWhereInput;
+  AND?: TrendSubscriptionWhereInput[] | TrendSubscriptionWhereInput;
+}
 
 export interface ObjectConnectionUpdateOneRequiredInput {
   create?: ObjectConnectionCreateInput;
   update?: ObjectConnectionUpdateDataInput;
   upsert?: ObjectConnectionUpsertNestedInput;
   connect?: ObjectConnectionWhereUniqueInput;
+}
+
+export type DataWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ObjectConnectionUpdateDataInput {
+  description?: String;
+  connectionId?: ID_Input;
+  connectionType?: Connection;
 }
 
 export interface DatasetWhereInput {
@@ -1031,10 +1031,9 @@ export interface DatasetWhereInput {
   AND?: DatasetWhereInput[] | DatasetWhereInput;
 }
 
-export interface ObjectConnectionUpdateDataInput {
-  description?: String;
-  connectionId?: ID_Input;
-  connectionType?: Connection;
+export interface ObjectConnectionUpsertNestedInput {
+  update: ObjectConnectionUpdateDataInput;
+  create: ObjectConnectionCreateInput;
 }
 
 export interface ParameterSubscriptionWhereInput {
@@ -1046,9 +1045,13 @@ export interface ParameterSubscriptionWhereInput {
   AND?: ParameterSubscriptionWhereInput[] | ParameterSubscriptionWhereInput;
 }
 
-export interface ObjectConnectionUpsertNestedInput {
-  update: ObjectConnectionUpdateDataInput;
-  create: ObjectConnectionCreateInput;
+export interface ParameterUpdateOneInput {
+  create?: ParameterCreateInput;
+  update?: ParameterUpdateDataInput;
+  upsert?: ParameterUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ParameterWhereUniqueInput;
 }
 
 export interface UserWhereInput {
@@ -1117,13 +1120,13 @@ export interface UserWhereInput {
   AND?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface ParameterUpdateOneInput {
-  create?: ParameterCreateInput;
-  update?: ParameterUpdateDataInput;
-  upsert?: ParameterUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: ParameterWhereUniqueInput;
+export interface ParameterUpdateDataInput {
+  name?: String;
+  unit?: Unit;
+  set?: Float;
+  toleranceHigh?: Float;
+  toleranceLow?: Float;
+  connection?: Connection;
 }
 
 export interface MessageSubscriptionWhereInput {
@@ -1135,22 +1138,20 @@ export interface MessageSubscriptionWhereInput {
   AND?: MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput;
 }
 
-export interface ParameterUpdateDataInput {
-  name?: String;
-  unit?: Unit;
-  set?: Float;
-  toleranceHigh?: Float;
-  toleranceLow?: Float;
-  connection?: Connection;
+export interface ParameterUpsertNestedInput {
+  update: ParameterUpdateDataInput;
+  create: ParameterCreateInput;
 }
 
 export type DatasetWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface ParameterUpsertNestedInput {
-  update: ParameterUpdateDataInput;
-  create: ParameterCreateInput;
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface DataSubscriptionWhereInput {
@@ -1162,18 +1163,6 @@ export interface DataSubscriptionWhereInput {
   AND?: DataSubscriptionWhereInput[] | DataSubscriptionWhereInput;
 }
 
-export interface UserUpdateOneRequiredInput {
-  create?: UserCreateInput;
-  update?: UserUpdateDataInput;
-  upsert?: UserUpsertNestedInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export type MachineWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  serialNumber?: String;
-}>;
-
 export interface UserUpdateDataInput {
   username?: String;
   name?: String;
@@ -1181,6 +1170,31 @@ export interface UserUpdateDataInput {
   inbox?: MessageUpdateManyWithoutRecipientsInput;
   outbox?: MessageUpdateManyWithoutSenderInput;
   role?: Role;
+}
+
+export type MachineWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  serialNumber?: String;
+}>;
+
+export interface MessageUpdateManyWithoutRecipientsInput {
+  create?:
+    | MessageCreateWithoutRecipientsInput[]
+    | MessageCreateWithoutRecipientsInput;
+  delete?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  set?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  disconnect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+  update?:
+    | MessageUpdateWithWhereUniqueWithoutRecipientsInput[]
+    | MessageUpdateWithWhereUniqueWithoutRecipientsInput;
+  upsert?:
+    | MessageUpsertWithWhereUniqueWithoutRecipientsInput[]
+    | MessageUpsertWithWhereUniqueWithoutRecipientsInput;
+  deleteMany?: MessageScalarWhereInput[] | MessageScalarWhereInput;
+  updateMany?:
+    | MessageUpdateManyWithWhereNestedInput[]
+    | MessageUpdateManyWithWhereNestedInput;
 }
 
 export interface MessageWhereInput {
@@ -1239,24 +1253,9 @@ export interface MessageWhereInput {
   AND?: MessageWhereInput[] | MessageWhereInput;
 }
 
-export interface MessageUpdateManyWithoutRecipientsInput {
-  create?:
-    | MessageCreateWithoutRecipientsInput[]
-    | MessageCreateWithoutRecipientsInput;
-  delete?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-  set?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-  disconnect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-  update?:
-    | MessageUpdateWithWhereUniqueWithoutRecipientsInput[]
-    | MessageUpdateWithWhereUniqueWithoutRecipientsInput;
-  upsert?:
-    | MessageUpsertWithWhereUniqueWithoutRecipientsInput[]
-    | MessageUpsertWithWhereUniqueWithoutRecipientsInput;
-  deleteMany?: MessageScalarWhereInput[] | MessageScalarWhereInput;
-  updateMany?:
-    | MessageUpdateManyWithWhereNestedInput[]
-    | MessageUpdateManyWithWhereNestedInput;
+export interface MessageUpdateWithWhereUniqueWithoutRecipientsInput {
+  where: MessageWhereUniqueInput;
+  data: MessageUpdateWithoutRecipientsDataInput;
 }
 
 export interface UserUpdateInput {
@@ -1268,9 +1267,10 @@ export interface UserUpdateInput {
   role?: Role;
 }
 
-export interface MessageUpdateWithWhereUniqueWithoutRecipientsInput {
-  where: MessageWhereUniqueInput;
-  data: MessageUpdateWithoutRecipientsDataInput;
+export interface MessageUpdateWithoutRecipientsDataInput {
+  subject?: String;
+  body?: String;
+  sender?: UserUpdateOneRequiredWithoutOutboxInput;
 }
 
 export interface TrendUpdateInput {
@@ -1280,16 +1280,6 @@ export interface TrendUpdateInput {
   owner?: ObjectConnectionUpdateOneRequiredInput;
 }
 
-export interface MessageUpdateWithoutRecipientsDataInput {
-  subject?: String;
-  body?: String;
-  sender?: UserUpdateOneRequiredWithoutOutboxInput;
-}
-
-export type MessageWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
 export interface UserUpdateOneRequiredWithoutOutboxInput {
   create?: UserCreateWithoutOutboxInput;
   update?: UserUpdateWithoutOutboxDataInput;
@@ -1297,10 +1287,9 @@ export interface UserUpdateOneRequiredWithoutOutboxInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface ProductionLineUpdateManyMutationInput {
-  name?: String;
-  description?: String;
-}
+export type MessageWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export interface UserUpdateWithoutOutboxDataInput {
   username?: String;
@@ -1310,20 +1299,19 @@ export interface UserUpdateWithoutOutboxDataInput {
   role?: Role;
 }
 
-export type ObjectConnectionWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface ProductionLineUpdateManyMutationInput {
+  name?: String;
+  description?: String;
+}
 
 export interface UserUpsertWithoutOutboxInput {
   update: UserUpdateWithoutOutboxDataInput;
   create: UserCreateWithoutOutboxInput;
 }
 
-export interface UserUpsertWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput;
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
+export type ObjectConnectionWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
 
 export interface MessageUpsertWithWhereUniqueWithoutRecipientsInput {
   where: MessageWhereUniqueInput;
@@ -1331,22 +1319,10 @@ export interface MessageUpsertWithWhereUniqueWithoutRecipientsInput {
   create: MessageCreateWithoutRecipientsInput;
 }
 
-export interface UserUpdateManyInput {
-  create?: UserCreateInput[] | UserCreateInput;
-  update?:
-    | UserUpdateWithWhereUniqueNestedInput[]
-    | UserUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | UserUpsertWithWhereUniqueNestedInput[]
-    | UserUpsertWithWhereUniqueNestedInput;
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
-  updateMany?:
-    | UserUpdateManyWithWhereNestedInput[]
-    | UserUpdateManyWithWhereNestedInput;
+export interface UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
 }
 
 export interface MessageScalarWhereInput {
@@ -1405,14 +1381,37 @@ export interface MessageScalarWhereInput {
   NOT?: MessageScalarWhereInput[] | MessageScalarWhereInput;
 }
 
-export interface TaskUpdateManyDataInput {
-  description?: String;
-  completed?: Boolean;
+export interface UserUpdateManyInput {
+  create?: UserCreateInput[] | UserCreateInput;
+  update?:
+    | UserUpdateWithWhereUniqueNestedInput[]
+    | UserUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueNestedInput[]
+    | UserUpsertWithWhereUniqueNestedInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
 }
 
 export interface MessageUpdateManyWithWhereNestedInput {
   where: MessageScalarWhereInput;
   data: MessageUpdateManyDataInput;
+}
+
+export interface TaskUpdateManyDataInput {
+  description?: String;
+  completed?: Boolean;
+}
+
+export interface MessageUpdateManyDataInput {
+  subject?: String;
+  body?: String;
 }
 
 export interface TaskScalarWhereInput {
@@ -1459,17 +1458,6 @@ export interface TaskScalarWhereInput {
   NOT?: TaskScalarWhereInput[] | TaskScalarWhereInput;
 }
 
-export interface MessageUpdateManyDataInput {
-  subject?: String;
-  body?: String;
-}
-
-export interface TaskUpsertWithWhereUniqueNestedInput {
-  where: TaskWhereUniqueInput;
-  update: TaskUpdateDataInput;
-  create: TaskCreateInput;
-}
-
 export interface MessageUpdateManyWithoutSenderInput {
   create?: MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput;
   delete?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
@@ -1486,6 +1474,17 @@ export interface MessageUpdateManyWithoutSenderInput {
   updateMany?:
     | MessageUpdateManyWithWhereNestedInput[]
     | MessageUpdateManyWithWhereNestedInput;
+}
+
+export interface TaskUpsertWithWhereUniqueNestedInput {
+  where: TaskWhereUniqueInput;
+  update: TaskUpdateDataInput;
+  create: TaskCreateInput;
+}
+
+export interface MessageUpdateWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput;
+  data: MessageUpdateWithoutSenderDataInput;
 }
 
 export interface TrendWhereInput {
@@ -1536,9 +1535,10 @@ export interface TrendWhereInput {
   AND?: TrendWhereInput[] | TrendWhereInput;
 }
 
-export interface MessageUpdateWithWhereUniqueWithoutSenderInput {
-  where: MessageWhereUniqueInput;
-  data: MessageUpdateWithoutSenderDataInput;
+export interface MessageUpdateWithoutSenderDataInput {
+  subject?: String;
+  body?: String;
+  recipients?: UserUpdateManyWithoutInboxInput;
 }
 
 export interface TaskUpdateWithWhereUniqueNestedInput {
@@ -1546,10 +1546,22 @@ export interface TaskUpdateWithWhereUniqueNestedInput {
   data: TaskUpdateDataInput;
 }
 
-export interface MessageUpdateWithoutSenderDataInput {
-  subject?: String;
-  body?: String;
-  recipients?: UserUpdateManyWithoutInboxInput;
+export interface UserUpdateManyWithoutInboxInput {
+  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
+  update?:
+    | UserUpdateWithWhereUniqueWithoutInboxInput[]
+    | UserUpdateWithWhereUniqueWithoutInboxInput;
+  upsert?:
+    | UserUpsertWithWhereUniqueWithoutInboxInput[]
+    | UserUpsertWithWhereUniqueWithoutInboxInput;
+  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
+  updateMany?:
+    | UserUpdateManyWithWhereNestedInput[]
+    | UserUpdateManyWithWhereNestedInput;
 }
 
 export interface TaskUpdateManyInput {
@@ -1570,22 +1582,9 @@ export interface TaskUpdateManyInput {
     | TaskUpdateManyWithWhereNestedInput;
 }
 
-export interface UserUpdateManyWithoutInboxInput {
-  create?: UserCreateWithoutInboxInput[] | UserCreateWithoutInboxInput;
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
-  update?:
-    | UserUpdateWithWhereUniqueWithoutInboxInput[]
-    | UserUpdateWithWhereUniqueWithoutInboxInput;
-  upsert?:
-    | UserUpsertWithWhereUniqueWithoutInboxInput[]
-    | UserUpsertWithWhereUniqueWithoutInboxInput;
-  deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
-  updateMany?:
-    | UserUpdateManyWithWhereNestedInput[]
-    | UserUpdateManyWithWhereNestedInput;
+export interface UserUpdateWithWhereUniqueWithoutInboxInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateWithoutInboxDataInput;
 }
 
 export interface ProductionWhereInput {
@@ -1650,9 +1649,12 @@ export interface ProductionWhereInput {
   AND?: ProductionWhereInput[] | ProductionWhereInput;
 }
 
-export interface UserUpdateWithWhereUniqueWithoutInboxInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateWithoutInboxDataInput;
+export interface UserUpdateWithoutInboxDataInput {
+  username?: String;
+  name?: String;
+  password?: String;
+  outbox?: MessageUpdateManyWithoutSenderInput;
+  role?: Role;
 }
 
 export interface TrendUpdateManyDataInput {
@@ -1660,12 +1662,10 @@ export interface TrendUpdateManyDataInput {
   description?: String;
 }
 
-export interface UserUpdateWithoutInboxDataInput {
-  username?: String;
-  name?: String;
-  password?: String;
-  outbox?: MessageUpdateManyWithoutSenderInput;
-  role?: Role;
+export interface CheckUpsertWithWhereUniqueNestedInput {
+  where: CheckWhereUniqueInput;
+  update: CheckUpdateDataInput;
+  create: CheckCreateInput;
 }
 
 export interface TrendScalarWhereInput {
@@ -1715,16 +1715,6 @@ export interface TrendScalarWhereInput {
   OR?: TrendScalarWhereInput[] | TrendScalarWhereInput;
   NOT?: TrendScalarWhereInput[] | TrendScalarWhereInput;
 }
-
-export interface CheckUpsertWithWhereUniqueNestedInput {
-  where: CheckWhereUniqueInput;
-  update: CheckUpdateDataInput;
-  create: CheckCreateInput;
-}
-
-export type ProductionLineWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
 
 export interface UserScalarWhereInput {
   id?: ID_Input;
@@ -1792,14 +1782,25 @@ export interface UserScalarWhereInput {
   NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
 }
 
+export type ProductionLineWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput;
+  data: UserUpdateManyDataInput;
+}
+
 export interface TrendUpdateWithWhereUniqueNestedInput {
   where: TrendWhereUniqueInput;
   data: TrendUpdateDataInput;
 }
 
-export interface UserUpdateManyWithWhereNestedInput {
-  where: UserScalarWhereInput;
-  data: UserUpdateManyDataInput;
+export interface UserUpdateManyDataInput {
+  username?: String;
+  name?: String;
+  password?: String;
+  role?: Role;
 }
 
 export interface MachineUpdateManyDataInput {
@@ -1813,11 +1814,10 @@ export interface MachineUpdateManyDataInput {
   onlineStatus?: Boolean;
 }
 
-export interface UserUpdateManyDataInput {
-  username?: String;
-  name?: String;
-  password?: String;
-  role?: Role;
+export interface MessageUpsertWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput;
+  update: MessageUpdateWithoutSenderDataInput;
+  create: MessageCreateWithoutSenderInput;
 }
 
 export interface MachineUpdateManyWithWhereNestedInput {
@@ -1825,10 +1825,9 @@ export interface MachineUpdateManyWithWhereNestedInput {
   data: MachineUpdateManyDataInput;
 }
 
-export interface MessageUpsertWithWhereUniqueWithoutSenderInput {
-  where: MessageWhereUniqueInput;
-  update: MessageUpdateWithoutSenderDataInput;
-  create: MessageCreateWithoutSenderInput;
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
 }
 
 export interface MachineUpsertWithWhereUniqueNestedInput {
@@ -1837,9 +1836,14 @@ export interface MachineUpsertWithWhereUniqueNestedInput {
   create: MachineCreateInput;
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
+export interface CheckUpdateManyMutationInput {
+  name?: String;
+  description?: String;
+  valueType?: ValueType;
+  lhsValue?: Float;
+  operator?: Operation;
+  rhsValue?: Float;
+  unit?: Unit;
 }
 
 export interface MachineUpdateDataInput {
@@ -1856,14 +1860,18 @@ export interface MachineUpdateDataInput {
   createdBy?: UserUpdateOneRequiredInput;
 }
 
-export interface CheckUpdateManyMutationInput {
+export interface CheckUpdateDataInput {
   name?: String;
   description?: String;
+  target?: ObjectConnectionUpdateOneRequiredInput;
   valueType?: ValueType;
+  lhsParameter?: ParameterUpdateOneInput;
+  rhsParameter?: ParameterUpdateOneInput;
   lhsValue?: Float;
   operator?: Operation;
   rhsValue?: Float;
   unit?: Unit;
+  createdBy?: UserUpdateOneRequiredInput;
 }
 
 export interface MachineUpdateManyInput {
@@ -1884,18 +1892,9 @@ export interface MachineUpdateManyInput {
     | MachineUpdateManyWithWhereNestedInput;
 }
 
-export interface CheckUpdateDataInput {
-  name?: String;
-  description?: String;
-  target?: ObjectConnectionUpdateOneRequiredInput;
-  valueType?: ValueType;
-  lhsParameter?: ParameterUpdateOneInput;
-  rhsParameter?: ParameterUpdateOneInput;
-  lhsValue?: Float;
-  operator?: Operation;
-  rhsValue?: Float;
-  unit?: Unit;
-  createdBy?: UserUpdateOneRequiredInput;
+export interface CheckUpdateWithWhereUniqueNestedInput {
+  where: CheckWhereUniqueInput;
+  data: CheckUpdateDataInput;
 }
 
 export interface CheckUpdateManyDataInput {
@@ -1908,9 +1907,9 @@ export interface CheckUpdateManyDataInput {
   unit?: Unit;
 }
 
-export interface CheckUpdateWithWhereUniqueNestedInput {
-  where: CheckWhereUniqueInput;
-  data: CheckUpdateDataInput;
+export interface DataCreateInput {
+  parameter: ParameterCreateOneInput;
+  value?: DatasetCreateManyInput;
 }
 
 export interface CheckScalarWhereInput {
@@ -1997,25 +1996,6 @@ export interface CheckScalarWhereInput {
   NOT?: CheckScalarWhereInput[] | CheckScalarWhereInput;
 }
 
-export interface DataCreateInput {
-  parameter?: ParameterCreateOneInput;
-  value?: DatasetCreateManyInput;
-}
-
-export interface CheckCreateInput {
-  name: String;
-  description: String;
-  target: ObjectConnectionCreateOneInput;
-  valueType: ValueType;
-  lhsParameter?: ParameterCreateOneInput;
-  rhsParameter?: ParameterCreateOneInput;
-  lhsValue: Float;
-  operator: Operation;
-  rhsValue: Float;
-  unit: Unit;
-  createdBy: UserCreateOneInput;
-}
-
 export interface ObjectConnectionWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
@@ -2066,10 +2046,18 @@ export interface ObjectConnectionWhereInput {
   AND?: ObjectConnectionWhereInput[] | ObjectConnectionWhereInput;
 }
 
-export interface ObjectConnectionCreateInput {
+export interface CheckCreateInput {
+  name: String;
   description: String;
-  connectionId: ID_Input;
-  connectionType: Connection;
+  target: ObjectConnectionCreateOneInput;
+  valueType: ValueType;
+  lhsParameter?: ParameterCreateOneInput;
+  rhsParameter?: ParameterCreateOneInput;
+  lhsValue: Float;
+  operator: Operation;
+  rhsValue: Float;
+  unit: Unit;
+  createdBy: UserCreateOneInput;
 }
 
 export interface CheckUpdateManyInput {
@@ -2090,13 +2078,10 @@ export interface CheckUpdateManyInput {
     | CheckUpdateManyWithWhereNestedInput;
 }
 
-export interface ParameterCreateInput {
-  name: String;
-  unit: Unit;
-  set: Float;
-  toleranceHigh: Float;
-  toleranceLow: Float;
-  connection: Connection;
+export interface ObjectConnectionCreateInput {
+  description: String;
+  connectionId: ID_Input;
+  connectionType: Connection;
 }
 
 export interface ProductionLineUpdateDataInput {
@@ -2107,6 +2092,22 @@ export interface ProductionLineUpdateDataInput {
   machines?: MachineUpdateManyInput;
   trends?: TrendUpdateManyInput;
   createdBy?: UserUpdateOneRequiredInput;
+}
+
+export interface ParameterCreateInput {
+  name: String;
+  unit: Unit;
+  set: Float;
+  toleranceHigh: Float;
+  toleranceLow: Float;
+  connection: Connection;
+}
+
+export interface ParameterUpdateOneRequiredInput {
+  create?: ParameterCreateInput;
+  update?: ParameterUpdateDataInput;
+  upsert?: ParameterUpsertNestedInput;
+  connect?: ParameterWhereUniqueInput;
 }
 
 export interface UserCreateInput {
@@ -2160,13 +2161,10 @@ export interface DatasetUpdateDataInput {
   createdBy?: UserUpdateOneRequiredInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+export interface MessageCreateWithoutSenderInput {
+  subject: String;
+  body: String;
+  recipients?: UserCreateManyWithoutInboxInput;
 }
 
 export interface DatasetUpsertWithWhereUniqueNestedInput {
@@ -2175,15 +2173,13 @@ export interface DatasetUpsertWithWhereUniqueNestedInput {
   create: DatasetCreateInput;
 }
 
-export interface ProductionLineSubscriptionWhereInput {
+export interface TaskSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: ProductionLineWhereInput;
-  AND?:
-    | ProductionLineSubscriptionWhereInput[]
-    | ProductionLineSubscriptionWhereInput;
+  node?: TaskWhereInput;
+  AND?: TaskSubscriptionWhereInput[] | TaskSubscriptionWhereInput;
 }
 
 export interface DatasetScalarWhereInput {
@@ -2222,7 +2218,175 @@ export interface DatasetScalarWhereInput {
   NOT?: DatasetScalarWhereInput[] | DatasetScalarWhereInput;
 }
 
-export interface DataWhereInput {
+export interface ProductionSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProductionWhereInput;
+  AND?: ProductionSubscriptionWhereInput[] | ProductionSubscriptionWhereInput;
+}
+
+export interface DatasetUpdateManyWithWhereNestedInput {
+  where: DatasetScalarWhereInput;
+  data: DatasetUpdateManyDataInput;
+}
+
+export interface ObjectConnectionSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ObjectConnectionWhereInput;
+  AND?:
+    | ObjectConnectionSubscriptionWhereInput[]
+    | ObjectConnectionSubscriptionWhereInput;
+}
+
+export interface DatasetUpdateManyDataInput {
+  value?: Float;
+}
+
+export interface DatasetSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: DatasetWhereInput;
+  AND?: DatasetSubscriptionWhereInput[] | DatasetSubscriptionWhereInput;
+}
+
+export interface DatasetUpdateInput {
+  value?: Float;
+  createdBy?: UserUpdateOneRequiredInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  username?: String;
+  name?: String;
+  password?: String;
+  role?: Role;
+}
+
+export interface DatasetUpdateManyMutationInput {
+  value?: Float;
+}
+
+export interface TrendUpdateManyMutationInput {
+  name?: String;
+  description?: String;
+}
+
+export interface MachineCreateInput {
+  name: String;
+  manufacturer: String;
+  year?: Int;
+  model: String;
+  serialNumber: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus: Boolean;
+  parameters?: ParameterCreateManyInput;
+  data?: DataCreateManyInput;
+  createdBy: UserCreateOneInput;
+}
+
+export interface TaskUpdateInput {
+  objectResponsiblity?: ObjectConnectionUpdateOneInput;
+  assignedTo?: UserUpdateOneRequiredInput;
+  assignedBy?: UserUpdateOneRequiredInput;
+  description?: String;
+  completed?: Boolean;
+}
+
+export interface ParameterCreateManyInput {
+  create?: ParameterCreateInput[] | ParameterCreateInput;
+  connect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+}
+
+export interface ProductionUpdateManyMutationInput {
+  start?: DateTimeInput;
+  end?: DateTimeInput;
+  targetQty?: Int;
+  acceptQty?: Int;
+  rejectQty?: Int;
+}
+
+export interface DataCreateManyInput {
+  create?: DataCreateInput[] | DataCreateInput;
+  connect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+}
+
+export type ParameterWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface MachineUpdateInput {
+  name?: String;
+  manufacturer?: String;
+  year?: Int;
+  model?: String;
+  serialNumber?: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus?: Boolean;
+  parameters?: ParameterUpdateManyInput;
+  data?: DataUpdateManyInput;
+  createdBy?: UserUpdateOneRequiredInput;
+}
+
+export type ProductionWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ParameterUpdateManyInput {
+  create?: ParameterCreateInput[] | ParameterCreateInput;
+  update?:
+    | ParameterUpdateWithWhereUniqueNestedInput[]
+    | ParameterUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | ParameterUpsertWithWhereUniqueNestedInput[]
+    | ParameterUpsertWithWhereUniqueNestedInput;
+  delete?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  connect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  set?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  disconnect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
+  deleteMany?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
+  updateMany?:
+    | ParameterUpdateManyWithWhereNestedInput[]
+    | ParameterUpdateManyWithWhereNestedInput;
+}
+
+export interface TaskUpdateDataInput {
+  objectResponsiblity?: ObjectConnectionUpdateOneInput;
+  assignedTo?: UserUpdateOneRequiredInput;
+  assignedBy?: UserUpdateOneRequiredInput;
+  description?: String;
+  completed?: Boolean;
+}
+
+export interface ParameterUpdateWithWhereUniqueNestedInput {
+  where: ParameterWhereUniqueInput;
+  data: ParameterUpdateDataInput;
+}
+
+export interface ProductionLineUpsertNestedInput {
+  update: ProductionLineUpdateDataInput;
+  create: ProductionLineCreateInput;
+}
+
+export interface ParameterUpsertWithWhereUniqueNestedInput {
+  where: ParameterWhereUniqueInput;
+  update: ParameterUpdateDataInput;
+  create: ParameterCreateInput;
+}
+
+export interface TrendUpdateManyWithWhereNestedInput {
+  where: TrendScalarWhereInput;
+  data: TrendUpdateManyDataInput;
+}
+
+export interface ParameterScalarWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -2237,14 +2401,179 @@ export interface DataWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  parameter?: ParameterWhereInput;
-  value_some?: DatasetWhereInput;
-  AND?: DataWhereInput[] | DataWhereInput;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  unit?: Unit;
+  unit_not?: Unit;
+  unit_in?: Unit[] | Unit;
+  unit_not_in?: Unit[] | Unit;
+  set?: Float;
+  set_not?: Float;
+  set_in?: Float[] | Float;
+  set_not_in?: Float[] | Float;
+  set_lt?: Float;
+  set_lte?: Float;
+  set_gt?: Float;
+  set_gte?: Float;
+  toleranceHigh?: Float;
+  toleranceHigh_not?: Float;
+  toleranceHigh_in?: Float[] | Float;
+  toleranceHigh_not_in?: Float[] | Float;
+  toleranceHigh_lt?: Float;
+  toleranceHigh_lte?: Float;
+  toleranceHigh_gt?: Float;
+  toleranceHigh_gte?: Float;
+  toleranceLow?: Float;
+  toleranceLow_not?: Float;
+  toleranceLow_in?: Float[] | Float;
+  toleranceLow_not_in?: Float[] | Float;
+  toleranceLow_lt?: Float;
+  toleranceLow_lte?: Float;
+  toleranceLow_gt?: Float;
+  toleranceLow_gte?: Float;
+  connection?: Connection;
+  connection_not?: Connection;
+  connection_in?: Connection[] | Connection;
+  connection_not_in?: Connection[] | Connection;
+  AND?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
+  OR?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
+  NOT?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
 }
 
-export interface DatasetUpdateManyWithWhereNestedInput {
-  where: DatasetScalarWhereInput;
-  data: DatasetUpdateManyDataInput;
+export interface TrendUpdateDataInput {
+  name?: String;
+  description?: String;
+  parameters?: ParameterUpdateManyInput;
+  owner?: ObjectConnectionUpdateOneRequiredInput;
+}
+
+export interface ParameterUpdateManyWithWhereNestedInput {
+  where: ParameterScalarWhereInput;
+  data: ParameterUpdateManyDataInput;
+}
+
+export type TaskWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ParameterUpdateManyDataInput {
+  name?: String;
+  unit?: Unit;
+  set?: Float;
+  toleranceHigh?: Float;
+  toleranceLow?: Float;
+  connection?: Connection;
+}
+
+export type TrendWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface DataUpdateManyInput {
+  create?: DataCreateInput[] | DataCreateInput;
+  update?:
+    | DataUpdateWithWhereUniqueNestedInput[]
+    | DataUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | DataUpsertWithWhereUniqueNestedInput[]
+    | DataUpsertWithWhereUniqueNestedInput;
+  delete?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  connect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  set?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  disconnect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+  deleteMany?: DataScalarWhereInput[] | DataScalarWhereInput;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  username?: String;
+}>;
+
+export interface DataUpdateWithWhereUniqueNestedInput {
+  where: DataWhereUniqueInput;
+  data: DataUpdateDataInput;
+}
+
+export interface ParameterCreateOneInput {
+  create?: ParameterCreateInput;
+  connect?: ParameterWhereUniqueInput;
+}
+
+export interface DataUpdateDataInput {
+  parameter?: ParameterUpdateOneRequiredInput;
+  value?: DatasetUpdateManyInput;
+}
+
+export interface MessageCreateManyWithoutRecipientsInput {
+  create?:
+    | MessageCreateWithoutRecipientsInput[]
+    | MessageCreateWithoutRecipientsInput;
+  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+}
+
+export interface DataUpsertWithWhereUniqueNestedInput {
+  where: DataWhereUniqueInput;
+  update: DataUpdateDataInput;
+  create: DataCreateInput;
+}
+
+export interface MessageCreateManyWithoutSenderInput {
+  create?: MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput;
+  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
+}
+
+export interface DataScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  AND?: DataScalarWhereInput[] | DataScalarWhereInput;
+  OR?: DataScalarWhereInput[] | DataScalarWhereInput;
+  NOT?: DataScalarWhereInput[] | DataScalarWhereInput;
+}
+
+export interface ProductionLineSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProductionLineWhereInput;
+  AND?:
+    | ProductionLineSubscriptionWhereInput[]
+    | ProductionLineSubscriptionWhereInput;
+}
+
+export interface MachineUpdateManyMutationInput {
+  name?: String;
+  manufacturer?: String;
+  year?: Int;
+  model?: String;
+  serialNumber?: String;
+  lastServiceDate?: DateTimeInput;
+  nextServiceDate?: DateTimeInput;
+  onlineStatus?: Boolean;
 }
 
 export interface MachineSubscriptionWhereInput {
@@ -2256,22 +2585,11 @@ export interface MachineSubscriptionWhereInput {
   AND?: MachineSubscriptionWhereInput[] | MachineSubscriptionWhereInput;
 }
 
-export interface DatasetUpdateManyDataInput {
-  value?: Float;
-}
-
-export interface CheckSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: CheckWhereInput;
-  AND?: CheckSubscriptionWhereInput[] | CheckSubscriptionWhereInput;
-}
-
-export interface DatasetUpdateInput {
-  value?: Float;
-  createdBy?: UserUpdateOneRequiredInput;
+export interface MessageCreateInput {
+  subject: String;
+  body: String;
+  sender: UserCreateOneWithoutOutboxInput;
+  recipients?: UserCreateManyWithoutInboxInput;
 }
 
 export interface MachineWhereInput {
@@ -2385,27 +2703,11 @@ export interface MachineWhereInput {
   AND?: MachineWhereInput[] | MachineWhereInput;
 }
 
-export interface DatasetUpdateManyMutationInput {
-  value?: Float;
-}
-
-export interface TaskUpdateManyMutationInput {
-  description?: String;
-  completed?: Boolean;
-}
-
-export interface MachineCreateInput {
-  name: String;
-  manufacturer: String;
-  year?: Int;
-  model: String;
-  serialNumber: String;
-  lastServiceDate?: DateTimeInput;
-  nextServiceDate?: DateTimeInput;
-  onlineStatus: Boolean;
-  parameters?: ParameterCreateManyInput;
-  data?: DataCreateManyInput;
-  createdBy: UserCreateOneInput;
+export interface MessageUpdateInput {
+  subject?: String;
+  body?: String;
+  sender?: UserUpdateOneRequiredWithoutOutboxInput;
+  recipients?: UserUpdateManyWithoutInboxInput;
 }
 
 export interface ProductionLineUpdateInput {
@@ -2418,19 +2720,9 @@ export interface ProductionLineUpdateInput {
   createdBy?: UserUpdateOneRequiredInput;
 }
 
-export interface ParameterCreateManyInput {
-  create?: ParameterCreateInput[] | ParameterCreateInput;
-  connect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
-}
-
-export interface UserUpdateWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput;
-  data: UserUpdateDataInput;
-}
-
-export interface DataCreateManyInput {
-  create?: DataCreateInput[] | DataCreateInput;
-  connect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
+export interface MessageUpdateManyMutationInput {
+  subject?: String;
+  body?: String;
 }
 
 export interface TaskUpdateManyWithWhereNestedInput {
@@ -2438,45 +2730,10 @@ export interface TaskUpdateManyWithWhereNestedInput {
   data: TaskUpdateManyDataInput;
 }
 
-export interface MachineUpdateInput {
-  name?: String;
-  manufacturer?: String;
-  year?: Int;
-  model?: String;
-  serialNumber?: String;
-  lastServiceDate?: DateTimeInput;
-  nextServiceDate?: DateTimeInput;
-  onlineStatus?: Boolean;
-  parameters?: ParameterUpdateManyInput;
-  data?: DataUpdateManyInput;
-  createdBy?: UserUpdateOneRequiredInput;
-}
-
-export interface ObjectConnectionUpdateOneInput {
-  create?: ObjectConnectionCreateInput;
-  update?: ObjectConnectionUpdateDataInput;
-  upsert?: ObjectConnectionUpsertNestedInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: ObjectConnectionWhereUniqueInput;
-}
-
-export interface ParameterUpdateManyInput {
-  create?: ParameterCreateInput[] | ParameterCreateInput;
-  update?:
-    | ParameterUpdateWithWhereUniqueNestedInput[]
-    | ParameterUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | ParameterUpsertWithWhereUniqueNestedInput[]
-    | ParameterUpsertWithWhereUniqueNestedInput;
-  delete?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
-  connect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
-  set?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
-  disconnect?: ParameterWhereUniqueInput[] | ParameterWhereUniqueInput;
-  deleteMany?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
-  updateMany?:
-    | ParameterUpdateManyWithWhereNestedInput[]
-    | ParameterUpdateManyWithWhereNestedInput;
+export interface ObjectConnectionUpdateInput {
+  description?: String;
+  connectionId?: ID_Input;
+  connectionType?: Connection;
 }
 
 export interface TaskWhereInput {
@@ -2524,74 +2781,10 @@ export interface TaskWhereInput {
   AND?: TaskWhereInput[] | TaskWhereInput;
 }
 
-export interface ParameterUpdateWithWhereUniqueNestedInput {
-  where: ParameterWhereUniqueInput;
-  data: ParameterUpdateDataInput;
-}
-
-export interface ProductionLineWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
+export interface ObjectConnectionUpdateManyMutationInput {
   description?: String;
-  description_not?: String;
-  description_in?: String[] | String;
-  description_not_in?: String[] | String;
-  description_lt?: String;
-  description_lte?: String;
-  description_gt?: String;
-  description_gte?: String;
-  description_contains?: String;
-  description_not_contains?: String;
-  description_starts_with?: String;
-  description_not_starts_with?: String;
-  description_ends_with?: String;
-  description_not_ends_with?: String;
-  startUpChecks_some?: CheckWhereInput;
-  parameters_some?: ParameterWhereInput;
-  machines_some?: MachineWhereInput;
-  trends_some?: TrendWhereInput;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  createdBy?: UserWhereInput;
-  AND?: ProductionLineWhereInput[] | ProductionLineWhereInput;
-}
-
-export interface ParameterUpsertWithWhereUniqueNestedInput {
-  where: ParameterWhereUniqueInput;
-  update: ParameterUpdateDataInput;
-  create: ParameterCreateInput;
+  connectionId?: ID_Input;
+  connectionType?: Connection;
 }
 
 export interface TrendUpsertWithWhereUniqueNestedInput {
@@ -2600,93 +2793,13 @@ export interface TrendUpsertWithWhereUniqueNestedInput {
   create: TrendCreateInput;
 }
 
-export interface ParameterScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
+export interface ParameterUpdateInput {
   name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
   unit?: Unit;
-  unit_not?: Unit;
-  unit_in?: Unit[] | Unit;
-  unit_not_in?: Unit[] | Unit;
   set?: Float;
-  set_not?: Float;
-  set_in?: Float[] | Float;
-  set_not_in?: Float[] | Float;
-  set_lt?: Float;
-  set_lte?: Float;
-  set_gt?: Float;
-  set_gte?: Float;
   toleranceHigh?: Float;
-  toleranceHigh_not?: Float;
-  toleranceHigh_in?: Float[] | Float;
-  toleranceHigh_not_in?: Float[] | Float;
-  toleranceHigh_lt?: Float;
-  toleranceHigh_lte?: Float;
-  toleranceHigh_gt?: Float;
-  toleranceHigh_gte?: Float;
   toleranceLow?: Float;
-  toleranceLow_not?: Float;
-  toleranceLow_in?: Float[] | Float;
-  toleranceLow_not_in?: Float[] | Float;
-  toleranceLow_lt?: Float;
-  toleranceLow_lte?: Float;
-  toleranceLow_gt?: Float;
-  toleranceLow_gte?: Float;
   connection?: Connection;
-  connection_not?: Connection;
-  connection_in?: Connection[] | Connection;
-  connection_not_in?: Connection[] | Connection;
-  AND?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
-  OR?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
-  NOT?: ParameterScalarWhereInput[] | ParameterScalarWhereInput;
-}
-
-export interface TrendUpdateManyInput {
-  create?: TrendCreateInput[] | TrendCreateInput;
-  update?:
-    | TrendUpdateWithWhereUniqueNestedInput[]
-    | TrendUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | TrendUpsertWithWhereUniqueNestedInput[]
-    | TrendUpsertWithWhereUniqueNestedInput;
-  delete?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
-  connect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
-  set?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
-  disconnect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
-  deleteMany?: TrendScalarWhereInput[] | TrendScalarWhereInput;
-  updateMany?:
-    | TrendUpdateManyWithWhereNestedInput[]
-    | TrendUpdateManyWithWhereNestedInput;
-}
-
-export interface ParameterUpdateManyWithWhereNestedInput {
-  where: ParameterScalarWhereInput;
-  data: ParameterUpdateManyDataInput;
 }
 
 export interface MachineScalarWhereInput {
@@ -2799,7 +2912,7 @@ export interface MachineScalarWhereInput {
   NOT?: MachineScalarWhereInput[] | MachineScalarWhereInput;
 }
 
-export interface ParameterUpdateManyDataInput {
+export interface ParameterUpdateManyMutationInput {
   name?: String;
   unit?: Unit;
   set?: Float;
@@ -2808,44 +2921,21 @@ export interface ParameterUpdateManyDataInput {
   connection?: Connection;
 }
 
-export interface MachineUpdateWithWhereUniqueNestedInput {
-  where: MachineWhereUniqueInput;
-  data: MachineUpdateDataInput;
-}
-
-export interface DataUpdateManyInput {
-  create?: DataCreateInput[] | DataCreateInput;
-  update?:
-    | DataUpdateWithWhereUniqueNestedInput[]
-    | DataUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | DataUpsertWithWhereUniqueNestedInput[]
-    | DataUpsertWithWhereUniqueNestedInput;
-  delete?: DataWhereUniqueInput[] | DataWhereUniqueInput;
-  connect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
-  set?: DataWhereUniqueInput[] | DataWhereUniqueInput;
-  disconnect?: DataWhereUniqueInput[] | DataWhereUniqueInput;
-  deleteMany?: DataScalarWhereInput[] | DataScalarWhereInput;
-}
-
 export interface CheckUpdateManyWithWhereNestedInput {
   where: CheckScalarWhereInput;
   data: CheckUpdateManyDataInput;
 }
 
-export interface DataUpdateWithWhereUniqueNestedInput {
-  where: DataWhereUniqueInput;
-  data: DataUpdateDataInput;
-}
-
-export interface ObjectConnectionCreateOneInput {
-  create?: ObjectConnectionCreateInput;
-  connect?: ObjectConnectionWhereUniqueInput;
-}
-
-export interface DataUpdateDataInput {
-  parameter?: ParameterUpdateOneInput;
-  value?: DatasetUpdateManyInput;
+export interface ProductionCreateInput {
+  productionLine: ProductionLineCreateOneInput;
+  start: DateTimeInput;
+  end: DateTimeInput;
+  targetQty: Int;
+  acceptQty: Int;
+  rejectQty: Int;
+  data?: DataCreateManyInput;
+  tasks?: TaskCreateManyInput;
+  operators?: UserCreateManyInput;
 }
 
 export interface UserCreateOneInput {
@@ -2853,18 +2943,55 @@ export interface UserCreateOneInput {
   connect?: UserWhereUniqueInput;
 }
 
-export interface DataUpsertWithWhereUniqueNestedInput {
-  where: DataWhereUniqueInput;
-  update: DataUpdateDataInput;
-  create: DataCreateInput;
+export interface ProductionLineCreateOneInput {
+  create?: ProductionLineCreateInput;
+  connect?: ProductionLineWhereUniqueInput;
 }
 
-export interface UserCreateOneWithoutOutboxInput {
-  create?: UserCreateWithoutOutboxInput;
-  connect?: UserWhereUniqueInput;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: UserWhereInput;
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
-export interface DataScalarWhereInput {
+export interface ProductionLineCreateInput {
+  name: String;
+  description: String;
+  startUpChecks?: CheckCreateManyInput;
+  parameters?: ParameterCreateManyInput;
+  machines?: MachineCreateManyInput;
+  trends?: TrendCreateManyInput;
+  createdBy: UserCreateOneInput;
+}
+
+export interface CheckSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CheckWhereInput;
+  AND?: CheckSubscriptionWhereInput[] | CheckSubscriptionWhereInput;
+}
+
+export interface CheckCreateManyInput {
+  create?: CheckCreateInput[] | CheckCreateInput;
+  connect?: CheckWhereUniqueInput[] | CheckWhereUniqueInput;
+}
+
+export interface UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateDataInput;
+}
+
+export interface MachineCreateManyInput {
+  create?: MachineCreateInput[] | MachineCreateInput;
+  connect?: MachineWhereUniqueInput[] | MachineWhereUniqueInput;
+}
+
+export interface ProductionLineWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -2879,199 +3006,48 @@ export interface DataScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  AND?: DataScalarWhereInput[] | DataScalarWhereInput;
-  OR?: DataScalarWhereInput[] | DataScalarWhereInput;
-  NOT?: DataScalarWhereInput[] | DataScalarWhereInput;
-}
-
-export interface TaskSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: TaskWhereInput;
-  AND?: TaskSubscriptionWhereInput[] | TaskSubscriptionWhereInput;
-}
-
-export interface MachineUpdateManyMutationInput {
   name?: String;
-  manufacturer?: String;
-  year?: Int;
-  model?: String;
-  serialNumber?: String;
-  lastServiceDate?: DateTimeInput;
-  nextServiceDate?: DateTimeInput;
-  onlineStatus?: Boolean;
-}
-
-export interface ObjectConnectionSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ObjectConnectionWhereInput;
-  AND?:
-    | ObjectConnectionSubscriptionWhereInput[]
-    | ObjectConnectionSubscriptionWhereInput;
-}
-
-export interface MessageCreateInput {
-  subject: String;
-  body: String;
-  sender: UserCreateOneWithoutOutboxInput;
-  recipients?: UserCreateManyWithoutInboxInput;
-}
-
-export interface UserUpdateManyMutationInput {
-  username?: String;
-  name?: String;
-  password?: String;
-  role?: Role;
-}
-
-export interface MessageUpdateInput {
-  subject?: String;
-  body?: String;
-  sender?: UserUpdateOneRequiredWithoutOutboxInput;
-  recipients?: UserUpdateManyWithoutInboxInput;
-}
-
-export interface TaskUpdateInput {
-  objectResponsiblity?: ObjectConnectionUpdateOneInput;
-  assignedTo?: UserUpdateOneRequiredInput;
-  assignedBy?: UserUpdateOneRequiredInput;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
   description?: String;
-  completed?: Boolean;
-}
-
-export interface MessageUpdateManyMutationInput {
-  subject?: String;
-  body?: String;
-}
-
-export type ParameterWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface ObjectConnectionUpdateInput {
-  description?: String;
-  connectionId?: ID_Input;
-  connectionType?: Connection;
-}
-
-export interface TaskUpdateDataInput {
-  objectResponsiblity?: ObjectConnectionUpdateOneInput;
-  assignedTo?: UserUpdateOneRequiredInput;
-  assignedBy?: UserUpdateOneRequiredInput;
-  description?: String;
-  completed?: Boolean;
-}
-
-export interface ObjectConnectionUpdateManyMutationInput {
-  description?: String;
-  connectionId?: ID_Input;
-  connectionType?: Connection;
-}
-
-export interface TrendUpdateManyWithWhereNestedInput {
-  where: TrendScalarWhereInput;
-  data: TrendUpdateManyDataInput;
-}
-
-export interface ParameterUpdateInput {
-  name?: String;
-  unit?: Unit;
-  set?: Float;
-  toleranceHigh?: Float;
-  toleranceLow?: Float;
-  connection?: Connection;
-}
-
-export type TaskWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface ParameterUpdateManyMutationInput {
-  name?: String;
-  unit?: Unit;
-  set?: Float;
-  toleranceHigh?: Float;
-  toleranceLow?: Float;
-  connection?: Connection;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  username?: String;
-}>;
-
-export interface ProductionCreateInput {
-  productionLine: ProductionLineCreateOneInput;
-  start: DateTimeInput;
-  end: DateTimeInput;
-  targetQty: Int;
-  acceptQty: Int;
-  rejectQty: Int;
-  data?: DataCreateManyInput;
-  tasks?: TaskCreateManyInput;
-  operators?: UserCreateManyInput;
-}
-
-export interface ParameterCreateOneInput {
-  create?: ParameterCreateInput;
-  connect?: ParameterWhereUniqueInput;
-}
-
-export interface ProductionLineCreateOneInput {
-  create?: ProductionLineCreateInput;
-  connect?: ProductionLineWhereUniqueInput;
-}
-
-export interface MessageCreateManyWithoutSenderInput {
-  create?: MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput;
-  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-}
-
-export interface ProductionLineCreateInput {
-  name: String;
-  description: String;
-  startUpChecks?: CheckCreateManyInput;
-  parameters?: ParameterCreateManyInput;
-  machines?: MachineCreateManyInput;
-  trends?: TrendCreateManyInput;
-  createdBy: UserCreateOneInput;
-}
-
-export interface DatasetSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: DatasetWhereInput;
-  AND?: DatasetSubscriptionWhereInput[] | DatasetSubscriptionWhereInput;
-}
-
-export interface CheckCreateManyInput {
-  create?: CheckCreateInput[] | CheckCreateInput;
-  connect?: CheckWhereUniqueInput[] | CheckWhereUniqueInput;
-}
-
-export interface ProductionUpdateManyMutationInput {
-  start?: DateTimeInput;
-  end?: DateTimeInput;
-  targetQty?: Int;
-  acceptQty?: Int;
-  rejectQty?: Int;
-}
-
-export interface MachineCreateManyInput {
-  create?: MachineCreateInput[] | MachineCreateInput;
-  connect?: MachineWhereUniqueInput[] | MachineWhereUniqueInput;
-}
-
-export interface ProductionLineUpsertNestedInput {
-  update: ProductionLineUpdateDataInput;
-  create: ProductionLineCreateInput;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  startUpChecks_some?: CheckWhereInput;
+  parameters_some?: ParameterWhereInput;
+  machines_some?: MachineWhereInput;
+  trends_some?: TrendWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  createdBy?: UserWhereInput;
+  AND?: ProductionLineWhereInput[] | ProductionLineWhereInput;
 }
 
 export interface TrendCreateManyInput {
@@ -3079,9 +3055,10 @@ export interface TrendCreateManyInput {
   connect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
 }
 
-export type TrendWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
+export interface MachineUpdateWithWhereUniqueNestedInput {
+  where: MachineWhereUniqueInput;
+  data: MachineUpdateDataInput;
+}
 
 export interface TrendCreateInput {
   name: String;
@@ -3090,16 +3067,9 @@ export interface TrendCreateInput {
   owner: ObjectConnectionCreateOneInput;
 }
 
-export interface MessageCreateManyWithoutRecipientsInput {
-  create?:
-    | MessageCreateWithoutRecipientsInput[]
-    | MessageCreateWithoutRecipientsInput;
-  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput;
-}
-
-export interface TrendUpdateManyMutationInput {
-  name?: String;
-  description?: String;
+export interface UserCreateOneWithoutOutboxInput {
+  create?: UserCreateWithoutOutboxInput;
+  connect?: UserWhereUniqueInput;
 }
 
 export interface ProductionUpdateInput {
@@ -3132,24 +3102,61 @@ export interface TaskCreateManyInput {
   connect?: TaskWhereUniqueInput[] | TaskWhereUniqueInput;
 }
 
-export type ProductionWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface ProductionSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: ProductionWhereInput;
-  AND?: ProductionSubscriptionWhereInput[] | ProductionSubscriptionWhereInput;
+export interface DataWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  parameter?: ParameterWhereInput;
+  value_some?: DatasetWhereInput;
+  AND?: DataWhereInput[] | DataWhereInput;
 }
 
-export interface TrendUpdateDataInput {
-  name?: String;
+export interface ObjectConnectionCreateOneInput {
+  create?: ObjectConnectionCreateInput;
+  connect?: ObjectConnectionWhereUniqueInput;
+}
+
+export interface TrendUpdateManyInput {
+  create?: TrendCreateInput[] | TrendCreateInput;
+  update?:
+    | TrendUpdateWithWhereUniqueNestedInput[]
+    | TrendUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | TrendUpsertWithWhereUniqueNestedInput[]
+    | TrendUpsertWithWhereUniqueNestedInput;
+  delete?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  connect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  set?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  disconnect?: TrendWhereUniqueInput[] | TrendWhereUniqueInput;
+  deleteMany?: TrendScalarWhereInput[] | TrendScalarWhereInput;
+  updateMany?:
+    | TrendUpdateManyWithWhereNestedInput[]
+    | TrendUpdateManyWithWhereNestedInput;
+}
+
+export interface ObjectConnectionUpdateOneInput {
+  create?: ObjectConnectionCreateInput;
+  update?: ObjectConnectionUpdateDataInput;
+  upsert?: ObjectConnectionUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ObjectConnectionWhereUniqueInput;
+}
+
+export interface TaskUpdateManyMutationInput {
   description?: String;
-  parameters?: ParameterUpdateManyInput;
-  owner?: ObjectConnectionUpdateOneRequiredInput;
+  completed?: Boolean;
 }
 
 export interface NodeNode {

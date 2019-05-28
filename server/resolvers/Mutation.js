@@ -67,13 +67,47 @@ async function addMachine(parent, args, context){
 	const userId = getUserId(context)
 	const user = await context.prisma.user({ id: userId}) 
 	if(isAdmin(user.role)){
+		let parameters = []
+		let datas = []
+		for(let x=0; x<args.parameters.length;x++){
+			console.log(args.parameters[x])
+			let parameterHolder = await context.prisma.createParameter({
+				name: args.parameters[x].name, 
+				unit: args.parameters[x].unit,
+				set: args.parameters[x].set,
+				toleranceLow: args.parameters[x].toleranceLow,
+				toleranceHigh: args.parameters[x].toleranceHigh,
+				connection: args.parameters[x].connection
+			})
+			let parameter = {
+				id: parameterHolder.id
+			}
+			let dataHolder = await context.prisma.createData({
+				parameter: {connect: parameter} 
+			})
+			let data = {
+				id: dataHolder.id
+			}
+
+			parameters.push(parameter)
+			datas.push(data)
+		}
+		//Need to add action to error: unique constraint on machine due to serial number
 		return context.prisma.createMachine({
 			...args,
 			lastServiceDate: GraphQLDate.DateTime.parseValue(args.lastServiceDate),
 			nextServiceDate: GraphQLDate.DateTime.parseValue(args.nextServiceDate),
-			createdBy: {connect: {id: userId}}
+			createdBy: {connect: {id: userId}},
+			parameters: {connect: parameters},
+			data: {connect: datas}
 		})
 	}
+}
+
+async function addParameter(parent, args, context){
+	return context.prisma.createParameter({
+		...args,
+	})
 }
 
 module.exports = {
@@ -81,4 +115,5 @@ module.exports = {
 	login, 
 	sendMessage,
 	addMachine,
+	addParameter,
 }

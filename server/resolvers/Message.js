@@ -7,6 +7,6 @@ function recipients(parent, args, context){
 }
 
 module.exports = {
-	//sender,
+	sender,
 	recipients,
 }
